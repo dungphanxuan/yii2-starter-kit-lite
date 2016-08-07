@@ -4,7 +4,9 @@ $config = [
     'vendorPath'=>dirname(dirname(__DIR__)).'/vendor',
     'extensions' => require(__DIR__ . '/../../vendor/yiisoft/extensions.php'),
     'sourceLanguage'=>'en-US',
-    'language'=>'en-US',
+    'timezone' => 'Asia/Ho_Chi_Minh',
+    //'language'=>'en-US',
+    'language' => 'vi',
     'bootstrap' => ['log'],
     'components' => [
 
@@ -112,7 +114,7 @@ $config = [
 
         'fileStorage' => [
             'class' => '\trntv\filekit\Storage',
-            'baseUrl' => '@storageUrl/source',
+            'baseUrl' => '@storageUrl/web/source',
             'filesystem' => [
                 'class' => 'common\components\filesystem\LocalFlysystemBuilder',
                 'path' => '@storage/web/source'

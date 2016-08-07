@@ -15,18 +15,28 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="user-index">
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+    <div class="pull-right">
     <p>
         <?php echo Html::a(Yii::t('backend', 'Create {modelClass}', [
-    'modelClass' => 'User',
-]), ['create'], ['class' => 'btn btn-success']) ?>
+        'modelClass' => 'User',
+         ]), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+    </div>
+    <div class="clearfix"></div>
 
     <?php echo GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'tableOptions' => [
+            'class' => 'table table-striped table-bordered table-hover'
+        ],
         'columns' => [
-            'id',
+            [
+                'attribute' => 'id',
+                'format' => 'raw',
+                'headerOptions' => ['style'=>'text-align:center'],
+                'contentOptions' => ['style' => 'width:10%;text-align:center'],
+            ],
             'username',
             'email:email',
             [

@@ -13,19 +13,37 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="page-index">
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?php echo Html::a(Yii::t('backend', 'Create {modelClass}', [
-    'modelClass' => 'Page',
-]), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <div class="pull-right">
+        <p>
+            <?php echo Html::a(Yii::t('backend', 'Create {modelClass}', [
+               'modelClass' => 'Page',
+              ]), ['create'], ['class' => 'btn btn-success']) ?>
+        </p>
+    </div>
+    <div class="clearfix"></div>
 
     <?php echo GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'tableOptions' => [
+            'class' => 'table table-striped table-bordered table-hover'
+        ],
         'columns' => [
-            'id',
-            'title',
+
+            [
+                'attribute' => 'id',
+                'format' => 'raw',
+                'headerOptions' => ['style'=>'text-align:center'],
+                'contentOptions' => ['style' => 'width:10%;text-align:center'],
+            ],
+            [
+                'attribute' => 'title',
+                'format' => 'raw',
+                'headerOptions' => ['style'=>'text-align:center'],
+                'value' => function ($model) {
+                    return Html::a($model->title, ['update', 'id' =>$model->id], ['class' =>'alink']);
+                },
+            ],
             'slug',
             'status',
 

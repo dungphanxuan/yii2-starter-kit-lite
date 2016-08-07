@@ -22,16 +22,15 @@ $this->params['body-class'] = array_key_exists('body-class', $this->params) ?
 
     <?php echo Html::csrfMetaTags() ?>
     <title><?php echo Html::encode($this->title) ?></title>
+
     <?php $this->head() ?>
 
 </head>
 <?php echo Html::beginTag('body', [
     'class' => implode(' ', [
         ArrayHelper::getValue($this->params, 'body-class'),
+        'hold-transition skin-blue layout-top-nav',
         Yii::$app->keyStorage->get('backend.theme-skin', 'skin-blue'),
-        Yii::$app->keyStorage->get('backend.layout-fixed') ? 'fixed' : null,
-        Yii::$app->keyStorage->get('backend.layout-boxed') ? 'layout-boxed' : null,
-        Yii::$app->keyStorage->get('backend.layout-collapsed-sidebar') ? 'sidebar-collapse' : null,
     ])
 ])?>
     <?php $this->beginBody() ?>

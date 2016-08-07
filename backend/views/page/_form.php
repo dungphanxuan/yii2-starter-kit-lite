@@ -10,7 +10,9 @@ use yii\bootstrap\ActiveForm;
 
 <div class="page-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'layout' => 'horizontal',
+    ]); ?>
 
     <?php echo $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
@@ -24,7 +26,7 @@ use yii\bootstrap\ActiveForm;
                 'minHeight'=>400,
                 'maxHeight'=>400,
                 'buttonSource'=>true,
-                'imageUpload'=>Yii::$app->urlManager->createUrl(['/file-storage/upload-imperavi'])
+                'imageUpload'=>Yii::$app->urlManager->createUrl(['/system/file-storage/upload-imperavi'])
             ]
         ]
     ) ?>
@@ -34,7 +36,29 @@ use yii\bootstrap\ActiveForm;
     <?php echo $form->field($model, 'status')->checkbox() ?>
 
     <div class="form-group">
-        <?php echo Html::submitButton($model->isNewRecord ? Yii::t('backend', 'Create') : Yii::t('backend', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <div class="col-sm-<?=$model->isNewRecord? '3': '1'?> col-xs-2"></div>
+        <div class="col-sm-3 col-xs-4">
+            <?php
+            echo \yii\helpers\Html::a('<span class="glyphicon glyphicon-arrow-left"></span> Back', ['page/index'],['class'=>'btn btn-default btn200']);
+            ?>
+        </div>
+        <div class="col-sm-3 col-xs-4">
+            <?php echo Html::submitButton($model->isNewRecord ? Yii::t('backend', 'Create') : Yii::t('backend', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success btn200' : 'btn btn-primary btn200']) ?>
+        </div>
+        <div class="col-sm-3 col-xs-2">
+            <?php
+            if (!$model->isNewRecord) {
+                echo Html::a('Delete', ['/user/delete', 'id' => $model->id],
+                    [
+                        'class' => 'btn btn-warning btn200 bold',
+                        'data' => [
+                            'confirm' => 'Are you sure you want to delete?',
+                            'method' => 'post',
+                        ]
+                    ]);
+            }
+            ?>
+        </div>
     </div>
 
     <?php ActiveForm::end(); ?>
