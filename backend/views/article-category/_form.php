@@ -10,6 +10,7 @@ use yii\bootstrap\ActiveForm;
 ?>
 
 <div class="article-category-form">
+    <br>
 
     <?php $form = ActiveForm::begin([
         'layout' => 'horizontal',

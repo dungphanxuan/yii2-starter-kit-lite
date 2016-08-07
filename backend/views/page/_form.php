@@ -9,6 +9,7 @@ use yii\bootstrap\ActiveForm;
 ?>
 
 <div class="page-form">
+    <br>
 
     <?php $form = ActiveForm::begin([
         'layout' => 'horizontal',
