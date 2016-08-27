@@ -1,0 +1,43 @@
+<?php
+
+use yii\helpers\Html;
+use yii\grid\GridView;
+
+/* @var $this yii\web\View */
+/* @var $searchModel admin\models\search\WidgetMenuSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->title = Yii::t('admin', 'Widget Menus');
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="widget-menu-index">
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <p>
+        <?php echo Html::a(Yii::t('admin', 'Create {modelClass}', [
+            'modelClass' => 'Widget Menu',
+        ]), ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+
+    <?php echo GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'title',
+            'key',
+            [
+                'class'=>\common\grid\EnumColumn::className(),
+                'attribute'=>'status',
+                'enum'=>[
+                    Yii::t('admin', 'Disabled'),
+                    Yii::t('admin', 'Enabled')
+                ],
+            ],
+
+            ['class' => 'yii\grid\ActionColumn', 'template'=>'{update} {delete}'],
+        ],
+    ]); ?>
+
+</div>

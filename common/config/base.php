@@ -131,9 +131,9 @@ $config = [
 
         'urlManagerBackend' => \yii\helpers\ArrayHelper::merge(
             [
-                'hostInfo' => Yii::getAlias('@backendUrl')
+                'hostInfo' => Yii::getAlias('@adminUrl')
             ],
-            require(Yii::getAlias('@backend/config/_urlManager.php'))
+            require(Yii::getAlias('@admin/config/_urlManager.php'))
         ),
         'urlManagerFrontend' => \yii\helpers\ArrayHelper::merge(
             [
