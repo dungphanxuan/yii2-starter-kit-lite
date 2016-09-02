@@ -24,7 +24,7 @@ $config = [
             'formatters' => [
                 \yii\web\Response::FORMAT_JSON => [
                     'class' => 'yii\web\JsonResponseFormatter',
-                    //'prettyPrint' => YII_DEBUG,
+                    'prettyPrint' => YII_DEBUG,
                 ],
             ],
 

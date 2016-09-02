@@ -22,12 +22,12 @@ class ApiController extends Controller
      */
     public $msg = "Ok";
     /**
-     * @var integer tHttp code response
+     * @var int Http code response
      */
     public $code = 200;
 
     /**
-     * @var int ID của user
+     * @var int User ID
      */
     public $uid = 0;
 

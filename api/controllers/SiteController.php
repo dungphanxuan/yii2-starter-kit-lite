@@ -2,7 +2,6 @@
 namespace api\controllers;
 
 use Yii;
-use yii\web\Controller;
 
 /**
  * Site controller
@@ -10,17 +9,6 @@ use yii\web\Controller;
 class SiteController extends ApiController
 {
 
-    /**
-     * @inheritdoc
-     */
-    public function actions()
-    {
-        return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction'
-            ]
-        ];
-    }
     /**
      * @inheritdoc
      */
