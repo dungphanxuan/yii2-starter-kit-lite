@@ -78,6 +78,7 @@ function env($key, $default = false) {
 function baseUrl(){
     return Yii::$app->request->baseUrl;
 }
+
 function getParam($name, $defaultValue = null)
 {
     return Yii::$app->request->get($name, $defaultValue);
@@ -100,6 +101,7 @@ function isMobile(){
     $mDetect = new \common\helpers\Mobile_Detect();
     return $mDetect->isMobile();
 }
+
 function php_dump($data){
     echo "<pre>";
     var_dump($data);
