@@ -19,7 +19,11 @@ $this->params['body-class'] = 'login-page';
         <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
         <div class="body">
             <?php echo $form->field($model, 'username') ?>
-            <?php echo $form->field($model, 'password')->passwordInput() ?>
+            <?php echo $form->field($model, 'password')->passwordInput([
+                'autocomplete'=>'off',
+                'readonly' => true,
+                'onfocus'=>"this.removeAttribute('readonly');",
+            ]) ?>
             <?php echo $form->field($model, 'rememberMe')->checkbox(['class'=>'simple']) ?>
         </div>
         <div class="footer">
@@ -32,3 +36,11 @@ $this->params['body-class'] = 'login-page';
     </div>
 
 </div>
+<?php
+$app_css = <<<CSS
+.form-control[readonly], fieldset[disabled] .form-control {
+    background-color: #fff !important;
+    opacity: 1;
+}
+CSS;
+$this->registerCss($app_css);

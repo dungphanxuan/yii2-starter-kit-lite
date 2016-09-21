@@ -39,4 +39,13 @@ class UserTokenQuery extends ActiveQuery
         $this->andWhere(['token' => $token]);
         return $this;
     }
+    /**
+     * @param $token
+     * @return $this
+     */
+    public function byUser($user_id)
+    {
+        $this->andWhere(['user_id' => $user_id]);
+        return $this;
+    }
 }

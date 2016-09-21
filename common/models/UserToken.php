@@ -26,6 +26,7 @@ class UserToken extends ActiveRecord
     const TOKEN_LENGTH = 40;
     const TYPE_ACTIVATION = 'activation';
     const TYPE_PASSWORD_RESET = 'password_reset';
+    const TYPE_USER_API = 'user_api';
 
     /**
      * @return string

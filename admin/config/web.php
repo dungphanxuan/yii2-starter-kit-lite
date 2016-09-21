@@ -42,6 +42,7 @@ $config = [
                 ],
                 'common\assets\AdminLte' => [
                     'sourcePath' => null,
+                    'baseUrl' => '',
                     'css' => [
                         'https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.6/css/AdminLTE.min.css',
                         'https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.6/css/skins/_all-skins.min.css'

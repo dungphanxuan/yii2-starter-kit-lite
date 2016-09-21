@@ -37,16 +37,6 @@ class ApiController extends Controller
             [
                 'class' => Cors::className(),
             ],
-            [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'index' => ['get'],
-                    'view' => ['get'],
-                    'create' => ['post'],
-                    'update' => ['put', 'post'],
-                    'delete' => ['post', 'delete'],
-                ]
-            ]
 
         ], parent::behaviors());
 

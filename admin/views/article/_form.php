@@ -48,7 +48,7 @@ use yii\bootstrap\ActiveForm;
     <?php echo $form->field($model, 'thumbnail')->widget(
         Upload::className(),
         [
-            'url' => ['/system/file-storage/upload'],
+            'url' => ['/file-storage/upload'],
             'maxFileSize' => 5000000, // 5 MiB
         ]);
     ?>
@@ -56,7 +56,7 @@ use yii\bootstrap\ActiveForm;
     <?php echo $form->field($model, 'attachments')->widget(
         Upload::className(),
         [
-            'url' => ['/system/file-storage/upload'],
+            'url' => ['/file-storage/upload'],
             'sortable' => true,
             'maxFileSize' => 10000000, // 10 MiB
             'maxNumberOfFiles' => 10
