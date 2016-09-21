@@ -40,7 +40,8 @@ class ArticleController extends Controller
         ];
         return $this->render('index', [
             'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider
+            'dataProvider' => $dataProvider,
+            'categories' => ArticleCategory::find()->active()->all(),
         ]);
     }
 

@@ -89,6 +89,11 @@ function postParam($name, $defaultValue = null)
     return Yii::$app->request->post($name, $defaultValue);
 }
 
+function isManager()
+{
+    return Yii::$app->user->can('manager');
+}
+
 function isAjax(){
     return Yii::$app->request->isAjax;
 }

@@ -37,7 +37,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerOptions' => ['style'=>'text-align:center'],
                 'contentOptions' => ['style' => 'width:10%;text-align:center'],
             ],
-            'username',
+            [
+                'attribute' => 'username',
+                'format' => 'raw',
+                'headerOptions' => ['style'=>'text-align:center'],
+                'value' => function ($model) {
+                    return Html::a($model->username, ['update', 'id' =>$model->id], ['class' =>'alink']);
+                },
+            ],
             'email:email',
             [
                 'class' => EnumColumn::className(),

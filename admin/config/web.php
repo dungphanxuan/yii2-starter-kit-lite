@@ -32,12 +32,32 @@ $config = [
             'enableAutoLogin' => true,
             'as afterLogin' => 'common\behaviors\LoginTimestampBehavior'
         ],
+        'assetManager' => [
+            'bundles' => [
+                'yii\bootstrap\BootstrapPluginAsset' => [
+                    'js'=>['https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js']
+                ],
+                'yii\bootstrap\BootstrapAsset' => [
+                    'css' => ['https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'],
+                ],
+                'common\assets\AdminLte' => [
+                    'sourcePath' => null,
+                    'css' => [
+                        'https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.6/css/AdminLTE.min.css',
+                        'https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.6/css/skins/_all-skins.min.css'
+                    ],
+                    'js' => [
+                        'https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.6/js/app.min.js'
+                    ]
+                ],
+                'yii\web\JqueryAsset' => [
+                    'js' => ['https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js',]
+                ],
+
+            ],
+        ],
     ],
     'modules'=>[
-        'i18n' => [
-            'class' => 'admin\modules\i18n\Module',
-            'defaultRoute'=>'i18n-message/index'
-        ],
         'widget' => [
             'class' => 'admin\modules\widget\Module',
         ],

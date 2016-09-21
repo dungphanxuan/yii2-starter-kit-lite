@@ -19,7 +19,24 @@ body .user-panel > .info {
 body .table {
   word-break: break-all;
 }
+/*Custome Admin*/
+.box-body{
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
 .btn200{
   width: 200px;
+}
+.mt20{
+  margin-top: 20px;
+}
+.mt10{
+  margin-top: 10px;
+}
+.box-search{
+  padding: 20px 50px;
+
+  border: 2px solid #455A64;
 }
 /*# sourceMappingURL=style.map *//*# sourceMappingURL=style.map */

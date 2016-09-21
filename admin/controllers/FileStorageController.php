@@ -1,6 +1,6 @@
 <?php
 
-namespace admin\modules\system\controllers;
+namespace admin\controllers;
 
 use Yii;
 use common\models\FileStorageItem;

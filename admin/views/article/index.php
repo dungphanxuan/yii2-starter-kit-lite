@@ -12,7 +12,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="article-index">
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <div class="pull-right">
         <p>
             <?php echo Html::a(
@@ -22,7 +21,9 @@ $this->params['breadcrumbs'][] = $this->title;
         </p>
     </div>
     <div class="clearfix"></div>
-
+    <?php echo $this->render('_search', ['model' => $searchModel, 'categories' => $categories]); ?>
+    <br>
+    <br>
 
     <?php echo GridView::widget([
         'dataProvider' => $dataProvider,
@@ -38,7 +39,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerOptions' => ['style'=>'text-align:center'],
                 'contentOptions' => ['style' => 'width:10%;text-align:center'],
             ],
-            'slug',
             [
                 'attribute' => 'title',
                 'format' => 'raw',
@@ -47,6 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return Html::a($model->title, ['update', 'id' =>$model->id], ['class' =>'alink']);
                 },
             ],
+            'slug',
             [
                 'attribute'=>'category_id',
                 'value'=>function ($model) {

@@ -35,7 +35,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerOptions' => ['style'=>'text-align:center'],
                 'contentOptions' => ['style' => 'width:10%;text-align:center'],
             ],
-            'slug',
             [
                 'attribute' => 'title',
                 'format' => 'raw',
@@ -44,6 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return Html::a($model->title, ['update', 'id' =>$model->id], ['class' =>'alink']);
                 },
             ],
+            'slug',
             'status',
 
             [

@@ -15,14 +15,14 @@ class AppController extends Controller
         '@common/runtime',
         '@frontend/runtime',
         '@frontend/web/assets',
-        '@backend/runtime',
-        '@backend/web/assets',
+        '@admin/runtime',
+        '@admin/web/assets',
         '@storage/cache',
         '@storage/web/source'
     ];
 
     public $executablePaths = [
-        '@backend/yii',
+        '@admin/yii',
         '@frontend/yii',
         '@console/yii',
     ];

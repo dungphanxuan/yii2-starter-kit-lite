@@ -73,6 +73,7 @@ use yii\bootstrap\ActiveForm;
             'phpDatetimeFormat' => 'yyyy-MM-dd\'T\'HH:mm:ssZZZZZ'
         ]
     ) ?>
+    <hr>
 
     <div class="form-group">
         <div class="col-sm-<?=$model->isNewRecord? '3': '1'?> col-xs-2"></div>

@@ -18,7 +18,7 @@ $bundle = BackendAsset::register($this);
             <nav class="navbar navbar-static-top">
                 <div class="container">
                     <div class="navbar-header">
-                        <a href="<?=Url::to(['/'])?>" class="navbar-brand"><b><?php echo Yii::$app->name ?></b></a>
+                        <a href="<?=Url::to(['/'])?>" class="navbar-brand"><b>Admin</b></a>
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
                             <i class="fa fa-bars"></i>
                         </button>
@@ -48,14 +48,6 @@ $bundle = BackendAsset::register($this);
                                     ]
                                 ],
                                 [
-                                    'label'=>Yii::t('backend', 'UI Elements'),
-                                    'url' => '#',
-                                    'items'=>[
-                                        ['label'=>Yii::t('backend', 'Request'), 'url'=>['/page/index']],
-                                        ['label'=>Yii::t('backend', 'User'), 'url'=>['/article/index']],
-                                    ]
-                                ],
-                                [
                                     'label'=>Yii::t('backend', 'Charts'),
                                     'url' => '#',
                                     'items'=>[
@@ -76,13 +68,13 @@ $bundle = BackendAsset::register($this);
                                             'label'=>Yii::t('backend', 'i18n'),
                                             'url' => '#',
                                             'items'=>[
-                                                ['label'=>Yii::t('backend', 'i18n Source Message'), 'url'=>['/system/i18n/i18n-source-message/index'] ],
-                                                ['label'=>Yii::t('backend', 'i18n Message'), 'url'=>['/system/i18n/i18n-message/index'] ],
+                                                ['label'=>Yii::t('backend', 'i18n Source Message'), 'url'=>['/system/i18n-source-message/index'] ],
+                                                ['label'=>Yii::t('backend', 'i18n Message'), 'url'=>['/system/i18n-message/index'] ],
                                             ],
 
                                         ],
                                         ['label'=>Yii::t('backend', 'Key-Value Storage'), 'url'=>['/system/key-storage/index']],
-                                        ['label'=>Yii::t('backend', 'File Storage'), 'url'=>['/system/file-storage/index']],
+                                        ['label'=>Yii::t('backend', 'File Storage'), 'url'=>['/file-storage/index']],
                                         ['label'=>Yii::t('backend', 'Cache'), 'url'=>['/system/cache/index']],
                                         ['label'=>Yii::t('backend', 'File Manager'), 'url'=>['/system/file-manager/index'] ],
                                         [
@@ -140,13 +132,13 @@ $bundle = BackendAsset::register($this);
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="<?php echo Yii::$app->user->identity->userProfile->getAvatar($this->assetManager->getAssetUrl($bundle, 'img/anonymous.jpg')) ?>" class="user-image">
+                                    <img src="<?php echo Yii::$app->user->identity->userProfile->getAvatar($this->assetManager->getAssetUrl($bundle, 'img/anonymous.png')) ?>" class="user-image">
                                     <span><?php echo Yii::$app->user->identity->username ?> <i class="caret"></i></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header light-blue">
-                                        <img src="<?php echo Yii::$app->user->identity->userProfile->getAvatar($this->assetManager->getAssetUrl($bundle, 'img/anonymous.jpg')) ?>" class="img-circle" alt="User Image" />
+                                        <img src="<?php echo Yii::$app->user->identity->userProfile->getAvatar($this->assetManager->getAssetUrl($bundle, 'img/anonymous.png')) ?>" class="img-circle" alt="User Image" />
                                         <p>
                                             <?php echo Yii::$app->user->identity->username ?>
                                             <small>

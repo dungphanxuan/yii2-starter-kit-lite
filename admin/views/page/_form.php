@@ -36,6 +36,8 @@ use yii\bootstrap\ActiveForm;
 
     <?php echo $form->field($model, 'status')->checkbox() ?>
 
+    <hr>
+
     <div class="form-group">
         <div class="col-sm-<?=$model->isNewRecord? '3': '1'?> col-xs-2"></div>
         <div class="col-sm-3 col-xs-4">

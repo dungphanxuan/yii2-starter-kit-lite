@@ -22,8 +22,9 @@ use yii\bootstrap\ActiveForm;
         <?php echo $form->field($model, 'password')->passwordInput() ?>
         <?php echo $form->field($model, 'status')->dropDownList(User::statuses()) ?>
         <?php echo $form->field($model, 'roles')->checkboxList($roles) ?>
+        <hr>
         <div class="form-group">
-            <div class="col-sm-<?=$model->username? '3': '2'?> col-xs-2"></div>
+            <div class="col-sm-<?=$model->username? '2': '3'?> col-xs-2"></div>
             <div class="col-sm-3 col-xs-4">
                 <?php
                 echo \yii\helpers\Html::a('<span class="glyphicon glyphicon-arrow-left"></span> Back', ['user/index'],['class'=>'btn btn-default btn200']);
