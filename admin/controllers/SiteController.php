@@ -2,6 +2,7 @@
 namespace admin\controllers;
 
 use common\components\keyStorage\FormModel;
+use common\models\User;
 use Yii;
 
 /**
@@ -75,5 +76,15 @@ class SiteController extends \yii\web\Controller
         }
 
         return $this->render('settings', ['model' => $model]);
+    }
+
+    public function actionTest(){
+        $use1 = 'dungpx.s@gmail.com';
+        $user = User::find() ->active()
+            //->andWhere(['or', ['username' =>$use1 ], ['email' => $use1]])
+            ->asArray()
+            ->all();
+        php_dump($user);
+
     }
 }

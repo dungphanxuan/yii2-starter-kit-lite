@@ -187,6 +187,18 @@ class User extends ActiveRecord implements IdentityInterface
             ->andWhere(['or', ['username' => $login], ['email' => $login]])
             ->one();
     }
+    /**
+     * Finds user by username or email
+     *
+     * @param string $login
+     * @return static|null
+     */
+    public static function findUserLogin($login)
+    {
+        return static::find()
+            ->andWhere(['or', ['username' => $login], ['email' => $login]])
+            ->one();
+    }
 
     /**
      * @inheritdoc

@@ -86,7 +86,7 @@ class UserController extends ApiController
         $token = postParam('token', '');
         if (empty($token)) {
             $this->msg = "Missing token";
-            $this->code = 0;
+            $this->code = 422;
         }else{
             $token = UserToken::find()
                 ->byType(UserToken::TYPE_USER_API)
@@ -95,14 +95,14 @@ class UserController extends ApiController
                 ->one();
 
             if (!$token) {
-                $this->msg = "Bad Request";
+                $this->msg = "Bad Request: Token not found";
                 $this->code = 400;
+            }else{
+                $token->delete();
+
+                $this->msg = "Logout success";
+                $this->code = 200;
             }
-
-            $token->delete();
-
-            $this->msg = "Logout success";
-            $this->code = 1;
         }
     }
 
@@ -119,9 +119,9 @@ class UserController extends ApiController
         /**
          * @var User $user
          */
-        $user = User::findByLogin($identity);
+        $user = User::findUserLogin($identity);
         if($user){
-            if($user->status){
+            if($user->status == 2){
                 $validPassword = $user->validatePassword($password);
                 if($validPassword){
                     /** @var UserToken $tokenModel */
@@ -131,16 +131,26 @@ class UserController extends ApiController
                         ->byUser($user->id)
                         ->one();
 
-                    if (!$this->token) {
-                        $status = 1;
-                        $msg = "Login success.";
-                        $result = $tokenModel->token;
-                    } else{
-                        //Generate Token
-                        $token = UserToken::create($user->id, UserToken::TYPE_USER_API, Time::SECONDS_IN_A_DAY);
+                    $dataUser = [
+                        'user_id' => $user->id,
+                        'username' => $user->username,
+                        'access_token' => Yii::$app->security->generateRandomString(40),
+                    ];
+                    if ($tokenModel) {
                         $status = 200;
                         $msg = "Login success.";
-                        $result = $token->token;
+                        $dataUser['access_token'] = $tokenModel->token;
+                        $dataUser['expires'] =  $tokenModel->expire_at;
+                        $result = $dataUser;
+                    } else{
+                        //Generate Token
+                        $loginTime = Time::SECONDS_IN_A_DAY;
+                        $token = UserToken::create($user->id, UserToken::TYPE_USER_API, $loginTime );
+                        $status = 200;
+                        $msg = "Login success.";
+                        $dataUser['access_token'] = $token->token;
+                        $dataUser['expires'] = time() + $loginTime;
+                        $result = $dataUser;
                     }
                 }else{
                     $status = 400;
