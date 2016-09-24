@@ -19,25 +19,52 @@ class UserController extends ApiController
             'verbs' => [
                 'class' => \yii\filters\VerbFilter::className(),
                 'actions' => [
-                    'login'  => ['post'],
-                    'sign-up'  => ['post'],
-                    'logout'  => ['post'],
+                    'login' => ['post'],
+                    'sign-up' => ['post'],
+                    'logout' => ['post'],
                 ],
             ],
         ];
     }
 
-    public function actionIndex(){
+    public function actionIndex()
+    {
         $this->msg = 'User Controller';
+    }
+
+    /*
+    * Get user info
+    * @param int $uid User id
+    * @return User info
+    * */
+    public function actionInfo()
+    {
+        $uid = getParam('id', null);
+        if (!empty($uid)) {
+
+            $useModel = User::find()->active()->where(['id' => $uid])->one();
+            if ($useModel) {
+                $this->msg = 'User Info';
+                $this->data = User::getDetail($uid);
+            } else {
+                $this->code = 404;
+                $this->msg = 'User Not found';
+            }
+        } else {
+            $this->code = 422;
+            $this->msg = 'Id is require';
+        }
+
     }
 
     /*
     * Login api
     * @param string $identity Username or email
     * @param string $password Password
-    * @return Thong tin xac thuc, access token
+    * @return User info, access token
     * */
-    public function actionLogin(){
+    public function actionLogin()
+    {
         $get_identity = postParam('identity', '');
         $get_password = postParam('password', '');
         if (empty($get_identity) || empty($get_password)) {
@@ -52,11 +79,18 @@ class UserController extends ApiController
         }
     }
 
-    public function actionSignUp(){
+
+    /*
+    * SignUp api
+    * @param string $email User email
+    * @return Mixed
+    * */
+    public function actionSignUp()
+    {
         $get_email = postParam('email', '');
         //$get_username = getParam('username', true, '');
         $get_password = postParam('password', '');
-        if (empty($get_email) || empty($get_password) ) {
+        if (empty($get_email) || empty($get_password)) {
             $this->msg = "Missing email or password";
             $this->code = 422;
         } else {
@@ -66,28 +100,29 @@ class UserController extends ApiController
             $model->password = $get_password;
 
             $data = $model->validate();
-            if($data){
+            if ($data) {
                 $user = $model->signup();
                 if ($user && Yii::$app->getUser()->login($user)) {
                     //Process
                 }
                 $this->msg = "Register success.";
-            }else{
+            } else {
                 $this->code = 422;
                 $error = $model->getFirstErrors();
-                if(isset($error)){
+                if (isset($error)) {
                     $this->msg = reset($error);;
                 }
             }
         }
     }
 
-    public function actionLogout(){
+    public function actionLogout()
+    {
         $token = postParam('token', '');
         if (empty($token)) {
             $this->msg = "Missing token";
             $this->code = 422;
-        }else{
+        } else {
             $token = UserToken::find()
                 ->byType(UserToken::TYPE_USER_API)
                 ->byToken($token)
@@ -97,7 +132,7 @@ class UserController extends ApiController
             if (!$token) {
                 $this->msg = "Bad Request: Token not found";
                 $this->code = 400;
-            }else{
+            } else {
                 $token->delete();
 
                 $this->msg = "Logout success";
@@ -120,10 +155,10 @@ class UserController extends ApiController
          * @var User $user
          */
         $user = User::findUserLogin($identity);
-        if($user){
-            if($user->status == 2){
+        if ($user) {
+            if ($user->status == 2) {
                 $validPassword = $user->validatePassword($password);
-                if($validPassword){
+                if ($validPassword) {
                     /** @var UserToken $tokenModel */
                     $tokenModel = UserToken::find()
                         ->notExpired()
@@ -140,27 +175,27 @@ class UserController extends ApiController
                         $status = 200;
                         $msg = "Login success.";
                         $dataUser['access_token'] = $tokenModel->token;
-                        $dataUser['expires'] =  $tokenModel->expire_at;
+                        $dataUser['expires'] = $tokenModel->expire_at;
                         $result = $dataUser;
-                    } else{
+                    } else {
                         //Generate Token
                         $loginTime = Time::SECONDS_IN_A_DAY;
-                        $token = UserToken::create($user->id, UserToken::TYPE_USER_API, $loginTime );
+                        $token = UserToken::create($user->id, UserToken::TYPE_USER_API, $loginTime);
                         $status = 200;
                         $msg = "Login success.";
                         $dataUser['access_token'] = $token->token;
                         $dataUser['expires'] = time() + $loginTime;
                         $result = $dataUser;
                     }
-                }else{
+                } else {
                     $status = 400;
                     $msg = "Wrong password";
                 }
-            }else{
+            } else {
                 $status = 400;
                 $msg = "Account not active";
             }
-        }else{
+        } else {
             $status = 400;
             $msg = "Account not register";
         }

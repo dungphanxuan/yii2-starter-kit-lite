@@ -49,6 +49,16 @@ function activeTextinput($form, $model, $attribute, $inputOptions = [], $fieldOp
     return $form->field($model, $attribute, $fieldOptions)->textInput($inputOptions);
 }
 
+function cache()
+{
+    return Yii::$app->cache;
+}
+
+function dataCache()
+{
+    return Yii::$app->dcache;
+}
+
 /**
  * @param string $key
  * @param mixed $default

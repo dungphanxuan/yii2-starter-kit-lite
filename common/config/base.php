@@ -23,6 +23,11 @@ $config = [
             'cachePath' => '@common/runtime/cache'
         ],
 
+        'dcache' => [
+            'class' => 'yii\caching\FileCache',
+            'cachePath' => '@common/runtime/dcache'
+        ],
+
         'commandBus' => [
             'class' => 'trntv\bus\CommandBus',
             'middlewares' => [

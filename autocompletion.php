@@ -22,6 +22,8 @@ class Yii extends \yii\BaseYii
  * @property yii\web\UrlManager $urlManagerFrontend UrlManager for frontend application.
  * @property yii\web\UrlManager $urlManagerBackend UrlManager for backend application.
  * @property yii\web\UrlManager $urlManagerStorage UrlManager for storage application.
+ * @property \yii\caching\Cache $cache The cache application component. Null if the component is not enabled.
+ * @property \yii\caching\Cache $dcache The data cache application component. Null if the component is not enabled.
  * @property trntv\glide\components\Glide $glide
  * @property trntv\bus\CommandBus $commandBus
  */

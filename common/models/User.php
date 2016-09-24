@@ -187,6 +187,7 @@ class User extends ActiveRecord implements IdentityInterface
             ->andWhere(['or', ['username' => $login], ['email' => $login]])
             ->one();
     }
+
     /**
      * Finds user by username or email
      *
@@ -296,5 +297,26 @@ class User extends ActiveRecord implements IdentityInterface
             return $this->username;
         }
         return $this->email;
+    }
+
+    public static function getDetail($id, $update = false)
+    {
+        $cacheKey = CACHE_USER_DETAIL . $id;
+        $data = dataCache()->get($cacheKey);
+        $update = env('IS_CACHE') ? false: true;
+
+        if ($data === false or $update) {
+            $data = [];
+            $userModel = User::find()->active()->where(['id' => $id])->asArray()->one();
+            if ($userModel) {
+                unset($userModel['access_token']);
+                unset($userModel['password_hash']);
+                $data = $userModel;
+            }
+
+            dataCache()->set($cacheKey, $data, env('CACHE_EXPIRES'));
+        }
+
+        return $data;
     }
 }

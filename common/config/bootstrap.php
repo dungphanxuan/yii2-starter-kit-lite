@@ -24,5 +24,8 @@ Yii::setAlias('@backendUrl', env('BACKEND_URL'));
 Yii::setAlias('@storageUrl', env('STORAGE_URL'));
 Yii::setAlias('@apiUrl', env('API_URL'));
 
+/*Define Cache Constrant*/
+define('CACHE_USER_DETAIL', 'ud');
+
 
 
