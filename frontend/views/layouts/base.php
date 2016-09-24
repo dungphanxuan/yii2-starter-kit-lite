@@ -36,7 +36,7 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
                     ],
                     [
                         'label' => Yii::t('frontend', 'Backend'),
-                        'url' => Yii::getAlias('@adminUrl'),
+                        'url' => Yii::getAlias('@backendUrl'),
                         'visible'=>Yii::$app->user->can('manager')
                     ],
                     [
