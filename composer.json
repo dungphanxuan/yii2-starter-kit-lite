@@ -1,5 +1,5 @@
 {
-  "name": "trntv/yii2-starter-kit",
+  "name": "dungphanxuan/yii2-starter-kit-lite",
   "description": "Yii2 Starter Kit Application Template",
   "keywords": [
     "yii2",
@@ -15,13 +15,19 @@
       "email": "eugene@terentev.net",
       "homepage": "http://terentev.net",
       "role": "Developer"
+    },
+    {
+      "name": "Dung Phan Xuan",
+      "email": "dungpx.s@gmail.com",
+      "homepage": "http://laptrinhphp.vn",
+      "role": "Developer"
     }
   ],
   "type": "project",
   "license": "BSD-3-Clause",
   "support": {
-    "issues": "https://github.com/trntv/yii2-starter-kit/issues?state=open",
-    "source": "https://github.com/trntv/yii2-starter-kit"
+    "issues": "https://github.com/dungphanxuan/yii2-starter-kit-lite/issues?state=open",
+    "source": "https://github.com/dungphanxuan/yii2-starter-kit-lite"
   },
   "require": {
     "php": ">=5.5.0",

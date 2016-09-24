@@ -10,7 +10,7 @@ use yii\web\Controller;
 use yii\base\Action;
 
 /**
- * Site controller
+ * Api controller
  */
 class ApiController extends Controller
 {
@@ -65,11 +65,11 @@ class ApiController extends Controller
                         ->byToken($get_token)
                         ->one();
 
-                    if(!$tokenModel){
+                    if (!$tokenModel) {
                         $this->code = 401;
                         $this->msg = "401 Unauthorized ";
                         return $this->senData($action);
-                    }else{
+                    } else {
                         $this->uid = $tokenModel->user_id;
                     }
 
