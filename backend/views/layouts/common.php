@@ -58,7 +58,7 @@ $bundle = BackendAsset::register($this);
                                 [
                                     'label'=>Yii::t('backend', 'Users'),
                                     'url'=>['/user/index'],
-                                    'visible'=>Yii::$app->user->can('backendistrator')
+                                    'visible'=>Yii::$app->user->can('administrator')
                                 ],
                                 [
                                     'label'=>Yii::t('backend', 'Other'),

@@ -95,7 +95,7 @@ $config = [
             [
                 'controllers'=>['user'],
                 'allow' => true,
-                'roles' => ['backendistrator'],
+                'roles' => ['administrator'],
             ],
             [
                 'controllers'=>['user'],
