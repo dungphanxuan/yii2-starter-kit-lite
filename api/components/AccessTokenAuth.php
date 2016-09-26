@@ -8,6 +8,8 @@ namespace api\components;
  * @license http://www.yiiframework.com/license/
  */
 use common\models\AccessToken;
+use common\models\User;
+use common\models\UserToken;
 use yii\filters\auth\AuthMethod;
 use Yii;
 /**
@@ -16,7 +18,7 @@ use Yii;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class TokenAuth extends AuthMethod {
+class AccessTokenAuth extends AuthMethod {
     /**
      * @var string the parameter name for passing the access token
      */
@@ -31,13 +33,22 @@ class TokenAuth extends AuthMethod {
         if(!$accessToken){
             $accessToken = $request->post($this->tokenParam);
         }
+
         if (is_string($accessToken)) {
-
-            $identity = $user->loginByAccessToken($accessToken, get_class($this));
-            if ($identity !== null) {
-                return $identity;
+            /** @var UserToken $tokenModel */
+            $tokenModel = UserToken::find()
+                ->notExpired()
+                ->byType(UserToken::TYPE_USER_API)
+                ->byToken($accessToken)
+                ->one();
+            if($tokenModel){
+                //$identity = $user->loginByAccessToken($accessToken, get_class($this));
+                $identity = User::findOne($tokenModel->user_id);
+                $dataUser = $user->login($identity);
+                if ($dataUser !== null) {
+                    return $dataUser;
+                }
             }
-
         }
         if ($accessToken !== null) {
             $this -> handleFailure($response);

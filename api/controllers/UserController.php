@@ -1,6 +1,6 @@
 <?php
 
-namespace api\controllers\v1;
+namespace api\controllers;
 
 use api\controllers\ApiController;
 use api\models\SignupForm;
@@ -8,14 +8,17 @@ use cheatsheet\Time;
 use common\models\User;
 use common\models\UserToken;
 use Yii;
+use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
 
 class UserController extends ApiController
 {
     public $defaultAction = 'login';
 
+
     public function behaviors()
     {
-        return [
+        return ArrayHelper::merge(parent::behaviors(), [
             'verbs' => [
                 'class' => \yii\filters\VerbFilter::className(),
                 'actions' => [
@@ -24,7 +27,17 @@ class UserController extends ApiController
                     'logout' => ['post'],
                 ],
             ],
-        ];
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['info'],
+                        'roles' => ['@'],
+                    ]
+                ],
+            ]
+        ]);
     }
 
     public function actionIndex()
@@ -39,7 +52,8 @@ class UserController extends ApiController
     * */
     public function actionInfo()
     {
-        $uid = getParam('id', null);
+        //$uid = getParam('id', null);
+        $uid = getMyId();
         if (!empty($uid)) {
 
             $useModel = User::find()->active()->where(['id' => $uid])->one();

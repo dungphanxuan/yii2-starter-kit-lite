@@ -1,6 +1,7 @@
 <?php
 namespace api\controllers;
 
+use api\components\AccessTokenAuth;
 use common\models\UserToken;
 use Yii;
 use yii\filters\Cors;
@@ -32,14 +33,19 @@ class ApiController extends Controller
      */
     public $uid = 0;
 
+    public function init()
+    {
+        parent::init();
+        \Yii::$app->user->enableSession = false;
+    }
+
     public function behaviors()
     {
-        return ArrayHelper::merge([
-            [
-                'class' => Cors::className(),
-            ],
-
-        ], parent::behaviors());
+        $behaviors = parent::behaviors();
+        $behaviors['authenticator'] = [
+            'class' => AccessTokenAuth::className(),
+        ];
+        return $behaviors;
 
     }
 
@@ -51,30 +57,6 @@ class ApiController extends Controller
     public function beforeAction($action)
     {
         if (parent::beforeAction($action)) {
-            header('Content-Type: text/html; charset=utf-8');
-            /*Validate user token!*/
-            $cid = $action->controller->id;
-            if (strtolower($action->uniqueId) != "site/error") {
-                $publicControlers = ['site', 'auth', 'test'];
-                if (!in_array(strtolower($cid), $publicControlers)) {
-                    $get_token = getParam('token', null);
-                    /** @var UserToken $tokenModel */
-                    $tokenModel = UserToken::find()
-                        ->notExpired()
-                        ->byType(UserToken::TYPE_USER_API)
-                        ->byToken($get_token)
-                        ->one();
-
-                    if (!$tokenModel) {
-                        $this->code = 401;
-                        $this->msg = "401 Unauthorized ";
-                        return $this->senData($action);
-                    } else {
-                        $this->uid = $tokenModel->user_id;
-                    }
-
-                }
-            }
             return true;
         } else
             return false;

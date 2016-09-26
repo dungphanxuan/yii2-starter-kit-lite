@@ -1,13 +1,14 @@
 <?php
 
-namespace api\controllers\v1;
+namespace api\controllers;
 
 use api\controllers\ApiController;
 
 class DataController extends ApiController
 {
 
-    public function actionIndex(){
+    public function actionIndex()
+    {
         $this->msg = 'Data Controller';
     }
 }
