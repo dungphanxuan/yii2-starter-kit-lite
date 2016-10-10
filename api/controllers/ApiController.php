@@ -39,16 +39,6 @@ class ApiController extends Controller
         \Yii::$app->user->enableSession = false;
     }
 
-    public function behaviors()
-    {
-        $behaviors = parent::behaviors();
-        $behaviors['authenticator'] = [
-            'class' => AccessTokenAuth::className(),
-        ];
-        return $behaviors;
-
-    }
-
     /**
      * @param $controller
      * @param $action
