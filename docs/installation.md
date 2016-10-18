@@ -24,11 +24,11 @@ composer global require "fxp/composer-asset-plugin"
 
 ### Get source code
 #### Download sources
-https://github.com/trntv/yii2-starter-kit/archive/master.zip
+https://github.com/trntv/yii2-starter-kit-lite/archive/master.zip
 
 #### Or clone repository manually
 ```
-git clone https://github.com/trntv/yii2-starter-kit.git
+git clone https://github.com/trntv/yii2-starter-kit-lite.git
 ```
 #### Install composer dependencies
 ```

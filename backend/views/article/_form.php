@@ -16,6 +16,15 @@ use yii\bootstrap\ActiveForm;
 
     <?php $form = ActiveForm::begin([
         'layout' => 'horizontal',
+        'fieldConfig' => [
+            'template' => "{label}\n{beginWrapper}\n{input}\n{hint}\n{error}\n{endWrapper}",
+            'horizontalCssClasses' => [
+                'label' => 'col-sm-2 col-xs-3',
+                'wrapper' => 'col-sm-8 col-xs-8',
+                'error' => '',
+                'hint' => '',
+            ],
+        ],
     ]); ?>
 
     <?php echo $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
@@ -24,7 +33,9 @@ use yii\bootstrap\ActiveForm;
         ->hint(Yii::t('backend', 'If you\'ll leave this field empty, slug will be generated automatically'))
         ->textInput(['maxlength' => true]) ?>
 
-    <?php echo $form->field($model, 'category_id')->dropDownList(\yii\helpers\ArrayHelper::map(
+    <?php echo $form->field($model, 'category_id',[
+        'template' => '{label} <div class="row"><div class="col-xs-4 col-sm-4">{input}{error}{hint}</div></div>'
+    ])->dropDownList(\yii\helpers\ArrayHelper::map(
             $categories,
             'id',
             'title'
@@ -63,11 +74,21 @@ use yii\bootstrap\ActiveForm;
         ]);
     ?>
 
-    <?php echo $form->field($model, 'view')->textInput(['maxlength' => true]) ?>
+    <?php echo $form->field($model, 'view',[
+        'template' => '{label} <div class="row"><div class="col-xs-2 col-sm-2">{input}{error}{hint}</div></div>'
+    ])->textInput(['maxlength' => true]) ?>
 
-    <?php echo $form->field($model, 'status')->checkbox() ?>
+    <div class="form-group field-article-status">
+        <label class="control-label col-sm-2 col-xs-2" for="article-status"></label>
+        <div class="col-sm-8 col-xs-8 fnormal">
+            <?= Html::activeCheckbox($model, 'status') ?>
+            <div class="help-block help-block-error "></div>
+        </div>
+    </div>
 
-    <?php echo $form->field($model, 'published_at')->widget(
+    <?php echo $form->field($model, 'published_at',[
+        'template' => '{label} <div class="row"><div class="col-xs-3 col-sm-3">{input}{error}{hint}</div></div>'
+    ])->widget(
         DateTimeWidget::className(),
         [
             'phpDatetimeFormat' => 'yyyy-MM-dd\'T\'HH:mm:ssZZZZZ'

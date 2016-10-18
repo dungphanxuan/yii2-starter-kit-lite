@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
@@ -47,7 +48,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     return Html::a($model->title, ['update', 'id' =>$model->id], ['class' =>'alink']);
                 },
             ],
-            'slug',
             [
                 'attribute'=>'category_id',
                 'value'=>function ($model) {
@@ -61,22 +61,35 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $model->author->username;
                 }
             ],
-            [
-                'class'=>\common\grid\EnumColumn::className(),
-                'attribute'=>'status',
-                'enum'=>[
-                    Yii::t('backend', 'Not Published'),
-                    Yii::t('backend', 'Published')
-                ]
-            ],
-            'published_at:datetime',
-            'created_at:datetime',
 
+            [
+                'attribute' => 'status',
+                'format' => 'raw',
+                'filter' => [1 =>  Yii::t('backend', 'Published'), 0 => Yii::t('backend', 'Not Published')],
+                'value'=>function ($model) {
+                    $options = [
+                        'class' => ($model->status ==1)? 'glyphicon glyphicon-ok text-success' :'glyphicon glyphicon-remove text-danger',
+                    ];
+                    return Html::tag('p',Html::tag('span','',$options),['class'=>'text-center']);
+                },
+                'contentOptions' => ['style' => 'width:10%;text-align:center'],
+            ],
+            'published_at:date',
+            //'created_at:datetime',
             // 'updated_at',
 
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template'=>'{update} {delete}'
+                'template'=>'{update} {copy} {delete}',
+                'buttons' => [
+                    'copy' => function ($url, $model, $key) {
+                        $url = Url::to(['/article/create', 'type'=>'copy', 'id' => $key]);
+                        return Html::a('<span class="glyphicon glyphicon-copy"></span>', $url, [
+                            'title' => \Yii::t('common', 'Copy'),
+                            'class' => 'btnaction'
+                        ]);
+                    },
+                ]
             ]
         ]
     ]); ?>

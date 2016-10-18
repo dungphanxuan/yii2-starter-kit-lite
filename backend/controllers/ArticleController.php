@@ -52,7 +52,26 @@ class ArticleController extends Controller
      */
     public function actionCreate()
     {
+        $id = getParam('id', null);
         $model = new Article();
+
+        /*Copy data*/
+        if ($id) {
+            $eModel = Article::find()->published()->where(['id' => $id])->one();
+            if ($eModel) {
+                $data = $eModel->attributes;
+                $model->setAttributes($data);
+                /*Copy Image*/
+                $model->attachments = $eModel->attachments;
+                foreach ($eModel->articleAttachments as $key => $img) {
+                    $new_filename = "1/cp_" . $key . "_" . date('YmdHim') . rand(1, 100000) . "_cubic.jpg";
+                    Yii::$app->fileStorage->getFilesystem()->copy($eModel->images[$key]['path'], $new_filename);
+                    $model->attachments[$key]['path'] = $new_filename;
+                }
+            } else {
+                throw new NotFoundHttpException('Article does not exist.');
+            }
+        }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);

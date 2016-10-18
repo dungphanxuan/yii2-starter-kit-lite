@@ -22,7 +22,9 @@ use yii\bootstrap\ActiveForm;
         ->hint(Yii::t('backend', 'If you\'ll leave this field empty, slug will be generated automatically'))
         ->textInput(['maxlength' => 1024]) ?>
 
-    <?php echo $form->field($model, 'parent_id')->dropDownList($categories, ['prompt'=>'']) ?>
+    <?php echo $form->field($model, 'parent_id',[
+        'template' => '{label} <div class="row"><div class="col-xs-3 col-sm-3">{input}{error}{hint}</div></div>'
+    ])->dropDownList($categories, ['prompt'=>'Choose category']) ?>
 
     <?php echo $form->field($model, 'status')->checkbox() ?>
 

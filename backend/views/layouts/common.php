@@ -35,6 +35,10 @@ $bundle = BackendAsset::register($this);
                                     'url'=>['/timeline-event/index']
                                 ],
                                 [
+                                    'label'=>Yii::t('backend', 'Articles'),
+                                    'url'=>['/article/index']
+                                ],
+                                [
                                     'label'=>Yii::t('backend', 'Content'),
                                     'url' => '#',
                                     'items'=>[

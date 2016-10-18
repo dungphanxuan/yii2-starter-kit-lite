@@ -24,7 +24,9 @@ use yii\bootstrap\ActiveForm;
             'readonly' => true,
             'onfocus'=>"this.removeAttribute('readonly');",
         ]) ?>
-        <?php echo $form->field($model, 'status')->dropDownList(User::statuses()) ?>
+        <?php echo $form->field($model, 'status',[
+            'template' => '{label} <div class="row"><div class="col-xs-3 col-sm-3">{input}{error}{hint}</div></div>'
+        ])->dropDownList(User::statuses()) ?>
         <?php echo $form->field($model, 'roles')->checkboxList($roles) ?>
         <hr>
         <div class="form-group">
