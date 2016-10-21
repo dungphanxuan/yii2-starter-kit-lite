@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\helpers\ArticleHelper;
 use Yii;
 use common\models\Article;
 use backend\models\search\ArticleSearch;
@@ -74,6 +75,7 @@ class ArticleController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            ArticleHelper::getDetail($model->id);
             return $this->redirect(['index']);
         } else {
             return $this->render('create', [
@@ -94,6 +96,7 @@ class ArticleController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            ArticleHelper::getDetail($model->id);
             return $this->redirect(['index']);
         } else {
             return $this->render('update', [

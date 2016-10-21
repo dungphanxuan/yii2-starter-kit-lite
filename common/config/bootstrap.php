@@ -25,6 +25,5 @@ Yii::setAlias('@apiUrl', env('API_URL'));
 
 /*Define Cache Constrant*/
 define('CACHE_USER_DETAIL', 'ud');
-
-
+define('CACHE_ARTICLE_ITEM', 'ai');
 

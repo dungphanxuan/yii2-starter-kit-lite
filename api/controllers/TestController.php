@@ -2,11 +2,21 @@
 
 namespace api\controllers;
 
+use api\components\AccessTokenAuth;
 use yii\filters\AccessControl;
 
 class TestController extends ApiController
 {
     public function behaviors()
+    {
+        $behaviors = parent::behaviors();
+        $behaviors['authenticator'] = [
+            'class' => AccessTokenAuth::className(),
+        ];
+        return $behaviors;
+
+    }
+    public function behaviors1()
     {
         $behaviors = parent::behaviors();
         $behaviors['access'] = [

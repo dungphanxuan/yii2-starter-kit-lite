@@ -117,6 +117,14 @@ function isMobile(){
     return $mDetect->isMobile();
 }
 
+function isValidTimeStamp($timestamp)
+{
+    return ((string) (int) $timestamp === $timestamp)
+    && ($timestamp <= PHP_INT_MAX)
+    && ($timestamp >= ~PHP_INT_MAX);
+}
+
+
 function php_dump($data){
     echo "<pre>";
     var_dump($data);
