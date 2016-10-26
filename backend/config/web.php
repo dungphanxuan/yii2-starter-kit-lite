@@ -58,6 +58,12 @@ $config = [
                         'https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js',
                     ]
                 ],
+                'common\assets\Flot' => [
+                    'sourcePath' => null,
+                    'css' => [
+                        'https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.js',
+                    ]
+                ],
                 'common\assets\JquerySlimScroll' => [
                     'sourcePath' => null,
                     'js' => [

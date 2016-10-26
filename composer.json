@@ -32,7 +32,7 @@
   "require": {
     "php": ">=5.5.0",
     "ext-intl": "*",
-    "yiisoft/yii2": "^2.0.6",
+    "yiisoft/yii2": "^2.0.9",
     "yiisoft/yii2-bootstrap": "^2.0.0",
     "yiisoft/yii2-swiftmailer": "^2.0.0",
     "yiisoft/yii2-authclient": "^2.0.0",
@@ -49,11 +49,6 @@
     "trntv/yii2-command-bus": "^2.0",
     "intervention/image": "^2.1",
     "vlucas/phpdotenv": "^2.0",
-    "bower-asset/admin-lte": "^2.0",
-    "bower-asset/font-awesome": "^4.0",
-    "bower-asset/html5shiv": "^3.0",
-    "bower-asset/jquery-slimscroll": "^1.3",
-    "bower-asset/flot": "^0.8",
     "symfony/process": "^3.0"
   },
   "require-dev": {
