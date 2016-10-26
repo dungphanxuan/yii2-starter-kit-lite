@@ -83,9 +83,6 @@ $config = [
         ],
     ],
     'modules'=>[
-        'widget' => [
-            'class' => 'backend\modules\widget\Module',
-        ],
         'system' => [
             'class' => 'backend\modules\system\Module',
         ],

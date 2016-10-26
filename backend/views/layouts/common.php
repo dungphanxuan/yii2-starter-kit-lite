@@ -52,14 +52,6 @@ $bundle = BackendAsset::register($this);
                                     ]
                                 ],
                                 [
-                                    'label'=>Yii::t('backend', 'Charts'),
-                                    'url' => '#',
-                                    'items'=>[
-                                        ['label'=>Yii::t('backend', 'Request'), 'url'=>['/page/index']],
-                                        ['label'=>Yii::t('backend', 'User'), 'url'=>['/statistic/user']],
-                                    ]
-                                ],
-                                [
                                     'label'=>Yii::t('backend', 'Users'),
                                     'url'=>['/user/index'],
                                     'visible'=>Yii::$app->user->can('administrator')
