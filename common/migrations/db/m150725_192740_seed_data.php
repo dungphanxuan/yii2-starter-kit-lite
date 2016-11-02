@@ -73,76 +73,6 @@ class m150725_192740_seed_data extends Migration
             'created_at' => time()
         ]);
 
-        $this->insert('{{%widget_menu}}', [
-            'key'=>'frontend-index',
-            'title'=>'Frontend index menu',
-            'items'=>json_encode([
-                [
-                    'label'=>'Get started with Yii2',
-                    'url'=>'http://www.yiiframework.com',
-                    'options'=>['tag'=>'span'],
-                    'template'=>'<a href="{url}" class="btn btn-lg btn-success">{label}</a>'
-                ],
-                [
-                    'label'=>'Yii2 Starter Kit on GitHub',
-                    'url'=>'https://github.com/trntv/yii2-starter-kit',
-                    'options'=>['tag'=>'span'],
-                    'template'=>'<a href="{url}" class="btn btn-lg btn-primary">{label}</a>'
-                ],
-                [
-                    'label'=>'Find a bug?',
-                    'url'=>'https://github.com/trntv/yii2-starter-kit/issues',
-                    'options'=>['tag'=>'span'],
-                    'template'=>'<a href="{url}" class="btn btn-lg btn-danger">{label}</a>'
-                ]
-
-            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
-            'status'=>\common\models\WidgetMenu::STATUS_ACTIVE
-        ]);
-
-        $this->insert('{{%widget_text}}', [
-            'key'=>'backend_welcome',
-            'title'=>'Welcome to backend',
-            'body'=>'<p>Welcome to Yii2 Starter Kit Dashboard</p>',
-            'status'=>1,
-            'created_at'=> time(),
-            'updated_at'=> time(),
-        ]);
-
-        $this->insert('{{%widget_text}}', [
-            'key'=>'ads-example',
-            'title'=>'Google Ads Example Block',
-            'body'=>'<div class="lead">
-                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-9505937224921657"
-                     data-ad-slot="2264361777"
-                     data-ad-format="auto"></ins>
-                <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>',
-            'status'=>0,
-            'created_at'=> time(),
-            'updated_at'=> time(),
-        ]);
-
-        $this->insert('{{%widget_carousel}}', [
-            'id'=>1,
-            'key'=>'index',
-            'status'=>\common\models\WidgetCarousel::STATUS_ACTIVE
-        ]);
-
-        $this->insert('{{%widget_carousel_item}}', [
-            'carousel_id'=>1,
-            'base_url' => Yii::getAlias('@frontendUrl'),
-            'path'=>'img/yii2-starter-kit.gif',
-            'type'=>'image/gif',
-            'url'=>'/',
-            'status'=>1
-        ]);
-
         $this->insert('{{%key_storage_item}}', [
             'key' => 'backend.theme-skin',
             'value' => 'skin-blue',
@@ -185,22 +115,6 @@ class m150725_192740_seed_data extends Migration
                 'backend.layout-boxed',
                 'backend.layout-collapsed-sidebar',
             ],
-        ]);
-
-        $this->delete('{{%widget_carousel_item}}', [
-            'carousel_id'=>1
-        ]);
-
-        $this->delete('{{%widget_carousel}}', [
-            'id'=>1
-        ]);
-
-        $this->delete('{{%widget_text}}', [
-            'key'=>'backend_welcome'
-        ]);
-
-        $this->delete('{{%widget_menu}}', [
-            'key'=>'frontend-index'
         ]);
 
         $this->delete('{{%article_category}}', [
