@@ -43,7 +43,6 @@ class AccessTokenAuth extends AuthMethod {
                 ->one();
 
             if($tokenModel){
-                //$identity = $user->loginByAccessToken($accessToken, get_class($this));
                 $identity = User::findOne($tokenModel->user_id);
                 $dataUser = $user->login($identity);
                 if ($dataUser !== null) {

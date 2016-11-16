@@ -104,7 +104,7 @@ class <?php echo $controllerClass ?> extends <?php echo StringHelper::basename($
         $model = new <?php echo $modelClass ?>();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', <?php echo $urlParams ?>]);
+            return $this->redirect(['index']);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -123,7 +123,7 @@ class <?php echo $controllerClass ?> extends <?php echo StringHelper::basename($
         $model = $this->findModel(<?php echo $actionParams ?>);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', <?php echo $urlParams ?>]);
+            return $this->redirect(['index']);
         } else {
             return $this->render('update', [
                 'model' => $model,

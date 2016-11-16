@@ -45,7 +45,7 @@ $config = [
             'enableAutoLogin' => true,
         ],
 
-        'log' => [
+       /* 'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
                 [
@@ -53,7 +53,7 @@ $config = [
                     'levels' => ['error', 'warning'],
                 ],
             ],
-        ],
+        ],*/
     ],
 
 ];

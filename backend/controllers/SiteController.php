@@ -85,6 +85,6 @@ class SiteController extends \yii\web\Controller
             ->asArray()
             ->all();
         php_dump($user);
-
     }
+
 }
