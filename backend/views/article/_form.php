@@ -111,7 +111,7 @@ use yii\bootstrap\ActiveForm;
         <div class="col-sm-3 col-xs-2">
             <?php
             if (!$model->isNewRecord) {
-                echo Html::a('Delete', ['/user/delete', 'id' => $model->id],
+                echo Html::a('Delete', ['/article/delete', 'id' => $model->id],
                     [
                         'class' => 'btn btn-warning btn200 bold',
                         'data' => [
