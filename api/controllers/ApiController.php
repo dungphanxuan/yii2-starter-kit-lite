@@ -76,6 +76,7 @@ class ApiController extends Controller
         if ($this->is_html) {
             $response->is_html = 1;
         } else {
+            $response->is_json = 1;
             $response->setStatusCode($this->code);
             $response->statusText = $this->msg;
             if (!empty($this->data)) {
