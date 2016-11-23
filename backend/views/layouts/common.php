@@ -60,15 +60,6 @@ $bundle = BackendAsset::register($this);
                                     'label'=>Yii::t('backend', 'Other'),
                                     'url' => '#',
                                     'items'=>[
-                                        [
-                                            'label'=>Yii::t('backend', 'i18n'),
-                                            'url' => '#',
-                                            'items'=>[
-                                                ['label'=>Yii::t('backend', 'i18n Source Message'), 'url'=>['/system/i18n-source-message/index'] ],
-                                                ['label'=>Yii::t('backend', 'i18n Message'), 'url'=>['/system/i18n-message/index'] ],
-                                            ],
-
-                                        ],
                                         ['label'=>Yii::t('backend', 'Key-Value Storage'), 'url'=>['/system/key-storage/index']],
                                         ['label'=>Yii::t('backend', 'File Storage'), 'url'=>['/file-storage/index']],
                                         ['label'=>Yii::t('backend', 'Cache'), 'url'=>['/system/cache/index']],
