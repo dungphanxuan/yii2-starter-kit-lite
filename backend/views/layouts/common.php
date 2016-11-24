@@ -45,10 +45,6 @@ $bundle = BackendAsset::register($this);
                                         ['label'=>Yii::t('backend', 'Static pages'), 'url'=>['/page/index']],
                                         ['label'=>Yii::t('backend', 'Articles'), 'url'=>['/article/index']],
                                         ['label'=>Yii::t('backend', 'Article Categories'), 'url'=>['/article-category/index']],
-                                        ['label'=>Yii::t('backend', 'Text Widgets'), 'url'=>['/widget/widget-text/index']],
-                                        ['label'=>Yii::t('backend', 'Menu Widgets'), 'url'=>['/widget/widget-menu/index']],
-                                        ['label'=>Yii::t('backend', 'Carousel Widgets'), 'url'=>['/widget/widget-carousel/index']],
-
                                     ]
                                 ],
                                 [
