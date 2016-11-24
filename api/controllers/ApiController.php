@@ -51,6 +51,9 @@ class ApiController extends Controller
      */
     public function beforeAction($action)
     {
+        $response = Yii::$app->getResponse();
+        $response->is_html = $this->is_html;
+
         if (parent::beforeAction($action)) {
             return true;
         } else
@@ -70,12 +73,14 @@ class ApiController extends Controller
     /**/
     protected function senData($action, $result = null)
     {
+
         header('Content-Type: text/html; charset=utf-8');
         /** @var ApiResponse $response */
         $response = Yii::$app->getResponse();
         if ($this->is_html) {
             $response->is_html = 1;
         } else {
+            $response->is_html = 0;
             $response->is_json = 1;
             $response->setStatusCode($this->code);
             $response->statusText = $this->msg;

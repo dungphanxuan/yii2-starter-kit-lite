@@ -10,7 +10,7 @@ class ApiResponse extends \yii\web\Response
     public $statusResponseMessage;
     public $statusResponseExtra;
     public $statusText;
-    public $is_html;
+    public $is_html = 1;
     public $is_json = 0;
 
     /**
@@ -45,7 +45,7 @@ class ApiResponse extends \yii\web\Response
     {
         $responseMessage = ApiResponseCode::responseMessageFromCode($this->statusResponseCode);
 
-        if (!$this->is_html && $this->is_json) {
+        if (!$this->is_html || $this->is_json || $this->isClientError) {
             if ($this->isClientError) {
                 $dataOut = $this->data;
 

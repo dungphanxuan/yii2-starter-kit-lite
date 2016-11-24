@@ -26,16 +26,6 @@ class UserController extends ApiController
                     'sign-up' => ['post'],
                     'logout' => ['post'],
                 ],
-            ],
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'actions' => ['info'],
-                        'roles' => ['@'],
-                    ]
-                ],
             ]
         ]);
     }
@@ -79,6 +69,7 @@ class UserController extends ApiController
     * */
     public function actionLogin()
     {
+
         $get_identity = postParam('identity', '');
         $get_password = postParam('password', '');
         if (empty($get_identity) || empty($get_password)) {

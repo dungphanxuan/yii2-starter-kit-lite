@@ -9,6 +9,16 @@ use yii\filters\AccessControl;
  */
 class SiteController extends ApiController
 {
+
+    public function actions()
+    {
+        return [
+            'error' => [
+                'class' => 'api\action\ErrorAction',
+            ],
+        ];
+    }
+
     /**
      * @inheritdoc
      */
@@ -23,5 +33,6 @@ class SiteController extends ApiController
         $this->is_html = 1;
         return $this->render('web');
     }
+
 
 }
