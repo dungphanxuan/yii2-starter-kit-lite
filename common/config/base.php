@@ -109,7 +109,7 @@ $config = [
         ],
 
         'fileStorage' => [
-            'class' => '\trntv\filekit\Storage',
+            'class' => '\common\components\Storage',
             'baseUrl' => '@storageUrl/web/source',
             'filesystem' => [
                 'class' => 'common\components\filesystem\LocalFlysystemBuilder',
@@ -152,6 +152,7 @@ $config = [
             'ru-RU'=>'Русский (РФ)',
             'uk-UA'=>'Українська (Україна)',
             'es' => 'Español',
+            'ja' => 'Japanese',
             'vi' => 'Tiếng Việt',
             'zh-CN' => '简体中文',
         ],

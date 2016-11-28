@@ -7,15 +7,15 @@ namespace api\components;
  * @copyright Copyright (c) 2008 Yii Software LLC
  * @license http://www.yiiframework.com/license/
  */
-use common\models\AccessToken;
 use common\models\User;
 use common\models\UserToken;
 use yii\filters\auth\AuthMethod;
 use Yii;
 /**
- * QueryParamAuth is an action filter that supports the authentication based on the access token passed through a query parameter.
+ * AccessTokenAuth is an action filter that supports the authentication based on the access token passed through a query parameter.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
+ * @author Dung Phan Xuan <dungpx.s@gmail.com>
  * @since 2.0
  */
 class AccessTokenAuth extends AuthMethod {

@@ -54,12 +54,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'component',
                 'filter' => $components
             ],
-            'path',
+            [
+                'attribute' => 'path',
+                'format' => 'raw',
+                'headerOptions' => ['style'=>'text-align:center'],
+                'value' => function ($model) {
+                    return Html::a($model->path, ['view', 'id' =>$model->id], ['class' =>'alink']);
+                },
+            ],
             'type',
             'size:size',
             'name',
             'upload_ip',
-            'created_at:datetime',
+            'created_at:date',
 
             [
                 'class' => 'yii\grid\ActionColumn',
