@@ -14,11 +14,13 @@ class AppController extends Controller
     public $writablePaths = [
         '@common/runtime',
         '@frontend/runtime',
-        '@frontend/web/assets',
+        '@base/assets',
         '@backend/runtime',
-        '@backend/web/assets',
+        '@backend/assets',
         '@storage/cache',
-        '@storage/web/source'
+        '@storage/web/source',
+        '@api/runtime',
+        '@api/assets',
     ];
 
     public $executablePaths = [
@@ -38,6 +40,7 @@ class AppController extends Controller
         $this->runAction('set-keys', ['interactive' => $this->interactive]);
         \Yii::$app->runAction('migrate/up', ['interactive' => $this->interactive]);
         \Yii::$app->runAction('rbac-migrate/up', ['interactive' => $this->interactive]);
+        \Yii::$app->runAction('migrate/up --migrationPath=@vendor/bazilio/yii2-async/migrations', ['interactive' => $this->interactive]);
     }
 
     public function actionSetWritable()
