@@ -56,9 +56,6 @@
     "yiisoft/yii2-debug": "^2.0.0",
     "yiisoft/yii2-gii": "^2.0.0"
   },
-  "suggest": {
-    "trntv/yii2-debug-xhprof": "dev-master@dev"
-  },
   "config": {
     "process-timeout": 1800
   },
