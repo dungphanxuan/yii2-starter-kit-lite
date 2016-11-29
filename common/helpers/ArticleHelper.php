@@ -15,29 +15,29 @@ class ArticleHelper extends Inflector
 
         if ($data === false or $update) {
             $data = [];
-            /** @var Article $mode */
-            $mode = Article::find()->published()->where(['id' => $id])->one();
+            /** @var Article $model */
+            $model = Article::find()->published()->where(['id' => $id])->one();
+            if ($model) {
+                $data['id'] = $model->id;
+                $data['title'] = $model->title;
+                $data['body'] = $model->body;
+                $data['category_name'] = $model->category->title;
+                $data['thumbnail_image'] = $model->thumbnail_base_url . '/' . $model->thumbnail_path;
 
-            //php_dump($mode->attributes);
-            $data = [];
-            $data['id'] = $mode->id;
-            $data['title'] = $mode->title;
-            $data['body'] = $mode->body;
-            $data['category_name'] = $mode->category->title;
-            $data['thumbnail_image'] = $mode->thumbnail_base_url . '/' . $mode->thumbnail_path;
-
-            $dataImage = [];
-            if ($mode->attachments) {
-                foreach ($mode->attachments as $itemAtt) {
-                    $dataImage[] = $itemAtt['base_url'] . '/' . $itemAtt['path'];
+                $dataImage = [];
+                if ($model->attachments) {
+                    foreach ($model->attachments as $itemAtt) {
+                        $dataImage[] = $itemAtt['base_url'] . '/' . $itemAtt['path'];
+                    }
                 }
-            }
-            $data['attachments'] = $dataImage;
+                $data['attachments'] = $dataImage;
 
-            $appFormat =  \Yii::$app->formatter;
-            $data['published_at'] = $mode->published_at ? $appFormat->asDatetime($mode->published_at) : '';
-            $data['update_time'] = $mode->updated_at ? $appFormat->asDatetime($mode->updated_at) : '';
-            $data['updated'] = $mode->updated_at ? $mode->updated_at : '';
+                $appFormat = \Yii::$app->formatter;
+                $data['published_at'] = $model->published_at ? $appFormat->asDatetime($model->published_at) : '';
+                $data['update_time'] = $model->updated_at ? $appFormat->asDatetime($model->updated_at) : '';
+                $data['updated'] = $model->updated_at ? $model->updated_at : '';
+
+            }
 
             /*Set cache*/
             dataCache()->set($cacheKey, $data, 600);

@@ -112,21 +112,12 @@ $config = [
                     ],
                     'on missingTranslation' => ['\backend\modules\i18n\Module', 'missingTranslation']
                 ],
-                /* Uncomment this code to use DbMessageSource
-                 '*'=> [
-                    'class' => 'yii\i18n\DbMessageSource',
-                    'sourceMessageTable'=>'{{%i18n_source_message}}',
-                    'messageTable'=>'{{%i18n_message}}',
-                    'enableCaching' => YII_ENV_DEV,
-                    'cachingDuration' => 3600,
-                    'on missingTranslation' => ['\backend\modules\i18n\Module', 'missingTranslation']
-                ],
-                */
+
             ],
         ],
 
         'fileStorage' => [
-            'class' => '\trntv\filekit\Storage',
+            'class' => '\common\components\Storage',
             'baseUrl' => '@storageUrl/web/source',
             'filesystem' => [
                 'class' => 'common\components\filesystem\LocalFlysystemBuilder',
@@ -169,6 +160,7 @@ $config = [
             'ru-RU'=>'Русский (РФ)',
             'uk-UA'=>'Українська (Україна)',
             'es' => 'Español',
+            'ja' => 'Japanese',
             'vi' => 'Tiếng Việt',
             'zh-CN' => '简体中文',
         ],

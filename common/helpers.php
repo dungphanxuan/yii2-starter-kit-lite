@@ -125,6 +125,12 @@ function isValidTimeStamp($timestamp)
 }
 
 
+function dd($data){
+    echo "<pre>";
+    var_dump($data);
+    die;
+}
+
 function php_dump($data){
     echo "<pre>";
     var_dump($data);

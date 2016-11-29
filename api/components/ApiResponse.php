@@ -10,6 +10,8 @@ class ApiResponse extends \yii\web\Response
     public $statusResponseMessage;
     public $statusResponseExtra;
     public $statusText;
+    public $is_html = 1;
+    public $is_json = 0;
 
     /**
      * Set response code and extra from code.
@@ -43,47 +45,52 @@ class ApiResponse extends \yii\web\Response
     {
         $responseMessage = ApiResponseCode::responseMessageFromCode($this->statusResponseCode);
 
-        if ($this->isClientError) {
-            $dataOut = $this->data;
+        if (!$this->is_html || $this->is_json || $this->isClientError) {
+            if ($this->isClientError) {
+                $dataOut = $this->data;
 
-            if ($this->statusCode == 401) {   // Not authorized
-                $dataOut = null;
-                $this->fillStatusResponse(ApiResponseCode::ERR_LOGIN_REQUIRED);
-            } else if ($this->statusCode == 403) {  // Forbidden
-                $dataOut = null;
-                $this->fillStatusResponse(ApiResponseCode::ERR_FORBIDDEN);
-            } else if ($this->statusCode == 404) {  // Non found
-                $dataOut = null;
-                $this->fillStatusResponse(ApiResponseCode::ERR_METHOD_NOT_FOUND);
-            } else if ($this->statusCode == 422) {  // Required field
-                $dataOut = null;
-                $this->fillStatusResponse(ApiResponseCode::ERR_UNPROCCESSABLE_ENTITY);
-            } else if ($this->statusCode == 405) {  // Non Allow
-                $dataOut = null;
-                $this->fillStatusResponse(ApiResponseCode::ERR_METHOD_NOT_ALLOW);
-            } else if ($this->statusCode == 500) {  // Non Allow
-                $dataOut = null;
-                $this->fillStatusResponse(ApiResponseCode::ERR_METHOD_NOT_ALLOW);
+                if ($this->statusCode == 401) {   // Not authorized
+                    $dataOut = null;
+                    $this->fillStatusResponse(ApiResponseCode::ERR_LOGIN_REQUIRED);
+                } else if ($this->statusCode == 403) {  // Forbidden
+                    $dataOut = null;
+                    $this->fillStatusResponse(ApiResponseCode::ERR_FORBIDDEN);
+                } else if ($this->statusCode == 404) {  // Non found
+                    $dataOut = null;
+                    $this->fillStatusResponse(ApiResponseCode::ERR_METHOD_NOT_FOUND);
+                } else if ($this->statusCode == 422) {  // Required field
+                    $dataOut = null;
+                    $this->fillStatusResponse(ApiResponseCode::ERR_UNPROCCESSABLE_ENTITY);
+                } else if ($this->statusCode == 405) {  // Non Allow
+                    $dataOut = null;
+                    $this->fillStatusResponse(ApiResponseCode::ERR_METHOD_NOT_ALLOW);
+                } else if ($this->statusCode == 500) {  // Non Allow
+                    $dataOut = null;
+                    $this->fillStatusResponse(ApiResponseCode::ERR_METHOD_NOT_ALLOW);
+                }
+
+                $this->data = [
+                    'status' => 0,
+                    'code' => $this->statusResponseCode,
+                    'message' => !empty($this->statusText) ? $this->statusText : $this->statusResponseExtra
+                ];
+            } else {
+                $resData = [];
+                if (!empty($this->data)) {
+                    $resData ['data'] = $this->data;
+                }
+                $resData1 = [
+                    'status' => 1,
+                    'code' => $this->statusResponseCode,
+                    'message' => !empty($this->statusText) ? $this->statusText : $this->statusResponseExtra,
+                ];
+
+                $this->data = array_merge($resData1, $resData);
             }
-
-            $this->data = [
-                'status' => 0,
-                'code' => $this->statusResponseCode,
-                'message' => !empty($this->statusText) ? $this->statusText : $this->statusResponseExtra
-            ];
         } else {
-            $resData = [];
-            if (!empty($this->data)) {
-                $resData ['data'] = $this->data;
-            }
-            $resData1 = [
-                'status' => 1,
-                'code' => $this->statusResponseCode,
-                'message' => !empty($this->statusText) ? $this->statusText : $this->statusResponseExtra,
-            ];
-
-            $this->data = array_merge($resData1, $resData);
+            $this->format = Response::FORMAT_HTML;
         }
+
 
         parent::send();
     }

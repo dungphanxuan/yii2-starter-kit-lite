@@ -70,9 +70,9 @@ class ArticleController extends ApiController
 
         $getId = getParam('id', null);
         if ($getId) {
-            $mode = Article::find()->published()->where(['id' => $getId])->one();
-            if ($mode) {
-                $data = ArticleHelper::getDetail($mode->id);
+            $model = Article::find()->published()->where(['id' => $getId])->one();
+            if ($model) {
+                $data = ArticleHelper::getDetail($model->id);
                 $this->msg = 'Article detail';
                 $this->data = $data;
             } else {

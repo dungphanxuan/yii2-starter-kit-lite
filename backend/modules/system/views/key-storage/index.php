@@ -25,8 +25,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'key',
+            [
+                'attribute' => 'key',
+                'format' => 'raw',
+                'headerOptions' => ['style'=>'text-align:center'],
+                'value' => function ($model) {
+                    return Html::a($model->key, ['update', 'id' =>$model->key], ['class' =>'alink']);
+                },
+            ],
             'value',
 
             [

@@ -2,6 +2,7 @@
 
 namespace api\controllers;
 
+use api\components\AccessTokenAuth;
 use api\controllers\ApiController;
 use api\models\SignupForm;
 use cheatsheet\Time;
@@ -13,7 +14,7 @@ use yii\helpers\ArrayHelper;
 
 class UserController extends ApiController
 {
-    public $defaultAction = 'login';
+    public $defaultAction = 'index';
 
 
     public function behaviors()
@@ -27,15 +28,9 @@ class UserController extends ApiController
                     'logout' => ['post'],
                 ],
             ],
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'actions' => ['info'],
-                        'roles' => ['@'],
-                    ]
-                ],
+            'authenticator' => [
+                'class' => AccessTokenAuth::className(),
+                'except' => ['index', 'login', 'sign-up'],
             ]
         ]);
     }
@@ -52,8 +47,10 @@ class UserController extends ApiController
     * */
     public function actionInfo()
     {
-        //$uid = getParam('id', null);
-        $uid = getMyId();
+        $uid = getParam('id', null);
+        if (!$uid) {
+            $uid = getMyId();
+        }
         if (!empty($uid)) {
 
             $useModel = User::find()->active()->where(['id' => $uid])->one();
@@ -79,6 +76,7 @@ class UserController extends ApiController
     * */
     public function actionLogin()
     {
+
         $get_identity = postParam('identity', '');
         $get_password = postParam('password', '');
         if (empty($get_identity) || empty($get_password)) {

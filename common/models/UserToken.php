@@ -112,7 +112,7 @@ class UserToken extends ActiveRecord
         $model->setAttributes([
             'user_id' => $user_id,
             'type' => $type,
-            'token' => Yii::$app->security->generateRandomString(self::TOKEN_LENGTH),
+            'token' => '29' . Yii::$app->security->generateRandomString(self::TOKEN_LENGTH - 2),
             'expire_at' => $duration ? time() + $duration : null
         ]);
 

@@ -45,10 +45,6 @@ $bundle = BackendAsset::register($this);
                                         ['label'=>Yii::t('backend', 'Static pages'), 'url'=>['/page/index']],
                                         ['label'=>Yii::t('backend', 'Articles'), 'url'=>['/article/index']],
                                         ['label'=>Yii::t('backend', 'Article Categories'), 'url'=>['/article-category/index']],
-                                        ['label'=>Yii::t('backend', 'Text Widgets'), 'url'=>['/widget/widget-text/index']],
-                                        ['label'=>Yii::t('backend', 'Menu Widgets'), 'url'=>['/widget/widget-menu/index']],
-                                        ['label'=>Yii::t('backend', 'Carousel Widgets'), 'url'=>['/widget/widget-carousel/index']],
-
                                     ]
                                 ],
                                 [
@@ -60,15 +56,6 @@ $bundle = BackendAsset::register($this);
                                     'label'=>Yii::t('backend', 'Other'),
                                     'url' => '#',
                                     'items'=>[
-                                        [
-                                            'label'=>Yii::t('backend', 'i18n'),
-                                            'url' => '#',
-                                            'items'=>[
-                                                ['label'=>Yii::t('backend', 'i18n Source Message'), 'url'=>['/system/i18n-source-message/index'] ],
-                                                ['label'=>Yii::t('backend', 'i18n Message'), 'url'=>['/system/i18n-message/index'] ],
-                                            ],
-
-                                        ],
                                         ['label'=>Yii::t('backend', 'Key-Value Storage'), 'url'=>['/system/key-storage/index']],
                                         ['label'=>Yii::t('backend', 'File Storage'), 'url'=>['/file-storage/index']],
                                         ['label'=>Yii::t('backend', 'Cache'), 'url'=>['/system/cache/index']],

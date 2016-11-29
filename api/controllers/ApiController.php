@@ -2,6 +2,7 @@
 namespace api\controllers;
 
 use api\components\AccessTokenAuth;
+use api\components\ApiResponse;
 use common\models\UserToken;
 use Yii;
 use yii\filters\Cors;
@@ -27,6 +28,10 @@ class ApiController extends Controller
      * @var int Http code response
      */
     public $code = 200;
+    /**
+     * @var int Http response format Html
+     */
+    public $is_html = 0;
 
     /**
      * @var int User ID
@@ -46,6 +51,9 @@ class ApiController extends Controller
      */
     public function beforeAction($action)
     {
+        $response = Yii::$app->getResponse();
+        $response->is_html = $this->is_html;
+
         if (parent::beforeAction($action)) {
             return true;
         } else
@@ -65,13 +73,22 @@ class ApiController extends Controller
     /**/
     protected function senData($action, $result = null)
     {
+
         header('Content-Type: text/html; charset=utf-8');
+        /** @var ApiResponse $response */
         $response = Yii::$app->getResponse();
-        $response->setStatusCode($this->code);
-        $response->statusText = $this->msg;
-        if (!empty($this->data)) {
-            $response->data = $this->data;
+        if ($this->is_html) {
+            $response->is_html = 1;
+        } else {
+            $response->is_html = 0;
+            $response->is_json = 1;
+            $response->setStatusCode($this->code);
+            $response->statusText = $this->msg;
+            if (!empty($this->data)) {
+                $response->data = $this->data;
+            }
         }
+
         return parent::afterAction($action, $result);
     }
 

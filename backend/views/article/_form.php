@@ -100,7 +100,7 @@ use yii\bootstrap\ActiveForm;
         <div class="col-sm-<?=$model->isNewRecord? '3': '1'?> col-xs-2"></div>
         <div class="col-sm-3 col-xs-4">
             <?php
-            echo \yii\helpers\Html::a('<span class="glyphicon glyphicon-arrow-left"></span> Back', ['article/index'],['class'=>'btn btn-default btn200']);
+            echo \yii\helpers\Html::a('<span class="glyphicon glyphicon-arrow-left"></span> Back', ['index'],['class'=>'btn btn-default btn200']);
             ?>
         </div>
         <div class="col-sm-3 col-xs-4">
@@ -111,7 +111,7 @@ use yii\bootstrap\ActiveForm;
         <div class="col-sm-3 col-xs-2">
             <?php
             if (!$model->isNewRecord) {
-                echo Html::a('Delete', ['/user/delete', 'id' => $model->id],
+                echo Html::a('Delete', ['delete', 'id' => $model->id],
                     [
                         'class' => 'btn btn-warning btn200 bold',
                         'data' => [
