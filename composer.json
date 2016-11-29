@@ -49,7 +49,8 @@
     "trntv/yii2-command-bus": "^2.0",
     "intervention/image": "^2.1",
     "vlucas/phpdotenv": "^2.0",
-    "symfony/process": "^3.0"
+    "symfony/process": "^3.0",
+    "bazilio/yii2-async": "dev-master"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "^2.0.0",

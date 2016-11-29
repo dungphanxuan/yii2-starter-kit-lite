@@ -21,5 +21,8 @@ return [
             'migrationTable' => '{{%system_rbac_migration}}',
             'templateFile' => '@common/rbac/views/migration.php'
         ],
+        'async-worker' => [
+            'class' => 'bazilio\async\commands\AsyncWorkerCommand',
+        ],
     ],
 ];

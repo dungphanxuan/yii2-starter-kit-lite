@@ -71,6 +71,14 @@ $config = [
             'enableSchemaCache' => YII_ENV_PROD,
         ],
 
+        'async' => [
+            'class' => 'bazilio\async\AsyncComponent',
+            'transportClass' => 'bazilio\async\transports\AsyncMysqlTransport',
+            'transportConfig' => [
+                'connection' => 'db',
+            ]
+        ],
+
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
