@@ -26,6 +26,7 @@ class Yii extends \yii\BaseYii
  * @property \yii\caching\Cache $dcache The data cache application component. Null if the component is not enabled.
  * @property trntv\glide\components\Glide $glide
  * @property trntv\bus\CommandBus $commandBus
+ * @property bazilio\async\AsyncComponent $async Provides translucent api & queues for moving large tasks out of request context
  */
 abstract class BaseApplication extends yii\base\Application
 {

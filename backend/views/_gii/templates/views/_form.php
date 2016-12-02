@@ -42,7 +42,7 @@ use yii\bootstrap\ActiveForm;
         <div class="col-sm-<?=$model->isNewRecord? '3': '1'?> col-xs-2"></div>
         <div class="col-sm-3 col-xs-4">
             <?php echo "<?php ". "\n" ?>
-            echo \yii\helpers\Html::a('<span class="glyphicon glyphicon-arrow-left"></span> Yii::t('backend', 'Back')', ['index'],['class'=>'btn btn-default btn200']);
+            echo \yii\helpers\Html::a('<span class="glyphicon glyphicon-arrow-left"></span>'. Yii::t('backend', 'Back'), ['index'],['class'=>'btn btn-default btn200']);
             ?>
         </div>
         <div class="col-sm-3 col-xs-4">
