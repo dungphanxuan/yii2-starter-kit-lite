@@ -58,11 +58,11 @@ Password: user
 
 
 ### Widgets
-- [Froala Editor](https://github.com/MihailDev/yii2-elfinder)
+- [Froala Editor](https://github.com/froala/yii2-froala-editor)
 
 
 ### API
-Starter Kit has fully configured and ready-to-go REST API module. You can access it on http://yii2-starter-kit.dev/api/v1
+Starter Kit has fully configured and ready-to-go REST API module. You can access it on http://yii2-starter-kit-lite.dev/api/v1
 For some endpoints you should authenticate your requests with one of available methods - https://github.com/yiisoft/yii2/blob/master/docs/guide/rest-authentication.md#authentication
 
 
