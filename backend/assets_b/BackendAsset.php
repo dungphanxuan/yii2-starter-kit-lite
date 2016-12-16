@@ -19,7 +19,9 @@ class BackendAsset extends AssetBundle
         'css/style.css'
     ];
     public $js = [
-        'js/app.js'
+        'js/app.js',
+        'js/libs/bootbox.min.js',
+        'js/libs/confirm.js',
     ];
 
     public $depends = [

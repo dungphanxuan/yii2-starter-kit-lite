@@ -42,7 +42,7 @@ class UserController extends ApiController
 
     /*
     * Get user info
-    * @param int $uid User id
+    * @param int $id User id
     * @return User info
     * */
     public function actionInfo()
@@ -95,7 +95,8 @@ class UserController extends ApiController
     /*
     * SignUp api
     * @param string $email User email
-    * @return Mixed
+    * @param string $password User password
+    * @return mixed
     * */
     public function actionSignUp()
     {
@@ -128,6 +129,12 @@ class UserController extends ApiController
         }
     }
 
+    /**
+     * User logout
+     *
+     * @param string $token User token
+     * @return mixed
+     */
     public function actionLogout()
     {
         $token = postParam('token', '');
@@ -146,7 +153,6 @@ class UserController extends ApiController
                 $this->code = 400;
             } else {
                 $token->delete();
-
                 $this->msg = "Logout success";
                 $this->code = 200;
             }
