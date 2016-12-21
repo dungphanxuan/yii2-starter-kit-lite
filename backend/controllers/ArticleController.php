@@ -65,7 +65,7 @@ class ArticleController extends Controller
                 /*Copy Image*/
                 $model->attachments = $eModel->attachments;
                 foreach ($eModel->articleAttachments as $key => $img) {
-                    $new_filename = "1/cp_" . $key . "_" . date('YmdHim') . rand(1, 100000) . "_cubic.jpg";
+                    $new_filename = "1/cp_" . $key . "_" . date('YmdHim') . rand(1, 100000) . ".jpg";
                     Yii::$app->fileStorage->getFilesystem()->copy($eModel->images[$key]['path'], $new_filename);
                     $model->attachments[$key]['path'] = $new_filename;
                 }
