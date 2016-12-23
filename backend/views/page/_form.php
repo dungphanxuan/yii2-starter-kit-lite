@@ -15,6 +15,11 @@ use yii\bootstrap\ActiveForm;
         'layout' => 'horizontal',
     ]); ?>
 
+    <?php echo $form->errorSummary($model, [
+        'class' => 'alert alert-warning alert-dismissible',
+        'header' => ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-warning"></i> 入力内容を確認してください。</h4>'
+    ]); ?>
+
     <?php echo $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <?php echo $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>

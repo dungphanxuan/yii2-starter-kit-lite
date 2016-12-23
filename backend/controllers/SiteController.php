@@ -3,6 +3,7 @@ namespace backend\controllers;
 
 use common\components\keyStorage\FormModel;
 use common\models\User;
+use common\task\DownloadTask;
 use Yii;
 
 /**
@@ -85,6 +86,9 @@ class SiteController extends \yii\web\Controller
             ->asArray()
             ->all();
         php_dump($user);
+        // create task
+        $task = new DownloadTask(['url' => 'http://localhost/', 'file' => '/tmp/localhost.html']);
+        \Yii::$app->async->sendTask($task);
     }
 
 }

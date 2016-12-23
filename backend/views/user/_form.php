@@ -11,29 +11,40 @@ use yii\bootstrap\ActiveForm;
 /* @var $permissions yii\rbac\Permission[] */
 ?>
 
-<div class="user-form">
-    <br>
+    <div class="user-form">
+        <br>
 
-    <?php $form = ActiveForm::begin([
-        'layout' => 'horizontal',
-    ]); ?>
+        <?php $form = ActiveForm::begin([
+            'layout' => 'horizontal',
+        ]); ?>
+
+        <?php echo $form->errorSummary($model, [
+            'class' => 'alert alert-warning alert-dismissible',
+            'header' => ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-warning"></i> 入力内容を確認してください。</h4>'
+        ]); ?>
+
         <?php echo $form->field($model, 'username') ?>
+
         <?php echo $form->field($model, 'email') ?>
+
         <?php echo $form->field($model, 'password')->passwordInput([
-            'autocomplete'=>'off',
+            'autocomplete' => 'off',
             'readonly' => true,
-            'onfocus'=>"this.removeAttribute('readonly');",
+            'onfocus' => "this.removeAttribute('readonly');",
         ]) ?>
-        <?php echo $form->field($model, 'status',[
+
+        <?php echo $form->field($model, 'status', [
             'template' => '{label} <div class="row"><div class="col-xs-3 col-sm-3">{input}{error}{hint}</div></div>'
         ])->dropDownList(User::statuses()) ?>
+
         <?php echo $form->field($model, 'roles')->checkboxList($roles) ?>
+
         <hr>
         <div class="form-group">
-            <div class="col-sm-<?=$model->username? '2': '3'?> col-xs-2"></div>
+            <div class="col-sm-<?= $model->username ? '2' : '3' ?> col-xs-2"></div>
             <div class="col-sm-3 col-xs-4">
                 <?php
-                echo \yii\helpers\Html::a('<span class="glyphicon glyphicon-arrow-left"></span> Back', ['index'],['class'=>'btn btn-default btn200']);
+                echo \yii\helpers\Html::a('<span class="glyphicon glyphicon-arrow-left"></span> Back', ['index'], ['class' => 'btn btn-default btn200']);
                 ?>
             </div>
             <div class="col-sm-3 col-xs-4">
@@ -55,9 +66,9 @@ use yii\bootstrap\ActiveForm;
             </div>
         </div>
 
-    <?php ActiveForm::end(); ?>
+        <?php ActiveForm::end(); ?>
 
-</div>
+    </div>
 <?php
 $app_css = <<<CSS
 .form-control[readonly], fieldset[disabled] .form-control {
