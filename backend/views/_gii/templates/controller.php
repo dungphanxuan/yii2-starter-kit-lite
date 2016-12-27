@@ -167,7 +167,7 @@ if (count($pks) === 1) {
         if (($model = <?php echo $modelClass ?>::findOne(<?php echo $condition ?>)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException('The <?php echo $modelClass ?> item does not exist.');
         }
     }
 }
