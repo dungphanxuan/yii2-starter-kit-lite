@@ -40,7 +40,7 @@ class AppController extends Controller
         $this->runAction('set-keys', ['interactive' => $this->interactive]);
         \Yii::$app->runAction('migrate/up', ['interactive' => $this->interactive]);
         \Yii::$app->runAction('rbac-migrate/up', ['interactive' => $this->interactive]);
-        \Yii::$app->runAction('migrate/up --migrationPath=@vendor/bazilio/yii2-async/migrations', ['interactive' => $this->interactive]);
+        \Yii::$app->runAction('migrate/up', ['migrationPath' => '@vendor/bazilio/yii2-async/migrations', 'interactive' => $this->interactive]);
     }
 
     public function actionSetWritable()
