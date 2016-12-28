@@ -20,7 +20,7 @@ use yii\bootstrap\ActiveForm;
 
         <?php echo $form->errorSummary($model, [
             'class' => 'alert alert-warning alert-dismissible',
-            'header' => ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-warning"></i> 入力内容を確認してください。</h4>'
+            'header' => ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-warning"></i> Please fix the following errors</h4>'
         ]); ?>
 
         <?php echo $form->field($model, 'username') ?>
