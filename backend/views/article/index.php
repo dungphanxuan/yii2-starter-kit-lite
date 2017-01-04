@@ -79,14 +79,14 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'updated_at',
 
             [
-                'class' => 'yii\grid\ActionColumn',
+                'class' => 'backend\grid\ActionColumn',
                 'template'=>'{update} {copy} {delete}',
                 'buttons' => [
                     'copy' => function ($url, $model, $key) {
                         $url = Url::to(['/article/create', 'type'=>'copy', 'id' => $key]);
                         return Html::a('<span class="glyphicon glyphicon-copy"></span>', $url, [
                             'title' => \Yii::t('common', 'Copy'),
-                            'class' => 'btnaction'
+                            'class' => 'btnaction btn btn-success btn-xs'
                         ]);
                     },
                 ]
