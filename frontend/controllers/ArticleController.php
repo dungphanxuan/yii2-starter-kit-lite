@@ -61,4 +61,8 @@ class ArticleController extends Controller
             $model->name
         );
     }
+
+    public function actionTest(){
+        
+    }
 }

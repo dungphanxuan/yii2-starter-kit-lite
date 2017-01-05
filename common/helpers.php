@@ -89,6 +89,10 @@ function baseUrl(){
     return Yii::$app->request->baseUrl;
 }
 
+function fileSystem(){
+    return  Yii::$app->fileStorage->getFilesystem();
+}
+
 function getParam($name, $defaultValue = null)
 {
     return Yii::$app->request->get($name, $defaultValue);

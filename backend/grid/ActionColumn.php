@@ -13,6 +13,9 @@ use yii\helpers\Html;
 
 class ActionColumn extends \yii\grid\ActionColumn
 {
+    /**
+     * @var array
+     */
     public $buttonClass = [
         'delete' => 'danger',
         'view' => 'success',
@@ -23,6 +26,9 @@ class ActionColumn extends \yii\grid\ActionColumn
         'search' => 'info'
     ];
 
+    /**
+     * @inheritdoc
+     */
     protected function initDefaultButton($name, $iconName, $additionalOptions = [])
     {
         if (!isset($this->buttons[$name]) && strpos($this->template, '{' . $name . '}') !== false) {

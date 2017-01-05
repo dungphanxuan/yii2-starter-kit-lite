@@ -37,7 +37,7 @@ class ArticleController extends Controller
         $searchModel = new ArticleSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider->sort = [
-            'defaultOrder'=>['published_at'=>SORT_DESC]
+            'defaultOrder' => ['published_at' => SORT_DESC]
         ];
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -56,23 +56,33 @@ class ArticleController extends Controller
         $id = getParam('id', null);
         $model = new Article();
 
-        /*Copy data*/
+        //Copy data
         if ($id) {
+            /** @var Article $eModel */
             $eModel = Article::find()->published()->where(['id' => $id])->one();
             if ($eModel) {
                 $data = $eModel->attributes;
                 $model->setAttributes($data);
-                /*Copy Image*/
+
+                //Copy thumbnail
+                $model->thumbnail = $eModel->thumbnail;
+                $copyImage = "1/cp_" . Yii::$app->security->generateRandomString(20) . ".jpg";
+                $model->thumbnail['path'] = $copyImage;
+                $model->thumbnail_path = $copyImage;
+                fileSystem()->copy($eModel->thumbnail['path'], $copyImage );
+
+                //Copy attachments
                 $model->attachments = $eModel->attachments;
                 foreach ($eModel->articleAttachments as $key => $img) {
                     $new_filename = "1/cp_" . $key . "_" . date('YmdHim') . rand(1, 100000) . ".jpg";
-                    Yii::$app->fileStorage->getFilesystem()->copy($eModel->images[$key]['path'], $new_filename);
+                    fileSystem()->copy($eModel->attachments[$key]['path'], $new_filename);
                     $model->attachments[$key]['path'] = $new_filename;
                 }
             } else {
                 throw new NotFoundHttpException('Article does not exist.');
             }
         }
+
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             ArticleHelper::getDetail($model->id);

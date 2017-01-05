@@ -75,7 +75,7 @@ class ApiController extends Controller
     {
 
         header('Content-Type: text/html; charset=utf-8');
-        /** @var ApiResponse $response */
+        // @var ApiResponse $response
         $response = Yii::$app->getResponse();
         if ($this->is_html) {
             $response->is_html = 1;

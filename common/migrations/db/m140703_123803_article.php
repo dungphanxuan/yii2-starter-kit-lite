@@ -25,6 +25,7 @@ class m140703_123803_article extends Migration
 
         $this->createTable('{{%article}}', [
             'id' => $this->primaryKey(),
+            'aid' => $this->string(32)->notNull(),
             'slug' => $this->string(1024)->notNull(),
             'title' => $this->string(512)->notNull(),
             'body' => $this->text()->notNull(),
