@@ -128,14 +128,7 @@ function isValidTimeStamp($timestamp)
     && ($timestamp >= ~PHP_INT_MAX);
 }
 
-
 function dd($data){
-    echo "<pre>";
-    var_dump($data);
-    die;
-}
-
-function php_dump($data){
     echo "<pre>";
     var_dump($data);
     die;

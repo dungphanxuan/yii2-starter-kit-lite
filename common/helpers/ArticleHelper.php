@@ -2,9 +2,7 @@
 namespace common\helpers;
 
 use common\models\Article;
-use Yii;
 use yii\helpers\Inflector;
-use yii\helpers\Json;
 
 class ArticleHelper extends Inflector
 {

@@ -2,13 +2,8 @@
 
 namespace common\helpers;
 
-use api\models\SignupForm;
-use common\models\User;
-use Yii;
-use yii\behaviors\SluggableBehavior;
+
 use yii\helpers\Inflector;
-use Auth0\SDK\Auth0;
-use yii\helpers\Json;
 
 /**
  * Collection of useful helper functions for Yii Applications

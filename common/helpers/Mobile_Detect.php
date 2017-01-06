@@ -25,6 +25,7 @@
  * @version     2.8.22
  */
 namespace common\helpers;
+
 class Mobile_Detect
 {
     /**
