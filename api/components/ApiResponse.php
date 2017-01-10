@@ -88,7 +88,11 @@ class ApiResponse extends \yii\web\Response
                 $this->data = array_merge($resData1, $resData);
             }
         } else {
-            $this->format = Response::FORMAT_HTML;
+            if ($this->isClientError) {
+                $this->format = Response::FORMAT_JSON;
+            } else {
+                $this->format = Response::FORMAT_HTML;
+            }
         }
 
 
