@@ -1,13 +1,13 @@
 <?php
 $config = [
-    'name'=>'Yii2 Starter Kit Lite',
+    'name'=>'Yii2 Starter',
     'vendorPath'=>dirname(dirname(__DIR__)).'/vendor',
     'extensions' => require(__DIR__ . '/../../vendor/yiisoft/extensions.php'),
     'sourceLanguage'=>'en-US',
     'timezone' => 'Asia/Ho_Chi_Minh',
     //'language'=>'en-US',
     'language' => 'vi',
-    'bootstrap' => ['log'],
+    //'bootstrap' => ['log'],
     'components' => [
 
         'authManager' => [
@@ -78,23 +78,23 @@ $config = [
                 'connection' => 'db',
             ]
         ],
-
+         /*
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
-                'db'=>[
+                'db' => [
                     'class' => 'yii\log\DbTarget',
                     'levels' => ['error', 'warning'],
-                    'except'=>['yii\web\HttpException:*', 'yii\i18n\I18N\*'],
-                    'prefix'=>function () {
+                    'except' => ['yii\web\HttpException:*', 'yii\i18n\I18N\*'],
+                    'prefix' => function () {
                         $url = !Yii::$app->request->isConsoleRequest ? Yii::$app->request->getUrl() : null;
                         return sprintf('[%s][%s]', Yii::$app->id, $url);
                     },
-                    'logVars'=>[],
-                    'logTable'=>'{{%system_log}}'
+                    'logVars' => [],
+                    'logTable' => '{{%system_log}}'
                 ]
             ],
-        ],
+        ],*/
 
         'i18n' => [
             'translations' => [

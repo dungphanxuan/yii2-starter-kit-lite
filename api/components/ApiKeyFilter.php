@@ -27,7 +27,7 @@ class ApiKeyFilter extends ActionFilter
     {
         parent::init();
         $this->_api_key = getParam('api_key');
-        if (!$this->$this->_api_key) {
+        if (!$this->_api_key) {
             $this->_api_key = postParam('api_key');
         }
     }
