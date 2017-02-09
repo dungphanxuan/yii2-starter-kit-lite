@@ -82,8 +82,6 @@ class ApiController extends Controller
     /**/
     protected function senData($action, $result = null)
     {
-
-        header('Content-Type: text/html; charset=utf-8');
         // @var ApiResponse $response
         $response = Yii::$app->getResponse();
         if ($this->is_html) {
