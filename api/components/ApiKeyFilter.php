@@ -37,7 +37,7 @@ class ApiKeyFilter extends ActionFilter
         if ($this->_api_key !== env('API_KEY')) {
             $this->denyAccess();
         }
-        return false;
+        return parent::beforeAction($action);
     }
 
     protected function denyAccess()
