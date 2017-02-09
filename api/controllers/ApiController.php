@@ -44,6 +44,15 @@ class ApiController extends Controller
         \Yii::$app->user->enableSession = false;
     }
 
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => 'api\components\ApiKeyFilter',
+            ],
+        ];
+    }
+
     /**
      * @param $controller
      * @param $action
