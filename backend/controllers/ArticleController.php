@@ -64,11 +64,13 @@ class ArticleController extends Controller
                 $model->setAttributes($data);
 
                 //Copy thumbnail
-                $model->thumbnail = $eModel->thumbnail;
-                $copyImage = "1/cp_" . Yii::$app->security->generateRandomString(20) . ".jpg";
-                $model->thumbnail['path'] = $copyImage;
-                $model->thumbnail_path = $copyImage;
-                fileSystem()->copy($eModel->thumbnail['path'], $copyImage );
+                if ($eModel->thumbnail) {
+                    $model->thumbnail = $eModel->thumbnail;
+                    $copyImage = "1/cp_" . Yii::$app->security->generateRandomString(20) . ".jpg";
+                    $model->thumbnail['path'] = $copyImage;
+                    $model->thumbnail_path = $copyImage;
+                    fileSystem()->copy($eModel->thumbnail['path'], $copyImage);
+                }
 
                 //Copy attachments
                 $model->attachments = $eModel->attachments;
