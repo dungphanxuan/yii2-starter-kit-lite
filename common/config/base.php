@@ -7,7 +7,7 @@ $config = [
     'timezone' => 'Asia/Ho_Chi_Minh',
     //'language'=>'en-US',
     'language' => 'vi',
-    //'bootstrap' => ['log'],
+    'bootstrap' => ['log'],
     'components' => [
 
         'authManager' => [
@@ -78,7 +78,7 @@ $config = [
                 'connection' => 'db',
             ]
         ],
-         /*
+
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
@@ -94,7 +94,7 @@ $config = [
                     'logTable' => '{{%system_log}}'
                 ]
             ],
-        ],*/
+        ],
 
         'i18n' => [
             'translations' => [
