@@ -55,7 +55,6 @@ class ArticleController extends Controller
     {
         $id = getParam('id', null);
         $model = new Article();
-
         //Copy data
         if ($id) {
             /** @var Article $eModel */
@@ -82,7 +81,8 @@ class ArticleController extends Controller
                 throw new NotFoundHttpException('Article does not exist.');
             }
         }
-
+        // Init article id
+        $model->aid = ArticleHelper::getRandomID();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             ArticleHelper::getDetail($model->id);
