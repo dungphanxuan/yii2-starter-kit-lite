@@ -66,10 +66,9 @@ class ArticleController extends ApiController
      */
     public function actionView()
     {
-
-        $getId = getParam('id', null);
+        $getId = getParam('aid', null);
         if ($getId) {
-            $model = Article::find()->published()->where(['id' => $getId])->one();
+            $model = Article::find()->published()->where(['aid' => $getId])->one();
             if ($model) {
                 $data = ArticleHelper::getDetail($model->id);
                 $this->msg = 'Article detail';

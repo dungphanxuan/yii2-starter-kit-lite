@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use common\helpers\ArticleHelper;
 use common\models\query\ArticleQuery;
 use trntv\filekit\behaviors\UploadBehavior;
 use Yii;
@@ -14,6 +15,7 @@ use yii\db\ActiveRecord;
  * This is the model class for table "article".
  *
  * @property integer $id
+ * @property string $aid
  * @property string $slug
  * @property string $title
  * @property string $body
@@ -110,7 +112,7 @@ class Article extends ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'body', 'category_id'], 'required'],
+            [['aid', 'title', 'body', 'category_id'], 'required'],
             [['slug'], 'unique'],
             [['body'], 'string'],
             [['published_at'], 'default', 'value' => function () {
@@ -122,6 +124,7 @@ class Article extends ActiveRecord
             [['slug', 'thumbnail_base_url', 'thumbnail_path'], 'string', 'max' => 1024],
             [['title'], 'string', 'max' => 512],
             [['view'], 'string', 'max' => 255],
+            [['aid'], 'string', 'max' => 32],
             [['attachments', 'thumbnail'], 'safe']
         ];
     }
@@ -133,6 +136,7 @@ class Article extends ActiveRecord
     {
         return [
             'id' => Yii::t('common', 'ID'),
+            'aid' => Yii::t('common', 'Article ID'),
             'slug' => Yii::t('common', 'Slug'),
             'title' => Yii::t('common', 'Title'),
             'body' => Yii::t('common', 'Body'),

@@ -1,6 +1,7 @@
 <?php
 namespace common\helpers;
 
+use Yii;
 use common\models\Article;
 use yii\helpers\Inflector;
 
@@ -17,6 +18,7 @@ class ArticleHelper extends Inflector
             $model = Article::find()->published()->where(['id' => $id])->one();
             if ($model) {
                 $data['id'] = $model->id;
+                $data['aid'] = $model->aid;
                 $data['title'] = $model->title;
                 $data['body'] = $model->body;
                 $data['category_name'] = $model->category->title;
@@ -41,6 +43,19 @@ class ArticleHelper extends Inflector
             dataCache()->set($cacheKey, $data, 600);
         }
         return $data;
+    }
+
+    /*
+     * Random Article ID
+     * */
+    public static function getRandomID()
+    {
+        $articleId = Yii::$app->getSecurity()->generateRandomString(16);
+        $article = Article::findOne(['aid' => $articleId,]);
+        if (!$article) {
+            return $articleId;
+        }
+        return ArticleHelper::getRandomID();
     }
 
 }
