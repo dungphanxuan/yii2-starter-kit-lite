@@ -42,7 +42,7 @@ class ApiKeyFilter extends ActionFilter
 
     protected function denyAccess()
     {
-        throw new ForbiddenHttpException(Yii::t('yii', 'You are not allowed to perform this action.'));
+        throw new ForbiddenHttpException(Yii::t('yii', 'The provided API key is invalid .'));
     }
 
 }

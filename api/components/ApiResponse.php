@@ -69,10 +69,16 @@ class ApiResponse extends \yii\web\Response
                     $this->fillStatusResponse(ApiResponseCode::ERR_METHOD_NOT_ALLOW);
                 }
 
+                $errorMessage = !empty($this->statusText) ? $this->statusText : $this->statusResponseExtra;
+                $exception = Yii::$app->errorHandler->exception;
+                if ($exception !== null) {
+                    $errorMessage = $exception->getMessage();
+                }
+
                 $this->data = [
                     'status' => 0,
                     'code' => $this->statusResponseCode,
-                    'message' => !empty($this->statusText) ? $this->statusText : $this->statusResponseExtra
+                    'message' => $errorMessage
                 ];
             } else {
                 $resData = [];
@@ -94,7 +100,6 @@ class ApiResponse extends \yii\web\Response
                 $this->format = Response::FORMAT_HTML;
             }
         }
-
 
         parent::send();
     }
