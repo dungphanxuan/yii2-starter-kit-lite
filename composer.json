@@ -33,7 +33,7 @@
   "require": {
     "php": ">=5.5.0",
     "ext-intl": "*",
-    "yiisoft/yii2": "dev-master@dev",
+    "yiisoft/yii2": "^2.0.11",
     "yiisoft/yii2-bootstrap": "^2.0.0",
     "yiisoft/yii2-swiftmailer": "^2.0.0",
     "yiisoft/yii2-authclient": "^2.0.0",
