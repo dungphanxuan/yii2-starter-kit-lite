@@ -131,6 +131,33 @@ class ArticleController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionAjaxDelete()
+    {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        if (isAjax()) {
+            $dataPost = $_POST;
+            $dataId = isset($dataPost['ids']) ? $dataPost['ids'] : [];
+            foreach ($dataId as $item) {
+                /** @var Article $mode */
+                $mode = Article::find()->where(['id' => $item])->one();
+                if ($mode) {
+                    $mode->status = 0;
+                    $mode->save();
+                }
+            }
+            $res = [
+                'body' => 'Sucess',
+                'success' => true,
+            ];
+            return $res;
+        }
+        $res = [
+            'body' => 'Not allow',
+            'success' => false,
+        ];
+        return $res;
+    }
+
     /**
      * Finds the Article model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
