@@ -133,6 +133,12 @@ $config = [
             'class' => 'common\components\keyStorage\KeyStorage'
         ],
 
+        'urlManagerApi' => \yii\helpers\ArrayHelper::merge(
+            [
+                'hostInfo' => Yii::getAlias('@apiUrl')
+            ],
+            require(Yii::getAlias('@api/config/_urlManager.php'))
+        ),
         'urlManagerBackend' => \yii\helpers\ArrayHelper::merge(
             [
                 'hostInfo' => Yii::getAlias('@backendUrl')
