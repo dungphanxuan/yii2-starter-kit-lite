@@ -51,7 +51,10 @@
     "intervention/image": "^2.1",
     "vlucas/phpdotenv": "^2.0",
     "symfony/process": "^3.0",
-    "bazilio/yii2-async": "dev-master"
+    "bazilio/yii2-async": "dev-master",
+    "kartik-v/yii2-widget-select2": "@dev",
+    "kartik-v/yii2-widget-depdrop": "@dev",
+    "kartik-v/yii2-helpers": "dev-master"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "^2.0.0",
