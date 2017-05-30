@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\ArrayHelper;
+use kartik\select2\Select2;
+/* @var $categories */
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\search\ArticleSearch */
@@ -17,37 +20,39 @@ use yii\bootstrap\ActiveForm;
     ]); ?>
 
     <div class="row">
-        <div class="col-md-6 col-sm-6 col-xs-12">
-            <span class="col-md-4 col-sm-4 col-xs-4" style=""><?=$model->getAttributeLabel('id')?></span>
-            <div class="col-md-8 col-sm-8 col-xs-8">
-                <?=Html::activeTextInput($model, 'id', ['class'=>'form-control'])?>
-            </div>
+        <div class="col-sm-6">
+            <?= $form->field($model, 'id')->textInput() ?>
         </div>
-        <div class="col-md-6 col-sm-6 col-xs-12 spm10">
-            <span class="col-md-4 col-sm-4 col-xs-4" style=""><?=$model->getAttributeLabel('title')?></span>
-            <div class="col-md-8 col-sm-8 col-xs-8">
-                <?=Html::activeTextInput($model, 'title', ['class'=>'form-control'])?>
-            </div>
+
+        <div class="col-sm-6">
+            <?= $form->field($model, 'title')->textInput() ?>
         </div>
     </div>
 
-    <div class="row mt10">
-        <div class="col-md-6 col-sm-6 col-xs-12">
-            <span class="col-md-4 col-sm-4 col-xs-4" style=""><?=$model->getAttributeLabel('category_id')?></span>
-            <div class="col-md-8 col-sm-8 col-xs-8">
-                <?=Html::activeDropDownList($model, 'category_id', \yii\helpers\ArrayHelper::map(
+    <div class="row">
+        <div class="col-sm-6">
+            <?php
+            echo $form->field($model, 'category_id')->widget(Select2::classname(), [
+                'data' =>  ArrayHelper::map(
                     $categories,
                     'id',
                     'title'
-                ), ['class'=>'form-control', 'prompt' =>'Select...'])?>
-
-            </div>
+                ),
+                'options' => ['placeholder' => 'Chọn danh mục ...'],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]);
+            ?>
         </div>
-        <div class="col-md-6 col-sm-6 col-xs-12 spm10">
-            <span class="col-md-4 col-sm-4 col-xs-4" style=""><?=$model->getAttributeLabel('slug')?></span>
-            <div class="col-md-8 col-sm-8 col-xs-8">
-                <?=Html::activeTextInput($model, 'slug', ['class'=>'form-control'])?>
-            </div>
+
+        <div class="col-sm-6">
+            <?php
+            echo $form->field($model, 'status')->dropDownList(
+                [1 => 'Xuất bản', 0 => 'Chưa xuất bản'],
+                ['prompt' => 'Chọn trạng thái...']
+            )->label('Trạng thái')
+            ?>
         </div>
     </div>
 

@@ -7,6 +7,7 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\search\ArticleSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $categories */
 
 $this->title = Yii::t('backend', 'Articles');
 $this->params['breadcrumbs'][] = $this->title;
