@@ -7,9 +7,9 @@ class m150725_192740_seed_data extends Migration {
 	public function safeUp() {
 		$this->insert( '{{%user}}', [
 			'id'            => 1,
-			'username'      => 'webmaster',
-			'email'         => 'webmaster@example.com',
-			'password_hash' => Yii::$app->getSecurity()->generatePasswordHash( 'webmaster' ),
+			'username'      => 'administrator',
+			'email'         => 'administrator@example.com',
+			'password_hash' => Yii::$app->getSecurity()->generatePasswordHash( 'administrator' ),
 			'auth_key'      => Yii::$app->getSecurity()->generateRandomString(),
 			'access_token'  => Yii::$app->getSecurity()->generateRandomString( 40 ),
 			'status'        => User::STATUS_ACTIVE,
@@ -63,13 +63,17 @@ class m150725_192740_seed_data extends Migration {
 			'updated_at' => time(),
 		] );
 
-		$this->insert( '{{%article_category}}', [
-			'id'         => 1,
-			'slug'       => 'news',
-			'title'      => 'News',
-			'status'     => \common\models\ArticleCategory::STATUS_ACTIVE,
-			'created_at' => time()
-		] );
+		$dataCategory = [ 'News', 'Hot', 'Popular' ];
+		foreach ( $dataCategory as $item ) {
+			$this->insert( '{{%article_category}}', [
+				'id'         => 1,
+				'slug'       => \yii\helpers\Inflector::slug( $item ),
+				'title'      => $item,
+				'status'     => \common\models\ArticleCategory::STATUS_ACTIVE,
+				'created_at' => time()
+			] );
+		}
+
 
 		$this->insert( '{{%key_storage_item}}', [
 			'key'     => 'backend.theme-skin',
