@@ -6,7 +6,7 @@ use yii\bootstrap\NavBar;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-$this->beginContent('@api/views/layouts/_clear.php')
+$this->beginContent( '@api/views/layouts/_clear.php' )
 ?>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -30,6 +30,6 @@ $this->beginContent('@api/views/layouts/_clear.php')
         </div>
     </nav>
     <div class="container">
-        <?php echo $content ?>
+		<?php echo $content ?>
     </div><!-- /.container -->
 <?php $this->endContent() ?>

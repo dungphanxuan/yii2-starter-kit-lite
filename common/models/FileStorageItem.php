@@ -19,56 +19,51 @@ use yii\db\ActiveRecord;
  * @property string $upload_ip
  * @property integer $created_at
  */
-class FileStorageItem extends ActiveRecord
-{
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
-        return '{{%file_storage_item}}';
-    }
+class FileStorageItem extends ActiveRecord {
+	/**
+	 * @inheritdoc
+	 */
+	public static function tableName() {
+		return '{{%file_storage_item}}';
+	}
 
-    public function behaviors()
-    {
-        return [
-            [
-                'class' => TimestampBehavior::className(),
-                'updatedAtAttribute' => false
-            ]
-        ];
-    }
+	public function behaviors() {
+		return [
+			[
+				'class'              => TimestampBehavior::className(),
+				'updatedAtAttribute' => false
+			]
+		];
+	}
 
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            [['component', 'path'], 'required'],
-            [['size'], 'integer'],
-            [['component', 'name', 'type'], 'string', 'max' => 255],
-            [['path', 'base_url'], 'string', 'max' => 1024],
-            [['type'], 'string', 'max' => 45],
-            [['upload_ip'], 'string', 'max' => 15]
-        ];
-    }
+	/**
+	 * @inheritdoc
+	 */
+	public function rules() {
+		return [
+			[ [ 'component', 'path' ], 'required' ],
+			[ [ 'size' ], 'integer' ],
+			[ [ 'component', 'name', 'type' ], 'string', 'max' => 255 ],
+			[ [ 'path', 'base_url' ], 'string', 'max' => 1024 ],
+			[ [ 'type' ], 'string', 'max' => 45 ],
+			[ [ 'upload_ip' ], 'string', 'max' => 15 ]
+		];
+	}
 
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => Yii::t('common', 'ID'),
-            'component' => Yii::t('common', 'Component'),
-            'base_url' => Yii::t('common', 'Base Url'),
-            'path' => Yii::t('common', 'Path'),
-            'type' => Yii::t('common', 'Type'),
-            'size' => Yii::t('common', 'Size'),
-            'name' => Yii::t('common', 'Name'),
-            'upload_ip' => Yii::t('common', 'Upload Ip'),
-            'created_at' => Yii::t('common', 'Created At')
-        ];
-    }
+	/**
+	 * @inheritdoc
+	 */
+	public function attributeLabels() {
+		return [
+			'id'         => Yii::t( 'common', 'ID' ),
+			'component'  => Yii::t( 'common', 'Component' ),
+			'base_url'   => Yii::t( 'common', 'Base Url' ),
+			'path'       => Yii::t( 'common', 'Path' ),
+			'type'       => Yii::t( 'common', 'Type' ),
+			'size'       => Yii::t( 'common', 'Size' ),
+			'name'       => Yii::t( 'common', 'Name' ),
+			'upload_ip'  => Yii::t( 'common', 'Upload Ip' ),
+			'created_at' => Yii::t( 'common', 'Created At' )
+		];
+	}
 }

@@ -13,22 +13,21 @@ use yii\web\AssetBundle;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class ApiAsset extends AssetBundle
-{
-    public $basePath = '@webroot';
-    public $baseUrl = '@web/web';
+class ApiAsset extends AssetBundle {
+	public $basePath = '@webroot';
+	public $baseUrl = '@web/web';
 
-    public $css = [
-        'css/style.css',
-    ];
+	public $css = [
+		'css/style.css',
+	];
 
-    public $js = [
-        'js/app.js',
-    ];
+	public $js = [
+		'js/app.js',
+	];
 
-    public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
-        'common\assets\Html5shiv',
-    ];
+	public $depends = [
+		'yii\web\YiiAsset',
+		'yii\bootstrap\BootstrapAsset',
+		'common\assets\Html5shiv',
+	];
 }

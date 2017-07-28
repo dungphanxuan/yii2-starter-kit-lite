@@ -12,16 +12,15 @@ use yii\helpers\Inflector;
  * @since 1.0
  *
  */
-class FileHelper extends Inflector
-{
+class FileHelper extends Inflector {
 
-    /*Get File name without extendsion*/
-    public static function getFileInfo($fileName)
-    {
-        $withoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $fileName);
-        $a = Inflector::slug($withoutExt);
-        return substr($a, 0, 40);
-    }
+	/*Get File name without extendsion*/
+	public static function getFileInfo( $fileName ) {
+		$withoutExt = preg_replace( '/\\.[^.\\s]{3,4}$/', '', $fileName );
+		$a          = Inflector::slug( $withoutExt );
+
+		return substr( $a, 0, 40 );
+	}
 
 
 }

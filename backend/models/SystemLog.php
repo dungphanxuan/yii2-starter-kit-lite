@@ -15,42 +15,39 @@ use Yii;
  * @property string $prefix
  * @property integer $message
  */
-class SystemLog extends \yii\db\ActiveRecord
-{
-    const CATEGORY_NOTIFICATION = 'notification';
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
-        return '{{%system_log}}';
-    }
+class SystemLog extends \yii\db\ActiveRecord {
+	const CATEGORY_NOTIFICATION = 'notification';
 
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            [['level', 'log_time', 'message'], 'integer'],
-            [['log_time'], 'required'],
-            [['prefix'], 'string'],
-            [['category'], 'string', 'max' => 255]
-        ];
-    }
+	/**
+	 * @inheritdoc
+	 */
+	public static function tableName() {
+		return '{{%system_log}}';
+	}
 
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => Yii::t('backend', 'ID'),
-            'level' => Yii::t('backend', 'Level'),
-            'category' => Yii::t('backend', 'Category'),
-            'log_time' => Yii::t('backend', 'Log Time'),
-            'prefix' => Yii::t('backend', 'Prefix'),
-            'message' => Yii::t('backend', 'Message'),
-        ];
-    }
+	/**
+	 * @inheritdoc
+	 */
+	public function rules() {
+		return [
+			[ [ 'level', 'log_time', 'message' ], 'integer' ],
+			[ [ 'log_time' ], 'required' ],
+			[ [ 'prefix' ], 'string' ],
+			[ [ 'category' ], 'string', 'max' => 255 ]
+		];
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	public function attributeLabels() {
+		return [
+			'id'       => Yii::t( 'backend', 'ID' ),
+			'level'    => Yii::t( 'backend', 'Level' ),
+			'category' => Yii::t( 'backend', 'Category' ),
+			'log_time' => Yii::t( 'backend', 'Log Time' ),
+			'prefix'   => Yii::t( 'backend', 'Prefix' ),
+			'message'  => Yii::t( 'backend', 'Message' ),
+		];
+	}
 }

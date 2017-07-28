@@ -11,6 +11,7 @@ use common\models\User;
 use common\models\UserToken;
 use yii\filters\auth\AuthMethod;
 use Yii;
+
 /**
  * AccessTokenAuth is an action filter that supports the authentication based on the access token passed through a query parameter.
  *
@@ -19,41 +20,43 @@ use Yii;
  * @since 2.0
  */
 class AccessTokenAuth extends AuthMethod {
-    /**
-     * @var string the parameter name for passing the access token
-     */
-    public $tokenParam = 'token';
-    /**
-     * @inheritdoc
-     */
-    public function authenticate($user, $request, $response) {
+	/**
+	 * @var string the parameter name for passing the access token
+	 */
+	public $tokenParam = 'token';
 
-        /*Get token param*/
-        $accessToken = $request->get($this->tokenParam);
-        if(!$accessToken){
-            $accessToken = $request->post($this->tokenParam);
-        }
+	/**
+	 * @inheritdoc
+	 */
+	public function authenticate( $user, $request, $response ) {
 
-        if (is_string($accessToken)) {
-            /** @var UserToken $tokenModel */
-            $tokenModel = UserToken::find()
-                ->notExpired()
-                ->byType(UserToken::TYPE_USER_API)
-                ->byToken($accessToken)
-                ->one();
+		/*Get token param*/
+		$accessToken = $request->get( $this->tokenParam );
+		if ( ! $accessToken ) {
+			$accessToken = $request->post( $this->tokenParam );
+		}
 
-            if($tokenModel){
-                $identity = User::findOne($tokenModel->user_id);
-                $dataUser = $user->login($identity);
-                if ($dataUser !== null) {
-                    return $dataUser;
-                }
-            }
-        }
-        if ($accessToken !== null) {
-            $this -> handleFailure($response);
-        }
-        return null;
-    }
+		if ( is_string( $accessToken ) ) {
+			/** @var UserToken $tokenModel */
+			$tokenModel = UserToken::find()
+			                       ->notExpired()
+			                       ->byType( UserToken::TYPE_USER_API )
+			                       ->byToken( $accessToken )
+			                       ->one();
+
+			if ( $tokenModel ) {
+				$identity = User::findOne( $tokenModel->user_id );
+				$dataUser = $user->login( $identity );
+				if ( $dataUser !== null ) {
+					return $dataUser;
+				}
+			}
+		}
+		if ( $accessToken !== null ) {
+			$this->handleFailure( $response );
+		}
+
+		return null;
+	}
 
 }

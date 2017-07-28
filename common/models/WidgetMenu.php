@@ -16,63 +16,58 @@ use yii\db\ActiveRecord;
  * @property string $items
  * @property integer $status
  */
-class WidgetMenu extends ActiveRecord
-{
-    const STATUS_ACTIVE = 1;
-    const STATUS_DRAFT = 0;
+class WidgetMenu extends ActiveRecord {
+	const STATUS_ACTIVE = 1;
+	const STATUS_DRAFT = 0;
 
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
-        return '{{%widget_menu}}';
-    }
+	/**
+	 * @inheritdoc
+	 */
+	public static function tableName() {
+		return '{{%widget_menu}}';
+	}
 
-    public function behaviors()
-    {
-        return [
-            'cacheInvalidate' => [
-                'class' => CacheInvalidateBehavior::className(),
-                'cacheComponent' => 'frontendCache',
-                'keys' => [
-                    function ($model) {
-                        return [
-                            get_class($model),
-                            $model->key
-                        ];
-                    }
-                ]
-            ]
-        ];
-    }
+	public function behaviors() {
+		return [
+			'cacheInvalidate' => [
+				'class'          => CacheInvalidateBehavior::className(),
+				'cacheComponent' => 'frontendCache',
+				'keys'           => [
+					function ( $model ) {
+						return [
+							get_class( $model ),
+							$model->key
+						];
+					}
+				]
+			]
+		];
+	}
 
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            [['key', 'title', 'items'], 'required'],
-            [['key'], 'unique'],
-            [['items'], JsonValidator::className()],
-            [['status'], 'integer'],
-            [['key'], 'string', 'max' => 32],
-            [['title'], 'string', 'max' => 255]
-        ];
-    }
+	/**
+	 * @inheritdoc
+	 */
+	public function rules() {
+		return [
+			[ [ 'key', 'title', 'items' ], 'required' ],
+			[ [ 'key' ], 'unique' ],
+			[ [ 'items' ], JsonValidator::className() ],
+			[ [ 'status' ], 'integer' ],
+			[ [ 'key' ], 'string', 'max' => 32 ],
+			[ [ 'title' ], 'string', 'max' => 255 ]
+		];
+	}
 
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => Yii::t('common', 'ID'),
-            'key' => Yii::t('common', 'Key'),
-            'title' => Yii::t('common', 'Title'),
-            'items' => Yii::t('common', 'Config'),
-            'status' => Yii::t('common', 'Status')
-        ];
-    }
+	/**
+	 * @inheritdoc
+	 */
+	public function attributeLabels() {
+		return [
+			'id'     => Yii::t( 'common', 'ID' ),
+			'key'    => Yii::t( 'common', 'Key' ),
+			'title'  => Yii::t( 'common', 'Title' ),
+			'items'  => Yii::t( 'common', 'Config' ),
+			'status' => Yii::t( 'common', 'Status' )
+		];
+	}
 }
