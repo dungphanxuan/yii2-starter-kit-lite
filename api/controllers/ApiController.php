@@ -2,13 +2,7 @@
 
 namespace api\controllers;
 
-use api\components\AccessTokenAuth;
-use api\components\ApiResponse;
-use common\models\UserToken;
 use Yii;
-use yii\filters\Cors;
-use yii\filters\VerbFilter;
-use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\base\Action;
 

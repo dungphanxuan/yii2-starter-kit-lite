@@ -13,7 +13,6 @@ class TestController extends ApiController {
 		];
 
 		return $behaviors;
-
 	}
 
 	public function behaviors1() {

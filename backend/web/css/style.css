@@ -42,4 +42,16 @@ body .table {
 .alink{
   color: #304FFE !important;
 }
+.b2r{
+  height: 2px;
+  color: red;
+  border-top: 2px solid #4DB6AC;
+}
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+  .b2r{
+    margin-left: 130px;
+    margin-right: 250px;
+  }
+}
 /*# sourceMappingURL=style.map *//*# sourceMappingURL=style.map */

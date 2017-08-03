@@ -3,7 +3,6 @@
 namespace api\controllers;
 
 use api\components\AccessTokenAuth;
-use api\controllers\ApiController;
 use api\models\SignupForm;
 use cheatsheet\Time;
 use common\models\User;

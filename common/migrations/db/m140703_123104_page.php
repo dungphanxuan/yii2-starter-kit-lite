@@ -20,6 +20,8 @@ class m140703_123104_page extends Migration {
 			'created_at' => $this->integer(),
 			'updated_at' => $this->integer(),
 		], $tableOptions );
+
+		$this->createIndex( 'idx-page_status', '{{%page}}', 'status' );
 	}
 
 	public function down() {

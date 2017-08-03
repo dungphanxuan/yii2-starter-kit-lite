@@ -61,6 +61,8 @@ use yii\bootstrap\ActiveForm;
 		]
 	) ?>
 
+    <hr class="b2r" style="margin-right:40px;margin-left:40px;">
+
 	<?php echo $form->field( $model, 'thumbnail' )->widget(
 		Upload::className(),
 		[
@@ -83,13 +85,14 @@ use yii\bootstrap\ActiveForm;
 		'template' => '{label} <div class="row"><div class="col-xs-2 col-sm-2">{input}{error}{hint}</div></div>'
 	] )->textInput( [ 'maxlength' => true ] ) ?>
 
-    <div class="form-group field-article-status">
-        <label class="control-label col-sm-2 col-xs-2" for="article-status"></label>
-        <div class="col-sm-8 col-xs-8 fnormal">
-			<?= Html::activeCheckbox( $model, 'status' ) ?>
-            <div class="help-block help-block-error "></div>
-        </div>
-    </div>
+    <hr class="b2r" style="margin-right:40px;margin-left:40px;">
+
+	<?php echo $form->field( $model, 'status',[
+		'horizontalCssClasses' => [
+			'offset' => 'col-sm-offset-2',
+			'wrapper' => 'col-sm-2',
+		]
+    ] )->checkbox() ?>
 
 	<?php echo $form->field( $model, 'published_at', [
 		'template' => '{label} <div class="row"><div class="col-xs-3 col-sm-3">{input}{error}{hint}</div></div>'

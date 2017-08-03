@@ -16,6 +16,7 @@ class m140703_123803_article extends Migration {
 			'title'      => $this->string( 512 )->notNull(),
 			'body'       => $this->text(),
 			'parent_id'  => $this->integer(),
+			'order'      => $this->smallInteger()->defaultValue( 0 ),
 			'status'     => $this->smallInteger()->notNull()->defaultValue( 0 ),
 			'created_at' => $this->integer(),
 			'updated_at' => $this->integer(),
@@ -26,6 +27,7 @@ class m140703_123803_article extends Migration {
 			'aid'                => $this->string( 32 )->notNull(),
 			'slug'               => $this->string( 1024 )->notNull(),
 			'title'              => $this->string( 512 )->notNull(),
+			'short_des'          => $this->text(),
 			'body'               => $this->text()->notNull(),
 			'view'               => $this->string(),
 			'category_id'        => $this->integer(),
@@ -33,6 +35,7 @@ class m140703_123803_article extends Migration {
 			'thumbnail_path'     => $this->string( 1024 ),
 			'author_id'          => $this->integer(),
 			'updater_id'         => $this->integer(),
+			'order'              => $this->smallInteger()->defaultValue( 0 ),
 			'status'             => $this->smallInteger()->notNull()->defaultValue( 0 ),
 			'published_at'       => $this->integer(),
 			'created_at'         => $this->integer(),
@@ -47,6 +50,7 @@ class m140703_123803_article extends Migration {
 			'type'       => $this->string(),
 			'size'       => $this->integer(),
 			'name'       => $this->string(),
+			'order'      => $this->integer(),
 			'created_at' => $this->integer()
 		], $tableOptions );
 
@@ -56,12 +60,14 @@ class m140703_123803_article extends Migration {
 			'sort_number' => $this->smallInteger()->defaultValue( 1 ),
 		], $tableOptions );
 
+		//Create Index
+		$this->createIndex( 'idx-article_status', '{{%article}}', 'status' );
+
 		$this->addForeignKey( 'fk_article_attachment_article', '{{%article_attachment}}', 'article_id', '{{%article}}', 'id', 'cascade', 'cascade' );
 		$this->addForeignKey( 'fk_article_author', '{{%article}}', 'author_id', '{{%user}}', 'id', 'cascade', 'cascade' );
 		$this->addForeignKey( 'fk_article_updater', '{{%article}}', 'updater_id', '{{%user}}', 'id', 'set null', 'cascade' );
 		$this->addForeignKey( 'fk_article_category', '{{%article}}', 'category_id', '{{%article_category}}', 'id', 'cascade', 'cascade' );
 		$this->addForeignKey( 'fk_article_category_section', '{{%article_category}}', 'parent_id', '{{%article_category}}', 'id', 'cascade', 'cascade' );
-
 	}
 
 	public function safeDown() {

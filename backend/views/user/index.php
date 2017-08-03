@@ -3,7 +3,7 @@
 use common\grid\EnumColumn;
 use common\models\User;
 use yii\helpers\Html;
-use yii\grid\GridView;
+use backend\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\search\UserSearch */

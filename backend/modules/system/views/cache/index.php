@@ -4,7 +4,7 @@
  * @var \yii\data\ArrayDataProvider $dataProvider
  */
 
-use yii\grid\GridView;
+use backend\grid\GridView;
 use yii\helpers\Html;
 
 $this->title                   = Yii::t( 'backend', 'Cache' );

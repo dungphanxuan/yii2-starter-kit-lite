@@ -23,7 +23,11 @@ $config = [
 			'errorAction' => 'site/error',
 		],
 		'request'      => [
-			'cookieValidationKey' => env( 'backend_COOKIE_VALIDATION_KEY' )
+			'cookieValidationKey' => env( 'backend_COOKIE_VALIDATION_KEY' ),
+			/*'csrfCookie' => [
+				'httpOnly' => true,
+				'secure' => true,
+			],*/
 		],
 		'user'         => [
 			'class'           => 'yii\web\User',
@@ -44,7 +48,7 @@ $config = [
 				],
 				'common\assets\AdminLte'                      => [
 					'sourcePath' => null,
-					'baseUrl'    => 'https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.6/'
+					'baseUrl'    => 'https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/'
 				],
 				'common\assets\FontAwesome'                   => [
 					'sourcePath' => null,

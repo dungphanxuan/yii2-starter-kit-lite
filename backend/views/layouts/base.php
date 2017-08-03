@@ -23,8 +23,8 @@ $this->params['body-class'] = array_key_exists( 'body-class', $this->params ) ?
 
 		<?php echo Html::csrfMetaTags() ?>
         <title><?php echo Html::encode( $this->title ) ?></title>
-
-		<?php $this->head() ?>
+        <link rel="icon" type="image/png" href="<?= baseUrl().'/web/img/favicon.ico'?>">
+        <?php $this->head() ?>
 
     </head>
 	<?php echo Html::beginTag( 'body', [

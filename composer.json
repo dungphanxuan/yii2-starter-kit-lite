@@ -20,7 +20,7 @@
     {
       "name": "Dung Phan Xuan",
       "email": "dungpx.s@gmail.com",
-      "homepage": "http://laptrinhphp.vn",
+      "homepage": "http://yiiframework.vn",
       "role": "Developer"
     }
   ],
@@ -58,7 +58,8 @@
   },
   "require-dev": {
     "yiisoft/yii2-debug": "^2.0.0",
-    "yiisoft/yii2-gii": "^2.0.0"
+    "yiisoft/yii2-gii": "^2.0.0",
+    "yiisoft/yii2-faker": "~2.0.0"
   },
   "config": {
     "process-timeout": 1800

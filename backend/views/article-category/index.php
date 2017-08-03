@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use backend\grid\GridView;
 use yii\grid\ActionColumn;
 
 /* @var $this yii\web\View */
@@ -46,7 +46,6 @@ $this->params['breadcrumbs'][] = $this->title;
 			],
 			'slug',
 			'status',
-
 			[
 				'class'    => 'backend\grid\ActionColumn',
 				'template' => '{update} {delete}'

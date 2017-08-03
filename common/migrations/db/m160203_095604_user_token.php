@@ -14,9 +14,17 @@ class m160203_095604_user_token extends Migration {
 			'created_at' => $this->integer(),
 			'updated_at' => $this->integer()
 		] );
+
+		//Index
+		$this->createIndex( 'idx-token_expire', '{{%user_token}}', 'expire_at' );
+		$this->createIndex( 'idx-token_type', '{{%user_token}}', 'type' );
+		$this->createIndex( 'idx-token_value', '{{%user_token}}', 'token' );
+
+		$this->addForeignKey( 'fk_token_user', '{{%user_token}}', 'user_id', '{{%user}}', 'id', 'cascade', 'cascade' );
 	}
 
 	public function down() {
 		$this->dropTable( '{{%user_token}}' );
+		$this->dropForeignKey( 'fk_token_user', '{{%user_token}}' );
 	}
 }
