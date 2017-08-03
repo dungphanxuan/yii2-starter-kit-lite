@@ -47,6 +47,10 @@ $bundle = BackendAsset::register( $this );
 										[ 'label' => Yii::t( 'backend', 'Static pages' ), 'url' => [ '/page/index' ] ],
 										[ 'label' => Yii::t( 'backend', 'Articles' ), 'url' => [ '/article/index' ] ],
 										[
+											'label' => Yii::t( 'backend', 'Article Pickup' ),
+											'url'   => [ '/article-pickup/index' ]
+										],
+										[
 											'label' => Yii::t( 'backend', 'Article Categories' ),
 											'url'   => [ '/article-category/index' ]
 										],

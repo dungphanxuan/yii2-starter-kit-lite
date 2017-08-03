@@ -50,6 +50,12 @@ class m140703_123803_article extends Migration {
 			'created_at' => $this->integer()
 		], $tableOptions );
 
+		$this->createTable( '{{%article_pickup}}', [
+			'id'          => $this->primaryKey(),
+			'article_id'  => $this->integer()->notNull(),
+			'sort_number' => $this->smallInteger()->defaultValue( 1 ),
+		], $tableOptions );
+
 		$this->addForeignKey( 'fk_article_attachment_article', '{{%article_attachment}}', 'article_id', '{{%article}}', 'id', 'cascade', 'cascade' );
 		$this->addForeignKey( 'fk_article_author', '{{%article}}', 'author_id', '{{%user}}', 'id', 'cascade', 'cascade' );
 		$this->addForeignKey( 'fk_article_updater', '{{%article}}', 'updater_id', '{{%user}}', 'id', 'set null', 'cascade' );

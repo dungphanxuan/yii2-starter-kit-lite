@@ -30,7 +30,12 @@ use yii\bootstrap\ActiveForm;
     'layout' => 'horizontal',
     ]); ?>
 
-	<?php echo "<?php echo " ?>$form->errorSummary($model); ?>
+	<?php echo "<?php echo " ?> $form->errorSummary($model, [
+    'class' => 'alert alert-warning alert-dismissible',
+    'header' => '
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <h4><i class="icon fa fa-warning"></i> Vui lòng sửa các lỗi sau!</h4>'
+    ]); ?>
 
 	<?php foreach ( $generator->getColumnNames() as $attribute ) {
 		if ( in_array( $attribute, $safeAttributes ) ) {
@@ -39,7 +44,7 @@ use yii\bootstrap\ActiveForm;
 	} ?>
 
     <div class="form-group">
-        <div class="col-sm-<?= $model->isNewRecord ? '3' : '1' ?> col-xs-2"></div>
+        <div class="col-sm-<?php echo "<?=" ?> $model->isNewRecord ? '3' : '1' ?> col-xs-2"></div>
         <div class="col-sm-3 col-xs-4">
 			<?php echo "<?php " . "\n" ?>
             echo \yii\helpers\Html::a('<span class="glyphicon glyphicon-arrow-left"></span>'. Yii::t('backend', 'Back'),

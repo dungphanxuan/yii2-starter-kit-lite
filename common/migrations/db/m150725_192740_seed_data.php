@@ -64,9 +64,9 @@ class m150725_192740_seed_data extends Migration {
 		] );
 
 		$dataCategory = [ 'News', 'Hot', 'Popular' ];
-		foreach ( $dataCategory as $item ) {
+		foreach ( $dataCategory as $key => $item ) {
 			$this->insert( '{{%article_category}}', [
-				'id'         => 1,
+				'id'         => $key + 1,
 				'slug'       => \yii\helpers\Inflector::slug( $item ),
 				'title'      => $item,
 				'status'     => \common\models\ArticleCategory::STATUS_ACTIVE,
