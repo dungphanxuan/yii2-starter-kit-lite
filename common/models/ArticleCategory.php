@@ -23,6 +23,8 @@ class ArticleCategory extends ActiveRecord {
 	const STATUS_ACTIVE = 1;
 	const STATUS_DRAFT = 0;
 
+	public $totalArticle;
+
 	/**
 	 * @inheritdoc
 	 */
@@ -72,7 +74,8 @@ class ArticleCategory extends ActiveRecord {
 			'slug'      => Yii::t( 'common', 'Slug' ),
 			'title'     => Yii::t( 'common', 'Title' ),
 			'parent_id' => Yii::t( 'common', 'Parent Category' ),
-			'status'    => Yii::t( 'common', 'Active' )
+			'status'    => Yii::t( 'common', 'Active' ),
+			'totalArticle'    => Yii::t( 'common', 'Total Article' )
 		];
 	}
 
@@ -88,5 +91,12 @@ class ArticleCategory extends ActiveRecord {
 	 */
 	public function getParent() {
 		return $this->hasMany( ArticleCategory::className(), [ 'id' => 'parent_id' ] );
+	}
+
+	/*
+	* Get total video of category
+	* */
+	public function getTotal() {
+		return $this->hasMany( Article::className(), [ 'category_id' => 'id' ] )->count();
 	}
 }

@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
 					return Html::a( $model->article ? $model->article->title : '', [
 						'update',
 						'id' => $model->id
-					], [ 'class' => 'alink lead' ] );
+					], [ 'class' => 'alink' ] );
 
 				},
 				'filter'    => ArrayHelper::map( \common\models\Article::find()->all(), 'id', 'title' )

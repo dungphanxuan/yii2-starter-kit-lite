@@ -8,6 +8,8 @@ use backend\modules\system\models\search\FileStorageItemSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
+use yii\web\UploadedFile;
 
 /**
  * FileStorageController implements the CRUD actions for FileStorageItem model.
@@ -104,6 +106,27 @@ class FileStorageController extends Controller {
 		$this->findModel( $id )->delete();
 
 		return $this->redirect( [ 'index' ] );
+	}
+
+	/*
+	 * Action Upload File For Froala WYSIWYG HTML Editor
+	 *
+	 * @param file $file
+	 *
+	 * @return file infor
+	 * */
+	public function actionUploadFroala() {
+		// Get file link
+		$fileName = 'file';
+		$logoFile = UploadedFile::getInstanceByName( $fileName );
+		$filePath = Yii::$app->fileStorage->save( $logoFile );
+		$baseUrl  = Yii::$app->fileStorage->baseUrl;
+		$res      = [ 'link' => $baseUrl . '/' . $filePath ];
+
+		// Response data
+		Yii::$app->response->format = Yii::$app->response->format = Response::FORMAT_JSON;
+
+		return $res;
 	}
 
 	/**

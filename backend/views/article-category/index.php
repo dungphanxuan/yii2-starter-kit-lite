@@ -45,6 +45,19 @@ $this->params['breadcrumbs'][] = $this->title;
 				},
 			],
 			'slug',
+			[
+				'attribute'      => 'totalArticle',
+				'format'         => 'raw',
+				'headerOptions'  => [ 'style' => 'text-align:center' ],
+				'contentOptions' => [ 'style' => 'width:15%;text-align:center' ],
+				'value'          => function ( $model ) {
+					return Html::a( $model->total, [
+						'/article/index',
+						'category_id' => $model->id
+					], [ 'class' => 'alink' ] );
+
+				},
+			],
 			'status',
 			[
 				'class'    => 'backend\grid\ActionColumn',

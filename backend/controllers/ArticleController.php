@@ -31,8 +31,15 @@ class ArticleController extends Controller {
 	 * @return mixed
 	 */
 	public function actionIndex() {
-		$searchModel        = new ArticleSearch();
-		$dataProvider       = $searchModel->search( Yii::$app->request->queryParams );
+		$searchModel = new ArticleSearch();
+		$params      = Yii::$app->request->queryParams;
+
+		//Filter Category
+		$getCategory = getParam( 'category_id', null );
+		if ( $getCategory ) {
+			$params['ArticleSearch']['category_id'] = $getCategory;
+		}
+		$dataProvider       = $searchModel->search( $params );
 		$dataProvider->sort = [
 			'defaultOrder' => [ 'published_at' => SORT_DESC ]
 		];
