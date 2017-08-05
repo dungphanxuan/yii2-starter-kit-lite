@@ -52,9 +52,12 @@
     "vlucas/phpdotenv": "^2.0",
     "symfony/process": "^3.0",
     "bazilio/yii2-async": "dev-master",
+    "2amigos/yii2-chartjs-widget": "~2.0",
     "kartik-v/yii2-widget-select2": "@dev",
     "kartik-v/yii2-widget-depdrop": "@dev",
-    "kartik-v/yii2-helpers": "dev-master"
+    "kartik-v/yii2-helpers": "dev-master",
+    "kartik-v/yii2-field-range": "*",
+    "kartik-v/yii2-date-range": "*"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "^2.0.0",

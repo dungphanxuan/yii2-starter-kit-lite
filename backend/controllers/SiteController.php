@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use common\components\keyStorage\FormModel;
+use common\models\FileStorageItem;
 use common\models\User;
 use common\task\DownloadTask;
 use Yii;
@@ -76,6 +77,46 @@ class SiteController extends \yii\web\Controller {
 		}
 
 		return $this->render( 'settings', [ 'model' => $model ] );
+	}
+
+	/*
+	 * ChartJS
+	 * */
+	public function actionChart() {
+		$dateRange = getParam( 'date_range_1', date( 'Y-m-d', strtotime( '-7 day' ) ) . '-' . date( 'Y-m-d' ) );
+		$fromDate  = strtotime( substr( $dateRange, 0, 10 ) );
+		$toDate    = strtotime( substr( $dateRange, 11 ) );
+		$arrLabel  = [];
+		$dataDate  = [];
+		while ( $fromDate <= $toDate ) {
+			$tsStartOfDay = strtotime( "midnight", $fromDate );
+			$cacheKey     = [
+				'statfilelog',
+				$tsStartOfDay
+			];
+			$totalInDay   = FileStorageItem::find()
+			                               ->andWhere(
+				                               [ 'between', 'created_at', $tsStartOfDay, $tsStartOfDay + 86399 ] )
+			                               ->count();
+			$arrLabel[]   = date( 'Y-m-d', $fromDate );
+			$dataDate[]   = $totalInDay;
+			//Increment 1 day
+			$fromDate = strtotime( "+1 day", $fromDate );
+		}
+		$arrDataset[] = [
+			'label'                => 'Upload Stat',
+			'backgroundColor'      => "rgba(255,99,132,0.2)",
+			'borderColor'          => "rgba(255,99,132,1)",
+			'pointBackgroundColor' => "rgba(255,99,132,1)",
+			'fill'                 => false,
+			'data'                 => $dataDate,
+		];
+
+		return $this->render( 'chart', [
+			'dateRange'  => $dateRange,
+			'arrLabel'   => $arrLabel,
+			'arrDataset' => $arrDataset
+		] );
 	}
 
 	public function actionTest() {
