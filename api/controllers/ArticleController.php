@@ -47,7 +47,7 @@ class ArticleController extends ApiController {
 		$data['last_update'] = $maxUpdated;
 		$data_item           = [];
 		foreach ( $articles as $articleItem ) {
-			$data_item[] = ArticleHelper::getDetail( $articleItem->id, true );;
+            $data_item[] = ArticleHelper::getDetail($articleItem->id, true);
 		}
 
 		$data['items'] = $data_item;

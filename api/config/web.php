@@ -1,7 +1,4 @@
 <?php
-
-$requestParts = explode( '/', ltrim( $_SERVER['REQUEST_URI'], '/' ) );
-
 $config = [
 	'controllerNamespace' => 'api\controllers',
 	'defaultRoute'        => 'site/index',
