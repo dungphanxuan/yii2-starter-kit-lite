@@ -10,14 +10,15 @@ namespace common\assets;
 
 use yii\web\AssetBundle;
 
-class Mustache extends AssetBundle {
-	public $sourcePath = null;
+class Mustache extends AssetBundle
+{
+    public $sourcePath = null;
 
-	public $js = [
-		'https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.js'
-	];
+    public $js = [
+        'https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.js'
+    ];
 
-	public $depends = [
-		'yii\web\JqueryAsset'
-	];
+    public $depends = [
+        'yii\web\JqueryAsset'
+    ];
 }

@@ -9,46 +9,51 @@ use yii\db\ActiveQuery;
  * @package common\models\query
  * @author Eugene Terentev <eugene@terentev.net>
  */
-class UserTokenQuery extends ActiveQuery {
-	/**
-	 * @return $this
-	 */
-	public function notExpired() {
-		$this->andWhere( [ '>', 'expire_at', time() ] );
+class UserTokenQuery extends ActiveQuery
+{
+    /**
+     * @return $this
+     */
+    public function notExpired()
+    {
+        $this->andWhere(['>', 'expire_at', time()]);
 
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * @param $type
-	 *
-	 * @return $this
-	 */
-	public function byType( $type ) {
-		$this->andWhere( [ 'type' => $type ] );
+    /**
+     * @param $type
+     *
+     * @return $this
+     */
+    public function byType($type)
+    {
+        $this->andWhere(['type' => $type]);
 
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * @param $token
-	 *
-	 * @return $this
-	 */
-	public function byToken( $token ) {
-		$this->andWhere( [ 'token' => $token ] );
+    /**
+     * @param $token
+     *
+     * @return $this
+     */
+    public function byToken($token)
+    {
+        $this->andWhere(['token' => $token]);
 
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * @param $token
-	 *
-	 * @return $this
-	 */
-	public function byUser( $user_id ) {
-		$this->andWhere( [ 'user_id' => $user_id ] );
+    /**
+     * @param $token
+     *
+     * @return $this
+     */
+    public function byUser($user_id)
+    {
+        $this->andWhere(['user_id' => $user_id]);
 
-		return $this;
-	}
+        return $this;
+    }
 }

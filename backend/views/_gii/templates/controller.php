@@ -10,40 +10,40 @@ use yii\helpers\StringHelper;
 /* @var $this yii\web\View */
 /* @var $generator yii\gii\generators\crud\Generator */
 
-$controllerClass  = StringHelper::basename( $generator->controllerClass );
-$modelClass       = StringHelper::basename( $generator->modelClass );
-$searchModelClass = StringHelper::basename( $generator->searchModelClass );
-if ( $modelClass === $searchModelClass ) {
-	$searchModelAlias = $searchModelClass . 'Search';
+$controllerClass = StringHelper::basename($generator->controllerClass);
+$modelClass = StringHelper::basename($generator->modelClass);
+$searchModelClass = StringHelper::basename($generator->searchModelClass);
+if ($modelClass === $searchModelClass) {
+    $searchModelAlias = $searchModelClass . 'Search';
 }
 
 /* @var $class ActiveRecordInterface */
-$class               = $generator->modelClass;
-$pks                 = $class::primaryKey();
-$urlParams           = $generator->generateUrlParams();
-$actionParams        = $generator->generateActionParams();
+$class = $generator->modelClass;
+$pks = $class::primaryKey();
+$urlParams = $generator->generateUrlParams();
+$actionParams = $generator->generateActionParams();
 $actionParamComments = $generator->generateActionParamComments();
 
 echo "<?php\n";
 ?>
 
-namespace <?php echo StringHelper::dirname( ltrim( $generator->controllerClass, '\\' ) ) ?>;
+namespace <?php echo StringHelper::dirname(ltrim($generator->controllerClass, '\\')) ?>;
 
 use Yii;
-use <?php echo ltrim( $generator->modelClass, '\\' ) ?>;
-<?php if ( ! empty( $generator->searchModelClass ) ): ?>
-    use <?php echo ltrim( $generator->searchModelClass, '\\' ) . ( isset( $searchModelAlias ) ? " as $searchModelAlias" : "" ) ?>;
+use <?php echo ltrim($generator->modelClass, '\\') ?>;
+<?php if (!empty($generator->searchModelClass)): ?>
+    use <?php echo ltrim($generator->searchModelClass, '\\') . (isset($searchModelAlias) ? " as $searchModelAlias" : "") ?>;
 <?php else: ?>
     use yii\data\ActiveDataProvider;
 <?php endif; ?>
-use <?php echo ltrim( $generator->baseControllerClass, '\\' ) ?>;
+use <?php echo ltrim($generator->baseControllerClass, '\\') ?>;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
 * <?php echo $controllerClass ?> implements the CRUD actions for <?php echo $modelClass ?> model.
 */
-class <?php echo $controllerClass ?> extends <?php echo StringHelper::basename( $generator->baseControllerClass ) . "\n" ?>
+class <?php echo $controllerClass ?> extends <?php echo StringHelper::basename($generator->baseControllerClass) . "\n" ?>
 {
 public function behaviors()
 {
@@ -63,8 +63,8 @@ return [
 */
 public function actionIndex()
 {
-<?php if ( ! empty( $generator->searchModelClass ) ): ?>
-    $searchModel = new <?php echo isset( $searchModelAlias ) ? $searchModelAlias : $searchModelClass ?>();
+<?php if (!empty($generator->searchModelClass)): ?>
+    $searchModel = new <?php echo isset($searchModelAlias) ? $searchModelAlias : $searchModelClass ?>();
     $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
     return $this->render('index', [
@@ -84,7 +84,7 @@ public function actionIndex()
 
 /**
 * Displays a single <?php echo $modelClass ?> model.
-* <?php echo implode( "\n     * ", $actionParamComments ) . "\n" ?>
+* <?php echo implode("\n     * ", $actionParamComments) . "\n" ?>
 * @return mixed
 */
 public function actionView(<?php echo $actionParams ?>)
@@ -116,7 +116,7 @@ return $this->render('create', [
 /**
 * Updates an existing <?php echo $modelClass ?> model.
 * If update is successful, the browser will be redirected to the 'view' page.
-* <?php echo implode( "\n     * ", $actionParamComments ) . "\n" ?>
+* <?php echo implode("\n     * ", $actionParamComments) . "\n" ?>
 * @return mixed
 */
 public function actionUpdate(<?php echo $actionParams ?>)
@@ -136,7 +136,7 @@ return $this->render('update', [
 /**
 * Deletes an existing <?php echo $modelClass ?> model.
 * If deletion is successful, the browser will be redirected to the 'index' page.
-* <?php echo implode( "\n     * ", $actionParamComments ) . "\n" ?>
+* <?php echo implode("\n     * ", $actionParamComments) . "\n" ?>
 * @return mixed
 */
 public function actionDelete(<?php echo $actionParams ?>)
@@ -149,21 +149,21 @@ return $this->redirect(['index']);
 /**
 * Finds the <?php echo $modelClass ?> model based on its primary key value.
 * If the model is not found, a 404 HTTP exception will be thrown.
-* <?php echo implode( "\n     * ", $actionParamComments ) . "\n" ?>
+* <?php echo implode("\n     * ", $actionParamComments) . "\n" ?>
 * @return <?php echo $modelClass ?> the loaded model
 * @throws NotFoundHttpException if the model cannot be found
 */
 protected function findModel(<?php echo $actionParams ?>)
 {
 <?php
-if ( count( $pks ) === 1 ) {
-	$condition = '$id';
+if (count($pks) === 1) {
+    $condition = '$id';
 } else {
-	$condition = [];
-	foreach ( $pks as $pk ) {
-		$condition[] = "'$pk' => \$$pk";
-	}
-	$condition = '[' . implode( ', ', $condition ) . ']';
+    $condition = [];
+    foreach ($pks as $pk) {
+        $condition[] = "'$pk' => \$$pk";
+    }
+    $condition = '[' . implode(', ', $condition) . ']';
 }
 ?>
 if (($model = <?php echo $modelClass ?>::findOne(<?php echo $condition ?>)) !== null) {

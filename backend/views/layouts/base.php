@@ -1,17 +1,17 @@
 <?php
 
 use backend\assets_b\BackendAsset;
-use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-$bundle = BackendAsset::register( $this );
+$bundle = BackendAsset::register($this);
 
-$this->params['body-class'] = array_key_exists( 'body-class', $this->params ) ?
-	$this->params['body-class']
-	: null;
+$this->params['body-class'] = array_key_exists('body-class', $this->params) ?
+    $this->params['body-class']
+    : null;
 ?>
 
 <?php $this->beginPage() ?>
@@ -21,22 +21,22 @@ $this->params['body-class'] = array_key_exists( 'body-class', $this->params ) ?
         <meta charset="<?php echo Yii::$app->charset ?>">
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
-		<?php echo Html::csrfMetaTags() ?>
-        <title><?php echo Html::encode( $this->title ) ?></title>
-        <link rel="icon" type="image/png" href="<?= baseUrl().'/web/img/favicon.ico'?>">
+        <?php echo Html::csrfMetaTags() ?>
+        <title><?php echo Html::encode($this->title) ?></title>
+        <link rel="icon" type="image/png" href="<?= baseUrl() . '/web/img/favicon.ico' ?>">
         <?php $this->head() ?>
 
     </head>
-	<?php echo Html::beginTag( 'body', [
-		'class' => implode( ' ', [
-			ArrayHelper::getValue( $this->params, 'body-class' ),
-			'hold-transition skin-blue layout-top-nav',
-			Yii::$app->keyStorage->get( 'backend.theme-skin', 'skin-blue' ),
-		] )
-	] ) ?>
-	<?php $this->beginBody() ?>
-	<?php echo $content ?>
-	<?php $this->endBody() ?>
-	<?php echo Html::endTag( 'body' ) ?>
+    <?php echo Html::beginTag('body', [
+        'class' => implode(' ', [
+            ArrayHelper::getValue($this->params, 'body-class'),
+            'hold-transition skin-blue layout-top-nav',
+            Yii::$app->keyStorage->get('backend.theme-skin', 'skin-blue'),
+        ])
+    ]) ?>
+    <?php $this->beginBody() ?>
+    <?php echo $content ?>
+    <?php $this->endBody() ?>
+    <?php echo Html::endTag('body') ?>
     </html>
 <?php $this->endPage() ?>

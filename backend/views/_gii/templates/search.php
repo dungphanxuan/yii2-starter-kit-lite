@@ -9,30 +9,30 @@ use yii\helpers\StringHelper;
 /* @var $this yii\web\View */
 /* @var $generator yii\gii\generators\crud\Generator */
 
-$modelClass       = StringHelper::basename( $generator->modelClass );
-$searchModelClass = StringHelper::basename( $generator->searchModelClass );
-if ( $modelClass === $searchModelClass ) {
-	$modelAlias = $modelClass . 'Model';
+$modelClass = StringHelper::basename($generator->modelClass);
+$searchModelClass = StringHelper::basename($generator->searchModelClass);
+if ($modelClass === $searchModelClass) {
+    $modelAlias = $modelClass . 'Model';
 }
-$rules            = $generator->generateSearchRules();
-$labels           = $generator->generateSearchLabels();
+$rules = $generator->generateSearchRules();
+$labels = $generator->generateSearchLabels();
 $searchAttributes = $generator->getSearchAttributes();
 $searchConditions = $generator->generateSearchConditions();
 
 echo "<?php\n";
 ?>
 
-namespace <?php echo StringHelper::dirname( ltrim( $generator->searchModelClass, '\\' ) ) ?>;
+namespace <?php echo StringHelper::dirname(ltrim($generator->searchModelClass, '\\')) ?>;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use <?php echo ltrim( $generator->modelClass, '\\' ) . ( isset( $modelAlias ) ? " as $modelAlias" : "" ) ?>;
+use <?php echo ltrim($generator->modelClass, '\\') . (isset($modelAlias) ? " as $modelAlias" : "") ?>;
 
 /**
 * <?php echo $searchModelClass ?> represents the model behind the search form about `<?php echo $generator->modelClass ?>`.
 */
-class <?php echo $searchModelClass ?> extends <?php echo isset( $modelAlias ) ? $modelAlias : $modelClass ?>
+class <?php echo $searchModelClass ?> extends <?php echo isset($modelAlias) ? $modelAlias : $modelClass ?>
 
 {
 /**
@@ -41,7 +41,7 @@ class <?php echo $searchModelClass ?> extends <?php echo isset( $modelAlias ) ? 
 public function rules()
 {
 return [
-<?php echo implode( ",\n            ", $rules ) ?>,
+<?php echo implode(",\n            ", $rules) ?>,
 ];
 }
 
@@ -63,7 +63,7 @@ return Model::scenarios();
 */
 public function search($params)
 {
-$query = <?php echo isset( $modelAlias ) ? $modelAlias : $modelClass ?>::find();
+$query = <?php echo isset($modelAlias) ? $modelAlias : $modelClass ?>::find();
 
 $dataProvider = new ActiveDataProvider([
 'query' => $query,
@@ -73,7 +73,7 @@ if (!($this->load($params) && $this->validate())) {
 return $dataProvider;
 }
 
-<?php echo implode( "\n        ", $searchConditions ) ?>
+<?php echo implode("\n        ", $searchConditions) ?>
 
 return $dataProvider;
 }

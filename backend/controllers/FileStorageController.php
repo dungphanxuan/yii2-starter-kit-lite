@@ -2,147 +2,155 @@
 
 namespace backend\controllers;
 
-use Yii;
-use common\models\FileStorageItem;
 use backend\modules\system\models\search\FileStorageItemSearch;
+use common\models\FileStorageItem;
+use Yii;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\web\UploadedFile;
 
 /**
  * FileStorageController implements the CRUD actions for FileStorageItem model.
  */
-class FileStorageController extends Controller {
-	public function behaviors() {
-		return [
-			'verbs' => [
-				'class'   => VerbFilter::className(),
-				'actions' => [
-					'delete'        => [ 'post' ],
-					'upload-delete' => [ 'delete' ]
-				]
-			]
-		];
-	}
+class FileStorageController extends Controller
+{
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class'   => VerbFilter::className(),
+                'actions' => [
+                    'delete'        => ['post'],
+                    'upload-delete' => ['delete']
+                ]
+            ]
+        ];
+    }
 
 
-	public function actions() {
-		return [
-			'upload'          => [
-				//'class' => 'trntv\filekit\actions\UploadAction',
-				'class'       => 'common\actions\filekit\UploadAction',
-				'deleteRoute' => 'upload-delete'
-			],
-			'upload-delete'   => [
-				'class' => 'trntv\filekit\actions\DeleteAction'
-			],
-			'upload-imperavi' => [
-				//'class' => 'trntv\filekit\actions\UploadAction',
-				'class'            => 'common\actions\filekit\UploadAction',
-				'fileparam'        => 'file',
-				'responseUrlParam' => 'filelink',
-				'multiple'         => false,
-				'disableCsrf'      => true
-			],
-			'upload-image'    => [
-				'class'            => 'common\actions\filekit\UploadAction',
-				'fileparam'        => 'image',
-				'responseUrlParam' => 'filelink',
-				'multiple'         => false,
-				'disableCsrf'      => true
-			],
-		];
-	}
+    public function actions()
+    {
+        return [
+            'upload'          => [
+                //'class' => 'trntv\filekit\actions\UploadAction',
+                'class'       => 'common\actions\filekit\UploadAction',
+                'deleteRoute' => 'upload-delete'
+            ],
+            'upload-delete'   => [
+                'class' => 'trntv\filekit\actions\DeleteAction'
+            ],
+            'upload-imperavi' => [
+                //'class' => 'trntv\filekit\actions\UploadAction',
+                'class'            => 'common\actions\filekit\UploadAction',
+                'fileparam'        => 'file',
+                'responseUrlParam' => 'filelink',
+                'multiple'         => false,
+                'disableCsrf'      => true
+            ],
+            'upload-image'    => [
+                'class'            => 'common\actions\filekit\UploadAction',
+                'fileparam'        => 'image',
+                'responseUrlParam' => 'filelink',
+                'multiple'         => false,
+                'disableCsrf'      => true
+            ],
+        ];
+    }
 
-	/**
-	 * Lists all FileStorageItem models.
-	 * @return mixed
-	 */
-	public function actionIndex() {
-		$searchModel        = new FileStorageItemSearch();
-		$dataProvider       = $searchModel->search( Yii::$app->request->queryParams );
-		$dataProvider->sort = [
-			'defaultOrder' => [ 'created_at' => SORT_DESC ]
-		];
-		$components         = \yii\helpers\ArrayHelper::map(
-			FileStorageItem::find()->select( 'component' )->distinct()->all(),
-			'component',
-			'component'
-		);
-		$totalSize          = FileStorageItem::find()->sum( 'size' ) ?: 0;
+    /**
+     * Lists all FileStorageItem models.
+     * @return mixed
+     */
+    public function actionIndex()
+    {
+        $searchModel = new FileStorageItemSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->sort = [
+            'defaultOrder' => ['created_at' => SORT_DESC]
+        ];
+        $components = \yii\helpers\ArrayHelper::map(
+            FileStorageItem::find()->select('component')->distinct()->all(),
+            'component',
+            'component'
+        );
+        $totalSize = FileStorageItem::find()->sum('size') ?: 0;
 
-		return $this->render( 'index', [
-			'searchModel'  => $searchModel,
-			'dataProvider' => $dataProvider,
-			'components'   => $components,
-			'totalSize'    => $totalSize
-		] );
-	}
+        return $this->render('index', [
+            'searchModel'  => $searchModel,
+            'dataProvider' => $dataProvider,
+            'components'   => $components,
+            'totalSize'    => $totalSize
+        ]);
+    }
 
-	/**
-	 * Displays a single FileStorageItem model.
-	 *
-	 * @param integer $id
-	 *
-	 * @return mixed
-	 */
-	public function actionView( $id ) {
-		return $this->render( 'view', [
-			'model' => $this->findModel( $id )
-		] );
-	}
+    /**
+     * Displays a single FileStorageItem model.
+     *
+     * @param integer $id
+     *
+     * @return mixed
+     */
+    public function actionView($id)
+    {
+        return $this->render('view', [
+            'model' => $this->findModel($id)
+        ]);
+    }
 
-	/**
-	 * Deletes an existing FileStorageItem model.
-	 * If deletion is successful, the browser will be redirected to the 'index' page.
-	 *
-	 * @param integer $id
-	 *
-	 * @return mixed
-	 */
-	public function actionDelete( $id ) {
-		$this->findModel( $id )->delete();
+    /**
+     * Deletes an existing FileStorageItem model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     *
+     * @param integer $id
+     *
+     * @return mixed
+     */
+    public function actionDelete($id)
+    {
+        $this->findModel($id)->delete();
 
-		return $this->redirect( [ 'index' ] );
-	}
+        return $this->redirect(['index']);
+    }
 
-	/*
-	 * Action Upload File For Froala WYSIWYG HTML Editor
-	 *
-	 * @param file $file
-	 *
-	 * @return file infor
-	 * */
-	public function actionUploadFroala() {
-		// Get file link
-		$fileName = 'file';
-		$logoFile = UploadedFile::getInstanceByName( $fileName );
-		$filePath = Yii::$app->fileStorage->save( $logoFile );
-		$baseUrl  = Yii::$app->fileStorage->baseUrl;
-		$res      = [ 'link' => $baseUrl . '/' . $filePath ];
+    /*
+     * Action Upload File For Froala WYSIWYG HTML Editor
+     *
+     * @param file $file
+     *
+     * @return file infor
+     * */
+    public function actionUploadFroala()
+    {
+        // Get file link
+        $fileName = 'file';
+        $logoFile = UploadedFile::getInstanceByName($fileName);
+        $filePath = Yii::$app->fileStorage->save($logoFile);
+        $baseUrl = Yii::$app->fileStorage->baseUrl;
+        $res = ['link' => $baseUrl . '/' . $filePath];
 
-		// Response data
-		Yii::$app->response->format = Yii::$app->response->format = Response::FORMAT_JSON;
+        // Response data
+        Yii::$app->response->format = Yii::$app->response->format = Response::FORMAT_JSON;
 
-		return $res;
-	}
+        return $res;
+    }
 
-	/**
-	 * Finds the FileStorageItem model based on its primary key value.
-	 * If the model is not found, a 404 HTTP exception will be thrown.
-	 *
-	 * @param integer $id
-	 *
-	 * @return FileStorageItem the loaded model
-	 * @throws NotFoundHttpException if the model cannot be found
-	 */
-	protected function findModel( $id ) {
-		if ( ( $model = FileStorageItem::findOne( $id ) ) !== null ) {
-			return $model;
-		} else {
-			throw new NotFoundHttpException( 'The requested page does not exist.' );
-		}
-	}
+    /**
+     * Finds the FileStorageItem model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     *
+     * @param integer $id
+     *
+     * @return FileStorageItem the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
+    {
+        if (($model = FileStorageItem::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
 }

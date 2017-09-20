@@ -11,15 +11,16 @@ namespace common\assets;
 use yii\web\AssetBundle;
 use yii\web\View;
 
-class Moment extends AssetBundle {
-	public $sourcePath = '@bower/moment';
+class Moment extends AssetBundle
+{
+    public $sourcePath = '@bower/moment';
 
-	public $jsOptions = [ 'position' => View::POS_HEAD ];
-	public $js = [
-		'moment.js'
-	];
+    public $jsOptions = ['position' => View::POS_HEAD];
+    public $js = [
+        'moment.js'
+    ];
 
-	public $depends = [
-		'yii\web\JqueryAsset'
-	];
+    public $depends = [
+        'yii\web\JqueryAsset'
+    ];
 }

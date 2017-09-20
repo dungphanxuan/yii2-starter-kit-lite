@@ -10,9 +10,10 @@ namespace common\assets;
 
 use yii\web\AssetBundle;
 
-class SpinKit extends AssetBundle {
-	public $sourcePath = '@bower/SpinKit';
-	public $css = [
-		'css/spinkit.css'
-	];
+class SpinKit extends AssetBundle
+{
+    public $sourcePath = '@bower/SpinKit';
+    public $css = [
+        'css/spinkit.css'
+    ];
 }

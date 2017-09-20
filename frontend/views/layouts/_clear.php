@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-\frontend\assets\FrontendAsset::register( $this );
+\frontend\assets\FrontendAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -13,10 +13,10 @@ use yii\helpers\Html;
 <head>
     <meta charset="<?php echo Yii::$app->charset ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php echo Html::encode( $this->title ) ?></title>
-    <link rel="icon" type="image/png" href="<?= baseUrl().'/frontend/web/img/favicon.ico'?>">
+    <title><?php echo Html::encode($this->title) ?></title>
+    <link rel="icon" type="image/png" href="<?= baseUrl() . '/frontend/web/img/favicon.ico' ?>">
     <?php $this->head() ?>
-	<?php echo Html::csrfMetaTags() ?>
+    <?php echo Html::csrfMetaTags() ?>
 </head>
 <body>
 <?php $this->beginBody() ?>

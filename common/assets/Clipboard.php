@@ -10,13 +10,14 @@ namespace common\assets;
 
 use yii\web\AssetBundle;
 
-class Clipboard extends AssetBundle {
-	public $sourcePath = '@bower/flot';
-	public $js = [
-		'js/clipboard.min.js'
-	];
+class Clipboard extends AssetBundle
+{
+    public $sourcePath = '@bower/flot';
+    public $js = [
+        'js/clipboard.min.js'
+    ];
 
-	public $depends = [
-		'yii\web\JqueryAsset'
-	];
+    public $depends = [
+        'yii\web\JqueryAsset'
+    ];
 }

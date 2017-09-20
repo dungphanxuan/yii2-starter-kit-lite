@@ -19,84 +19,93 @@ use yii\db\ActiveRecord;
  * @property Article[] $articles
  * @property ArticleCategory $parent
  */
-class ArticleCategory extends ActiveRecord {
-	const STATUS_ACTIVE = 1;
-	const STATUS_DRAFT = 0;
+class ArticleCategory extends ActiveRecord
+{
+    const STATUS_ACTIVE = 1;
+    const STATUS_DRAFT = 0;
 
-	public $totalArticle;
+    public $totalArticle;
 
-	/**
-	 * @inheritdoc
-	 */
-	public static function tableName() {
-		return '{{%article_category}}';
-	}
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return '{{%article_category}}';
+    }
 
-	/**
-	 * @return ArticleCategoryQuery
-	 */
-	public static function find() {
-		return new ArticleCategoryQuery( get_called_class() );
-	}
+    /**
+     * @return ArticleCategoryQuery
+     */
+    public static function find()
+    {
+        return new ArticleCategoryQuery(get_called_class());
+    }
 
-	public function behaviors() {
-		return [
-			TimestampBehavior::className(),
-			[
-				'class'     => SluggableBehavior::className(),
-				'attribute' => 'title',
-				'immutable' => true
-			]
-		];
-	}
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+            [
+                'class'     => SluggableBehavior::className(),
+                'attribute' => 'title',
+                'immutable' => true
+            ]
+        ];
+    }
 
 
-	/**
-	 * @inheritdoc
-	 */
-	public function rules() {
-		return [
-			[ [ 'title' ], 'required' ],
-			[ [ 'title' ], 'string', 'max' => 512 ],
-			[ [ 'slug' ], 'unique' ],
-			[ [ 'slug' ], 'string', 'max' => 1024 ],
-			[ 'status', 'integer' ],
-			[ 'parent_id', 'exist', 'targetClass' => ArticleCategory::className(), 'targetAttribute' => 'id' ]
-		];
-	}
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['title'], 'required'],
+            [['title'], 'string', 'max' => 512],
+            [['slug'], 'unique'],
+            [['slug'], 'string', 'max' => 1024],
+            ['status', 'integer'],
+            ['parent_id', 'exist', 'targetClass' => ArticleCategory::className(), 'targetAttribute' => 'id']
+        ];
+    }
 
-	/**
-	 * @inheritdoc
-	 */
-	public function attributeLabels() {
-		return [
-			'id'        => Yii::t( 'common', 'ID' ),
-			'slug'      => Yii::t( 'common', 'Slug' ),
-			'title'     => Yii::t( 'common', 'Title' ),
-			'parent_id' => Yii::t( 'common', 'Parent Category' ),
-			'status'    => Yii::t( 'common', 'Active' ),
-			'totalArticle'    => Yii::t( 'common', 'Total Article' )
-		];
-	}
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id'           => Yii::t('common', 'ID'),
+            'slug'         => Yii::t('common', 'Slug'),
+            'title'        => Yii::t('common', 'Title'),
+            'parent_id'    => Yii::t('common', 'Parent Category'),
+            'status'       => Yii::t('common', 'Active'),
+            'totalArticle' => Yii::t('common', 'Total Article')
+        ];
+    }
 
-	/**
-	 * @return \yii\db\ActiveQuery
-	 */
-	public function getArticles() {
-		return $this->hasMany( Article::className(), [ 'category_id' => 'id' ] );
-	}
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getArticles()
+    {
+        return $this->hasMany(Article::className(), ['category_id' => 'id']);
+    }
 
-	/**
-	 * @return \yii\db\ActiveQuery
-	 */
-	public function getParent() {
-		return $this->hasMany( ArticleCategory::className(), [ 'id' => 'parent_id' ] );
-	}
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getParent()
+    {
+        return $this->hasMany(ArticleCategory::className(), ['id' => 'parent_id']);
+    }
 
-	/*
-	* Get total video of category
-	* */
-	public function getTotal() {
-		return $this->hasMany( Article::className(), [ 'category_id' => 'id' ] )->count();
-	}
+    /*
+    * Get total video of category
+    * */
+    public function getTotal()
+    {
+        return $this->hasMany(Article::className(), ['category_id' => 'id'])->count();
+    }
 }

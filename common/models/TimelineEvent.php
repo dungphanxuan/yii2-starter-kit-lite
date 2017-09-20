@@ -3,7 +3,6 @@
 namespace common\models;
 
 use common\models\query\TimelineEventQuery;
-use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 
@@ -17,57 +16,64 @@ use yii\db\ActiveRecord;
  * @property string $data
  * @property string $created_at
  */
-class TimelineEvent extends ActiveRecord {
-	/**
-	 * @inheritdoc
-	 */
-	public static function tableName() {
-		return '{{%timeline_event}}';
-	}
+class TimelineEvent extends ActiveRecord
+{
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return '{{%timeline_event}}';
+    }
 
-	/**
-	 * @return array
-	 */
-	public function behaviors() {
-		return [
-			'timestamp' => [
-				'class'              => TimestampBehavior::className(),
-				'createdAtAttribute' => 'created_at',
-				'updatedAtAttribute' => null
-			]
-		];
-	}
+    /**
+     * @return array
+     */
+    public function behaviors()
+    {
+        return [
+            'timestamp' => [
+                'class'              => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => null
+            ]
+        ];
+    }
 
-	/**
-	 * @return TimelineEventQuery
-	 */
-	public static function find() {
-		return new TimelineEventQuery( get_called_class() );
-	}
+    /**
+     * @return TimelineEventQuery
+     */
+    public static function find()
+    {
+        return new TimelineEventQuery(get_called_class());
+    }
 
-	/**
-	 * @inheritdoc
-	 */
-	public function rules() {
-		return [
-			[ [ 'application', 'category', 'event' ], 'required' ],
-			[ [ 'data' ], 'safe' ],
-			[ [ 'application', 'category', 'event' ], 'string', 'max' => 64 ]
-		];
-	}
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['application', 'category', 'event'], 'required'],
+            [['data'], 'safe'],
+            [['application', 'category', 'event'], 'string', 'max' => 64]
+        ];
+    }
 
-	/**
-	 * @inheritdoc
-	 */
-	public function afterFind() {
-		$this->data = @json_decode( $this->data, true );
-		parent::afterFind();
-	}
+    /**
+     * @inheritdoc
+     */
+    public function afterFind()
+    {
+        $this->data = @json_decode($this->data, true);
+        parent::afterFind();
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getFullEventName() {
-		return sprintf( '%s.%s', $this->category, $this->event );
-	}
+    /**
+     * @return string
+     */
+    public function getFullEventName()
+    {
+        return sprintf('%s.%s', $this->category, $this->event);
+    }
 }
