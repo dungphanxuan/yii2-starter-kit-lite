@@ -4,6 +4,7 @@ use trntv\filekit\widget\Upload;
 use trntv\yii\datetime\DateTimeWidget;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Article */
@@ -46,7 +47,8 @@ use yii\helpers\Html;
         'title'
     ), ['prompt' => '']) ?>
 
-    <?php echo $form->field($model, 'body')->widget(
+    <?php
+   /* echo $form->field($model, 'body')->widget(
         \yii\imperavi\Widget::className(),
         [
             'plugins' => ['fullscreen', 'fontcolor', 'video'],
@@ -59,7 +61,29 @@ use yii\helpers\Html;
                 'imageUpload'     => Yii::$app->urlManager->createUrl(['/file-storage/upload-imperavi'])
             ]
         ]
-    ) ?>
+    );*/
+    ?>
+
+    <?php
+    echo $form->field($model, 'body')->widget(
+        \froala\froalaeditor\FroalaEditorWidget::className(),
+        [
+            'options'         => [
+            ],
+            'csrfCookieParam' => '_csrf',
+            'clientOptions'   => [
+                'toolbarInline'       => false,
+                'toolbarSticky'       => false,
+                'height'              => 350,
+                'imageDefaultWidth'   => 680,
+                'theme'               => 'royal',
+                'imageUploadURL'      => Url::to(['/file-storage/upload-froala']),
+                'fileUploadURL'       => Url::to(['/file-storage/upload-froala']),
+                'imageManagerLoadURL' => Url::to(['/file-storage/file-froala'])
+            ],
+        ]
+    )
+    ?>
 
     <hr class="b2r" style="margin-right:40px;margin-left:40px;">
 

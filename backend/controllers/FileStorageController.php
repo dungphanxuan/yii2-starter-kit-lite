@@ -16,6 +16,8 @@ use yii\web\UploadedFile;
  */
 class FileStorageController extends Controller
 {
+    public $enableCsrfValidation = false;
+
     public function behaviors()
     {
         return [
@@ -130,6 +132,29 @@ class FileStorageController extends Controller
         $baseUrl = Yii::$app->fileStorage->baseUrl;
         $res = ['link' => $baseUrl . '/' . $filePath];
 
+        // Response data
+        Yii::$app->response->format = Yii::$app->response->format = Response::FORMAT_JSON;
+
+        return $res;
+    }
+
+    public function actionFileFroala()
+    {
+        $dataFileItem = FileStorageItem::find()
+            ->limit(10)
+            ->orderBy('id desc')
+            ->all();
+        $dataImage = [];
+        /** @var FileStorageItem $item */
+        foreach ($dataFileItem as $item) {
+            if (Yii::$app->fileStorage->getFilesystem()->has($item->path)) {
+                $dataDetail = [];
+                $dataDetail['url'] = $item->base_url . '/' . $item->path;
+                $dataImage [] = $dataDetail;
+            }
+        }
+
+        $res = $dataImage;
         // Response data
         Yii::$app->response->format = Yii::$app->response->format = Response::FORMAT_JSON;
 
