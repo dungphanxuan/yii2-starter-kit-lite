@@ -13,20 +13,21 @@ class m140703_123803_article extends Migration
         }
 
         $this->createTable('{{%article_category}}', [
-            'id'         => $this->primaryKey(),
-            'slug'       => $this->string(1024)->notNull(),
-            'title'      => $this->string(512)->notNull(),
-            'body'       => $this->text(),
-            'parent_id'  => $this->integer(),
-            'order'      => $this->smallInteger()->defaultValue(0),
-            'status'     => $this->smallInteger()->notNull()->defaultValue(0),
-            'created_at' => $this->integer(),
-            'updated_at' => $this->integer(),
+            'id'                 => $this->primaryKey(),
+            'slug'               => $this->string(1024)->notNull(),
+            'title'              => $this->string(512)->notNull(),
+            'body'               => $this->text(),
+            'parent_id'          => $this->integer(),
+            'thumbnail_base_url' => $this->string(1024),
+            'thumbnail_path'     => $this->string(1024),
+            'order'              => $this->smallInteger()->defaultValue(0),
+            'status'             => $this->smallInteger()->notNull()->defaultValue(0),
+            'created_at'         => $this->integer(),
+            'updated_at'         => $this->integer(),
         ], $tableOptions);
 
         $this->createTable('{{%article}}', [
             'id'                 => $this->primaryKey(),
-            'aid'                => $this->string(32)->notNull(),
             'slug'               => $this->string(1024)->notNull(),
             'title'              => $this->string(512)->notNull(),
             'short_des'          => $this->text(),

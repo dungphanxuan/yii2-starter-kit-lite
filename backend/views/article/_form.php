@@ -16,16 +16,7 @@ use yii\helpers\Url;
     <br>
 
     <?php $form = ActiveForm::begin([
-        'layout'      => 'horizontal',
-        'fieldConfig' => [
-            'template'             => "{label}\n{beginWrapper}\n{input}\n{hint}\n{error}\n{endWrapper}",
-            'horizontalCssClasses' => [
-                'label'   => 'col-sm-2 col-xs-3',
-                'wrapper' => 'col-sm-8 col-xs-8',
-                'error'   => '',
-                'hint'    => '',
-            ],
-        ],
+        'options' => ['enctype' => 'multipart/form-data']
     ]); ?>
 
     <?php echo $form->errorSummary($model, [
@@ -85,7 +76,7 @@ use yii\helpers\Url;
     )
     ?>
 
-    <hr class="b2r" style="margin-right:40px;margin-left:40px;">
+    <hr class="b2r" style="margin-right:0;margin-left:0;">
 
     <?php echo $form->field($model, 'thumbnail')->widget(
         Upload::className(),
@@ -109,7 +100,7 @@ use yii\helpers\Url;
         'template' => '{label} <div class="row"><div class="col-xs-2 col-sm-2">{input}{error}{hint}</div></div>'
     ])->textInput(['maxlength' => true]) ?>
 
-    <hr class="b2r" style="margin-right:40px;margin-left:40px;">
+    <hr class="b2r" style="margin-right:0;margin-left:0;">
 
     <?php echo $form->field($model, 'status', [
         'horizontalCssClasses' => [

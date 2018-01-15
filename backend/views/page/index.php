@@ -55,3 +55,12 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
 
 </div>
+
+<?php
+$app_css = <<<CSS
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #CFD8DC !important;
+}
+CSS;
+
+$this->registerCss($app_css);

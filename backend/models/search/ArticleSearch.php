@@ -30,7 +30,7 @@ class ArticleSearch extends Article
                 ],
                 'integer'
             ],
-            [['slug', 'title', 'body'], 'safe'],
+            [['title', 'body'], 'safe'],
         ];
     }
 
@@ -61,7 +61,6 @@ class ArticleSearch extends Article
 
         $query->andFilterWhere([
             'id'           => $this->id,
-            'slug'         => $this->slug,
             'author_id'    => $this->author_id,
             'category_id'  => $this->category_id,
             'updater_id'   => $this->updater_id,

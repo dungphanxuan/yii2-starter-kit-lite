@@ -79,6 +79,17 @@ $config = [
             ]
         ],
 
+        'queue' => [
+            'class'     => yii\queue\db\Queue::class,
+            'db'        => 'db', // DB connection component or its config
+            'tableName' => '{{%queue}}', // Table name
+            'channel'   => 'default', // Queue channel key
+            'mutex'     => [
+                'class' => yii\mutex\MysqlMutex::class, // Mutex that used to sync queries
+                'db'    => 'db',
+            ],
+        ],
+
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets'    => [

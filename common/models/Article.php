@@ -14,7 +14,6 @@ use yii\db\ActiveRecord;
  * This is the model class for table "article".
  *
  * @property integer $id
- * @property string $aid
  * @property string $slug
  * @property string $title
  * @property string $body
@@ -111,7 +110,7 @@ class Article extends ActiveRecord
     public function rules()
     {
         return [
-            [['aid', 'title', 'body', 'category_id'], 'required'],
+            [['title', 'body', 'category_id'], 'required'],
             [['slug'], 'unique'],
             [['body'], 'string'],
             [
@@ -127,7 +126,6 @@ class Article extends ActiveRecord
             [['slug', 'thumbnail_base_url', 'thumbnail_path'], 'string', 'max' => 1024],
             [['title'], 'string', 'max' => 512],
             [['view'], 'string', 'max' => 255],
-            [['aid'], 'string', 'max' => 32],
             [['attachments', 'thumbnail'], 'safe']
         ];
     }
@@ -139,7 +137,6 @@ class Article extends ActiveRecord
     {
         return [
             'id'           => Yii::t('common', 'ID'),
-            'aid'          => Yii::t('common', 'Article ID'),
             'slug'         => Yii::t('common', 'Slug'),
             'title'        => Yii::t('common', 'Title'),
             'body'         => Yii::t('common', 'Body'),
@@ -186,4 +183,87 @@ class Article extends ActiveRecord
     {
         return $this->hasMany(ArticleAttachment::className(), ['article_id' => 'id']);
     }
+
+    /*
+     * Copy Model Data
+     * */
+    public function copyModel($id)
+    {
+        $cModel = Article::find()->published()->where(['id' => $id])->one();
+        if ($cModel) {
+            $data = $cModel->attributes;
+            $this->setAttributes($data);
+            //Copy thumbnail
+            if ($cModel->thumbnail) {
+                if (fileStorage()->getFilesystem()->has($cModel->thumbnail['path'])) {
+                    $this->thumbnail = $cModel->thumbnail;
+                    $copyImage = "1/cp_" . Yii::$app->security->generateRandomString(20) . date('YmdHim') . ".jpg";
+                    $this->thumbnail['path'] = $copyImage;
+                    $this->thumbnail_path = $copyImage;
+                    fileSystem()->copy($cModel->thumbnail['path'], $copyImage);
+                }
+            }
+            //Copy attachments
+            $this->attachments = $cModel->attachments;
+            foreach ($cModel->articleAttachments as $key => $img) {
+                if (fileStorage()->getFilesystem()->has($cModel->attachments[$key]['path'])) {
+                    $new_filename = "1/cp_" . $key . "_" . date('YmdHim') . time() . ".jpg";
+                    fileSystem()->copy($cModel->attachments[$key]['path'], $new_filename);
+                    $this->attachments[$key]['path'] = $new_filename;
+                }
+            }
+
+            $this->slug = '';
+        }
+    }
+
+
+    /*
+     * Show Image Thumbnail
+     * @return string
+     * */
+    public function getImgThumbnail($type = 1, $q = 75, $w = null, $h = null)
+    {
+        $url = '';
+        $hasPath = fileSystem()->has($this->thumbnail_path);
+        $path = 'images/logo_square.png';
+        if ($this->thumbnail_path && $hasPath) {
+            $path = $this->thumbnail_path;
+        }
+        //dd($path);
+        switch ($type) {
+            case 1:
+                $url = $this->thumbnail_base_url . '/' . $path;
+                break;
+            case 2:
+                $signConfig = [
+                    'glide/index',
+                    'path' => $path,
+                    'fit'  => 'crop'
+                ];
+                if ($w) {
+                    $signConfig['w'] = $w;
+                }
+                if ($h) {
+                    $signConfig['h'] = $h;
+                }
+                $url = Yii::$app->glide->createSignedUrl($signConfig);
+                break;
+            default:
+                $signConfig = [
+                    'glide/index',
+                    'path' => $path,
+                    'w'    => '480',
+                    'h'    => '240',
+                    'fit'  => 'crop'
+                ];
+
+                $url = Yii::$app->glide->createSignedUrl($signConfig);
+        }
+
+
+        //dd($url);
+        return $url;
+    }
+
 }

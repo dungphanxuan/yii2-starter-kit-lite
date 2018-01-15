@@ -9,6 +9,7 @@ use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 
 /**
  * ArticleCategoryController implements the CRUD actions for ArticleCategory model.
@@ -36,7 +37,10 @@ class ArticleCategoryController extends Controller
         $searchModel = new ArticleCategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
+        //$view = 'index';
+        $view = 'index-list';
+
+        return $this->render($view, [
             'searchModel'  => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -51,8 +55,27 @@ class ArticleCategoryController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $searchModel = new ArticleCategorySearch();
+        $params = Yii::$app->request->queryParams;
+
+        //Filter Category
+        $getParent = getParam('parent_id', null);
+
+        if ($getParent) {
+            $params['ArticleCategorySearch']['parent_id'] = $getParent;
+        } else {
+            $params['ArticleCategorySearch']['parent_id'] = $model->id;
+        }
+
+        //dd($params);
+
+        $dataProvider = $searchModel->search($params);
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model'        => $model,
+            'searchModel'  => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -102,6 +125,30 @@ class ArticleCategoryController extends Controller
                 'categories' => $categories,
             ]);
         }
+    }
+
+    /*
+	 * Ajax Order
+	 * */
+    public function actionAjaxOrder()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $data = $_POST['order'] ? $_POST['order'] : [];
+
+        foreach ($data as $key => $item) {
+            /** @var ArticleCategory $model */
+            $model = ArticleCategory::find()->where(['id' => $item])->one();
+            $model->order = $key + 1;
+            $model->save();
+        }
+
+        //Update data
+        $res = array(
+            'msg'     => 'Success',
+            'success' => true,
+        );
+
+        return $res;
     }
 
     /**

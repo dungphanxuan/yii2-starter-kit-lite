@@ -31,7 +31,18 @@ use yii\helpers\Html;
         'template' => '{label} <div class="row"><div class="col-xs-3 col-sm-3">{input}{error}{hint}</div></div>'
     ])->dropDownList($categories, ['prompt' => 'Choose category']) ?>
 
+    <?php echo $form->field($model, 'thumbnail')->widget(
+        \trntv\filekit\widget\Upload::className(),
+        [
+            'url'             => ['/file-storage/upload'],
+            'maxFileSize'     => 5000000, // 5 MiB
+            'acceptFileTypes' => new \yii\web\JsExpression('/(\.|\/)(gif|jpe?g|png)$/i'),
+        ]);
+    ?>
+
     <?php echo $form->field($model, 'status')->checkbox() ?>
+
+    <hr class="b2r" style="margin-right:0;margin-left:0;">
 
     <div class="form-group">
         <div class="col-sm-<?= $model->isNewRecord ? '3' : '1' ?> col-xs-2"></div>

@@ -14,7 +14,8 @@ class AdminLte extends AssetBundle
 {
     public $sourcePath = '@bower/admin-lte/dist';
     public $js = [
-        'js/app.min.js'
+        'js/adminlte.min.js',
+        'js/demo.js'
     ];
     public $css = [
         'css/AdminLTE.min.css',

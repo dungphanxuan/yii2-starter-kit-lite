@@ -32,6 +32,11 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'columns'      => [
             [
+                'class'          => 'yii\grid\CheckboxColumn',
+                'headerOptions'  => ['style' => 'width:3%;text-align:center'],
+                'contentOptions' => ['style' => 'width:3%;text-align:center'],
+            ],
+            [
                 'attribute'      => 'id',
                 'format'         => 'raw',
                 'headerOptions'  => ['style' => 'text-align:center'],
@@ -61,3 +66,13 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
 
 </div>
+
+
+<?php
+$app_css = <<<CSS
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #CFD8DC !important;
+}
+CSS;
+
+$this->registerCss($app_css);

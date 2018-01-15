@@ -12,7 +12,6 @@ use yii\helpers\Html;
     <br>
 
     <?php $form = ActiveForm::begin([
-        'layout' => 'horizontal',
     ]); ?>
 
     <?php echo $form->errorSummary($model, [
@@ -41,7 +40,7 @@ use yii\helpers\Html;
 
     <?php echo $form->field($model, 'status')->checkbox() ?>
 
-    <hr>
+    <hr class="b2r" style="margin-right:40px;margin-left:40px;">
 
     <div class="form-group">
         <div class="col-sm-<?= $model->isNewRecord ? '3' : '1' ?> col-xs-2"></div>

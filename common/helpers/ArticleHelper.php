@@ -19,7 +19,6 @@ class ArticleHelper extends Inflector
             $model = Article::find()->published()->where(['id' => $id])->one();
             if ($model) {
                 $data['id'] = $model->id;
-                $data['aid'] = $model->aid;
                 $data['title'] = $model->title;
                 $data['body'] = $model->body;
                 $data['category_name'] = $model->category->title;

@@ -37,14 +37,31 @@ $this->params['breadcrumbs'][] = $this->title;
             'tableOptions' => [
                 'class' => 'table table-striped table-bordered table-hover'
             ],
-            'options'      => ['id' => 'w1'],
+            'options'      => ['id' => 'aw2'],
             'columns'      => [
-                ['class' => 'yii\grid\CheckboxColumn'],
+                [
+                    'class'          => 'yii\grid\CheckboxColumn',
+                    'headerOptions'  => ['style' => 'width:3%;text-align:center'],
+                    'contentOptions' => ['style' => 'width:3%;text-align:center'],
+                ],
                 [
                     'attribute'      => 'id',
                     'format'         => 'raw',
                     'headerOptions'  => ['style' => 'text-align:center'],
                     'contentOptions' => ['style' => 'width:10%;text-align:center'],
+                ],
+                [
+                    'attribute'      => 'thumbnail',
+                    'format'         => 'raw',
+                    'header'         => 'Ảnh',
+                    'headerOptions'  => ['style' => 'text-align:center'],
+                    'contentOptions' => ['style' => 'width:10%;text-align:center'],
+                    'value'          => function ($model) {
+                        return Html::a(Html::tag('img', null, ['class' => 'imageList lazy', 'data-src' => $model->getImgThumbnail(5)]), [
+                            'update',
+                            'id' => $model->id
+                        ], ['title' => 'Chi tiết', 'data-pjax' => 0]);
+                    },
                 ],
                 [
                     'attribute'     => 'title',
@@ -108,10 +125,37 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
 <?php
+
+$app_css = <<<CSS
+.imageList{
+    width: 80px;
+    height: 50px;
+}
+.sValue{
+cursor:pointer
+}
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #CFD8DC !important;
+}
+.form-group {
+    margin-bottom: 5px !important;
+}
+CSS;
+$this->registerCss($app_css);
+
 $ajaxUrl = Url::to(['ajax-delete']);
 $app_js = <<<JS
+
+var instance = $('.lazy').Lazy({chainable: false});
+$(document).on('pjax:success', function() {
+    var pjaxElements = $('#datas .lazy');
+
+    instance.addItems(pjaxElements);
+    instance.update();
+});
+
 $(".btnDelete").click(function(){
-    var keys = $('#w1').yiiGridView('getSelectedRows');
+    var keys = $('#aw2').yiiGridView('getSelectedRows');
     if(keys.length > 0){
         bootbox.confirm({
         message: "Are you sure you want to delete?",

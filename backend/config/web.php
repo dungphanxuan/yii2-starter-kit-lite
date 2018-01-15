@@ -48,12 +48,12 @@ $config = [
                 ],
                 'common\assets\AdminLte'                      => [
                     'sourcePath' => null,
-                    'baseUrl'    => 'https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/'
+                    'baseUrl'    => 'https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.2/'
                 ],
                 'common\assets\FontAwesome'                   => [
                     'sourcePath' => null,
                     'css'        => [
-                        'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css',
+                        'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
                     ]
                 ],
                 'common\assets\Html5shiv'                     => [
@@ -78,10 +78,10 @@ $config = [
                     'sourcePath' => null,
                     'baseUrl'    => 'https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.12.5/'
                 ],
-                'yii\web\JqueryAsset'                         => [
+                /*'yii\web\JqueryAsset'                         => [
                     'sourcePath' => null,
                     'js'         => ['https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js',]
-                ],
+                ],*/
 
             ],
         ],
