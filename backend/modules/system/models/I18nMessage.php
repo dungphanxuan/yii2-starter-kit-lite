@@ -7,11 +7,11 @@ use Yii;
 /**
  * This is the model class for table "{{%i18n_message}}".
  *
- * @property integer $id
- * @property string $language
- * @property string $translation
- * @property string $sourceMessage
- * @property string $category
+ * @property integer           $id
+ * @property string            $language
+ * @property string            $translation
+ * @property string            $sourceMessage
+ * @property string            $category
  *
  * @property I18nSourceMessage $sourceMessageModel
  */

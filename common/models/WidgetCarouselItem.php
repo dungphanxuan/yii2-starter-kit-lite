@@ -11,17 +11,17 @@ use yii\db\ActiveRecord;
 /**
  * This is the model class for table "widget_carousel_item".
  *
- * @property integer $id
- * @property integer $carousel_id
- * @property string $base_url
- * @property string $path
- * @property string $type
- * @property string $image
- * @property string $imageUrl
- * @property string $url
- * @property string $caption
- * @property integer $status
- * @property integer $order
+ * @property integer        $id
+ * @property integer        $carousel_id
+ * @property string         $base_url
+ * @property string         $path
+ * @property string         $type
+ * @property string         $image
+ * @property string         $imageUrl
+ * @property string         $url
+ * @property string         $caption
+ * @property integer        $status
+ * @property integer        $order
  *
  * @property WidgetCarousel $carousel
  */

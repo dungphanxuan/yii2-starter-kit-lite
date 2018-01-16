@@ -7,9 +7,9 @@ use Yii;
 /**
  * This is the model class for table "{{%i18n_source_message}}".
  *
- * @property integer $id
- * @property string $category
- * @property string $message
+ * @property integer       $id
+ * @property string        $category
+ * @property string        $message
  *
  * @property I18nMessage[] $i18nMessages
  */

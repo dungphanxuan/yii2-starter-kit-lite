@@ -14,20 +14,20 @@ use yii\web\IdentityInterface;
 /**
  * User model
  *
- * @property integer $id
- * @property string $username
- * @property string $password_hash
- * @property string $email
- * @property string $auth_key
- * @property string $access_token
- * @property string $oauth_client
- * @property string $oauth_client_user_id
- * @property string $publicIdentity
- * @property integer $status
- * @property integer $created_at
- * @property integer $updated_at
- * @property integer $logged_at
- * @property string $password write-only password
+ * @property integer                    $id
+ * @property string                     $username
+ * @property string                     $password_hash
+ * @property string                     $email
+ * @property string                     $auth_key
+ * @property string                     $access_token
+ * @property string                     $oauth_client
+ * @property string                     $oauth_client_user_id
+ * @property string                     $publicIdentity
+ * @property integer                    $status
+ * @property integer                    $created_at
+ * @property integer                    $updated_at
+ * @property integer                    $logged_at
+ * @property string                     $password write-only password
  *
  * @property \common\models\UserProfile $userProfile
  */

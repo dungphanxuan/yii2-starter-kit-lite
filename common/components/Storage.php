@@ -12,13 +12,13 @@ use yii\base\InvalidConfigException;
 /**
  * Class Storage
  * @package trntv\filekit
- * @author Eugene Terentev <eugene@terentev.net>
+ * @author  Eugene Terentev <eugene@terentev.net>
  */
 class Storage extends \trntv\filekit\Storage
 {
 
     /**
-     * @param $file string|\yii\web\UploadedFile
+     * @param      $file string|\yii\web\UploadedFile
      * @param bool $preserveFileName
      * @param bool $overwrite
      *

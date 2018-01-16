@@ -7,7 +7,7 @@ use yii\web\HttpException;
 /**
  * Class ViewAction
  * @package trntv\filekit\actions
- * @author Eugene Terentev <eugene@terentev.net>
+ * @author  Eugene Terentev <eugene@terentev.net>
  */
 class ViewAction extends BaseAction
 {

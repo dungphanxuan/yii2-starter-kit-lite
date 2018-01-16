@@ -11,10 +11,10 @@ use yii\db\ActiveRecord;
  * This is the model class for table "page".
  *
  * @property integer $id
- * @property string $slug
- * @property string $title
- * @property string $body
- * @property string $view
+ * @property string  $slug
+ * @property string  $title
+ * @property string  $body
+ * @property string  $view
  * @property integer $status
  * @property integer $created_at
  * @property integer $updated_at

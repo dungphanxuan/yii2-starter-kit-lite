@@ -20,7 +20,7 @@ use yii\helpers\VarDumper;
 class ExtendedMessageController extends \yii\console\controllers\MessageController
 {
     /**
-     * @param $path
+     * @param      $path
      * @param bool $newSourceLanguage
      * @param bool $configFile
      *

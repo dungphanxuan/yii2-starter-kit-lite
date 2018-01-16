@@ -11,9 +11,9 @@ use yii\db\ActiveRecord;
  * This is the model class for table "widget_menu".
  *
  * @property integer $id
- * @property string $key
- * @property string $title
- * @property string $items
+ * @property string  $key
+ * @property string  $title
+ * @property string  $items
  * @property integer $status
  */
 class WidgetMenu extends ActiveRecord

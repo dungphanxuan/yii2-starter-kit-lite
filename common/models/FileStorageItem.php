@@ -10,13 +10,13 @@ use yii\db\ActiveRecord;
  * This is the model class for table "{{%file_storage_item}}".
  *
  * @property integer $id
- * @property string $component
- * @property string $base_url
- * @property string $path
- * @property string $type
+ * @property string  $component
+ * @property string  $base_url
+ * @property string  $path
+ * @property string  $type
  * @property integer $size
- * @property string $name
- * @property string $upload_ip
+ * @property string  $name
+ * @property string  $upload_ip
  * @property integer $created_at
  */
 class FileStorageItem extends ActiveRecord

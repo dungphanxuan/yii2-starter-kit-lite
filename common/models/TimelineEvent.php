@@ -10,11 +10,11 @@ use yii\db\ActiveRecord;
  * This is the model class for table "timeline_event".
  *
  * @property integer $id
- * @property string $application
- * @property string $category
- * @property string $event
- * @property string $data
- * @property string $created_at
+ * @property string  $application
+ * @property string  $category
+ * @property string  $event
+ * @property string  $data
+ * @property string  $created_at
  */
 class TimelineEvent extends ActiveRecord
 {

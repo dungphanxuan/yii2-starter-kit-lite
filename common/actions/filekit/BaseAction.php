@@ -9,7 +9,7 @@ use yii\di\Instance;
 /**
  * Class BaseAction
  * @package trntv\filekit\actions
- * @author Eugene Terentev <eugene@terentev.net>
+ * @author  Eugene Terentev <eugene@terentev.net>
  *
  */
 abstract class BaseAction extends Action

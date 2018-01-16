@@ -13,13 +13,13 @@ use yii\db\ActiveRecord;
  *
  * @property integer $id
  * @property integer $user_id
- * @property string $type
- * @property string $token
+ * @property string  $type
+ * @property string  $token
  * @property integer $expire_at
  * @property integer $created_at
  * @property integer $updated_at
  *
- * @property User $user
+ * @property User    $user
  */
 class UserToken extends ActiveRecord
 {
@@ -101,8 +101,8 @@ class UserToken extends ActiveRecord
     }
 
     /**
-     * @param mixed $user_id
-     * @param string $type
+     * @param mixed    $user_id
+     * @param string   $type
      * @param int|null $duration
      *
      * @return bool|UserToken

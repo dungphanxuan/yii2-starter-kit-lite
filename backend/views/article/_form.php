@@ -10,6 +10,7 @@ use yii\helpers\Url;
 /* @var $model common\models\Article */
 /* @var $categories common\models\ArticleCategory[] */
 /* @var $form yii\bootstrap\ActiveForm */
+
 ?>
 
 <div class="article-form">
@@ -39,20 +40,20 @@ use yii\helpers\Url;
     ), ['prompt' => '']) ?>
 
     <?php
-   /* echo $form->field($model, 'body')->widget(
-        \yii\imperavi\Widget::className(),
-        [
-            'plugins' => ['fullscreen', 'fontcolor', 'video'],
-            'options' => [
-                'minHeight'       => 400,
-                'maxHeight'       => 400,
-                'buttonSource'    => true,
-                'convertDivs'     => false,
-                'removeEmptyTags' => false,
-                'imageUpload'     => Yii::$app->urlManager->createUrl(['/file-storage/upload-imperavi'])
-            ]
-        ]
-    );*/
+    /* echo $form->field($model, 'body')->widget(
+         \yii\imperavi\Widget::className(),
+         [
+             'plugins' => ['fullscreen', 'fontcolor', 'video'],
+             'options' => [
+                 'minHeight'       => 400,
+                 'maxHeight'       => 400,
+                 'buttonSource'    => true,
+                 'convertDivs'     => false,
+                 'removeEmptyTags' => false,
+                 'imageUpload'     => Yii::$app->urlManager->createUrl(['/file-storage/upload-imperavi'])
+             ]
+         ]
+     );*/
     ?>
 
     <?php

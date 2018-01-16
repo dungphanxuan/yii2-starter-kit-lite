@@ -11,16 +11,16 @@ use yii\db\ActiveRecord;
  *
  * @property integer $user_id
  * @property integer $locale
- * @property string $firstname
- * @property string $middlename
- * @property string $lastname
- * @property string $picture
- * @property string $avatar
- * @property string $avatar_path
- * @property string $avatar_base_url
+ * @property string  $firstname
+ * @property string  $middlename
+ * @property string  $lastname
+ * @property string  $picture
+ * @property string  $avatar
+ * @property string  $avatar_path
+ * @property string  $avatar_base_url
  * @property integer $gender
  *
- * @property User $user
+ * @property User    $user
  */
 class UserProfile extends ActiveRecord
 {

@@ -11,9 +11,9 @@ use yii\db\ActiveRecord;
  * This is the model class for table "text_block".
  *
  * @property integer $id
- * @property string $key
- * @property string $title
- * @property string $body
+ * @property string  $key
+ * @property string  $title
+ * @property string  $body
  * @property integer $status
  */
 class WidgetText extends ActiveRecord

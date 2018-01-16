@@ -11,12 +11,12 @@ use yii\db\ActiveRecord;
  *
  * @property integer $id
  * @property integer $article_id
- * @property string $base_url
- * @property string $path
- * @property string $url
- * @property string $name
- * @property string $type
- * @property string $size
+ * @property string  $base_url
+ * @property string  $path
+ * @property string  $url
+ * @property string  $name
+ * @property string  $type
+ * @property string  $size
  * @property integer $order
  *
  * @property Article $article

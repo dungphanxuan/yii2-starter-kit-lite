@@ -9,7 +9,7 @@ use yii\helpers\Inflector;
  * Collection of useful helper functions for Yii Applications
  *
  * @author dungphanxuan <dungpx.na@gmail.vn>
- * @since 1.0
+ * @since  1.0
  *
  */
 class FileHelper extends Inflector

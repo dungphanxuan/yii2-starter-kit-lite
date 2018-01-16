@@ -7,7 +7,7 @@ use yii\db\ActiveQuery;
 /**
  * Class UserTokenQuery
  * @package common\models\query
- * @author Eugene Terentev <eugene@terentev.net>
+ * @author  Eugene Terentev <eugene@terentev.net>
  */
 class UserTokenQuery extends ActiveQuery
 {

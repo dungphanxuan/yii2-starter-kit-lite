@@ -666,7 +666,7 @@ class Mobile_Detect
     /**
      * Construct an instance of this class.
      *
-     * @param array $headers Specify the headers as injection. Should be PHP _SERVER flavored.
+     * @param array  $headers   Specify the headers as injection. Should be PHP _SERVER flavored.
      *                          If left empty, will use the global _SERVER['HTTP_*'] vars instead.
      * @param string $userAgent Inject the User-Agent header. If null, will use HTTP_USER_AGENT
      *                          from the $headers array instead.
@@ -1059,7 +1059,7 @@ class Mobile_Detect
      *
      * @method boolean is[...]()
      * @param  string $name
-     * @param  array $arguments
+     * @param  array  $arguments
      *
      * @return mixed
      * @throws BadMethodCallException when the method doesn't exist and doesn't start with 'is'
@@ -1135,7 +1135,7 @@ class Mobile_Detect
      * Check if the device is mobile.
      * Returns true if any type of mobile device detected, including special ones
      *
-     * @param  null $userAgent deprecated
+     * @param  null $userAgent   deprecated
      * @param  null $httpHeaders deprecated
      *
      * @return bool
@@ -1173,8 +1173,8 @@ class Mobile_Detect
      * Check if the device is a tablet.
      * Return true if any type of tablet device is detected.
      *
-     * @param  string $userAgent deprecated
-     * @param  array $httpHeaders deprecated
+     * @param  string $userAgent   deprecated
+     * @param  array  $httpHeaders deprecated
      *
      * @return bool
      */
@@ -1205,7 +1205,7 @@ class Mobile_Detect
      * @todo: The httpHeaders part is not yet used.
      *
      * @param  string $key
-     * @param  string $userAgent deprecated
+     * @param  string $userAgent   deprecated
      * @param  string $httpHeaders deprecated
      *
      * @return bool|int|null
@@ -1235,7 +1235,7 @@ class Mobile_Detect
      * This method will be used to check custom regexes against
      * the User-Agent string.
      *
-     * @param $regex
+     * @param         $regex
      * @param  string $userAgent
      *
      * @return bool
@@ -1291,7 +1291,7 @@ class Mobile_Detect
      *
      * @param string $propertyName The name of the property. See self::getProperties() array
      *                             keys for all possible properties.
-     * @param string $type Either self::VERSION_TYPE_STRING to get a string value or
+     * @param string $type         Either self::VERSION_TYPE_STRING to get a string value or
      *                             self::VERSION_TYPE_FLOAT indicating a float value. This parameter
      *                             is optional and defaults to self::VERSION_TYPE_STRING. Passing an
      *                             invalid parameter will default to the this type as well.

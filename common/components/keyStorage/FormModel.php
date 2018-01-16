@@ -192,8 +192,8 @@ class FormModel extends Model
      * PHP setter magic method.
      * This method is overridden so that AR attributes can be accessed like properties.
      *
-     * @param string $name property name
-     * @param mixed $value property value
+     * @param string $name  property name
+     * @param mixed  $value property value
      */
     public function __set($name, $value)
     {
@@ -265,8 +265,8 @@ class FormModel extends Model
     /**
      * Sets the named attribute value.
      *
-     * @param string $name the attribute name
-     * @param mixed $value the attribute value.
+     * @param string $name  the attribute name
+     * @param mixed  $value the attribute value.
      *
      * @throws InvalidParamException if the named attribute does not exist.
      * @see hasAttribute()

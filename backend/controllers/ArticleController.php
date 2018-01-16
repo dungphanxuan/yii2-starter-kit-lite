@@ -79,6 +79,7 @@ class ArticleController extends Controller
 
             return $this->redirect(['index']);
         } else {
+            $model->status = Article::STATUS_PUBLISHED;
             return $this->render('create', [
                 'model'      => $model,
                 'categories' => ArticleCategory::find()->active()->all(),

@@ -18,7 +18,7 @@ function getMyId()
 
 /**
  * @param string $view
- * @param array $params
+ * @param array  $params
  *
  * @return string
  */
@@ -28,7 +28,7 @@ function render($view, $params = [])
 }
 
 /**
- * @param $url
+ * @param     $url
  * @param int $statusCode
  *
  * @return \yii\web\Response
@@ -39,9 +39,9 @@ function redirect($url, $statusCode = 302)
 }
 
 /**
- * @param $form \yii\widgets\ActiveForm
- * @param $model
- * @param $attribute
+ * @param       $form \yii\widgets\ActiveForm
+ * @param       $model
+ * @param       $attribute
  * @param array $inputOptions
  * @param array $fieldOptions
  *
@@ -64,7 +64,7 @@ function dataCache()
 
 /**
  * @param string $key
- * @param mixed $default
+ * @param mixed  $default
  *
  * @return mixed
  */

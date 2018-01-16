@@ -65,9 +65,9 @@ class KeyStorage extends Component
     }
 
     /**
-     * @param $key
-     * @param null $default
-     * @param bool $cache
+     * @param          $key
+     * @param null     $default
+     * @param bool     $cache
      * @param int|bool $cachingDuration
      *
      * @return mixed|null
@@ -114,7 +114,7 @@ class KeyStorage extends Component
     }
 
     /**
-     * @param $key
+     * @param      $key
      * @param bool $cache
      *
      * @return bool

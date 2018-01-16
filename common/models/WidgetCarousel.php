@@ -9,9 +9,9 @@ use yii\db\ActiveRecord;
 /**
  * This is the model class for table "widget_carousel".
  *
- * @property integer $id
- * @property string $key
- * @property integer $status
+ * @property integer              $id
+ * @property string               $key
+ * @property integer              $status
  *
  * @property WidgetCarouselItem[] $items
  */
