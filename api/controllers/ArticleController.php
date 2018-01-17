@@ -4,6 +4,7 @@ namespace api\controllers;
 
 use common\helpers\ArticleHelper;
 use common\models\Article;
+use yii\data\ActiveDataProvider;
 use yii\data\ArrayDataProvider;
 use yii\db\Query;
 
@@ -30,13 +31,13 @@ class ArticleController extends ApiController
         /*Add order by updated*/
         $query->orderBy('updated_at DESC');
 
-        $provider = new ArrayDataProvider([
-            'allModels'  => $query->all(),
+        $provider = new ActiveDataProvider([
+            'query'      => $query,
             'sort'       => [
                 'attributes' => ['id'],
             ],
             'pagination' => [
-                'pageSize' => 10,
+                'pageSize' => 15,
             ],
         ]);
         $articles = $provider->getModels();
