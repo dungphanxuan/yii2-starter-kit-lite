@@ -36,6 +36,8 @@ class ApiController extends Controller
     public function init()
     {
         parent::init();
+        //Set default language
+        \Yii::$app->language = 'vi';
         \Yii::$app->user->enableSession = false;
     }
 

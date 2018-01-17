@@ -33,6 +33,7 @@ class ArticleHelper extends Inflector
                 $data['attachments'] = $dataImage;
 
                 $appFormat = \Yii::$app->formatter;
+
                 $data['published_at'] = $model->published_at ? $appFormat->asDatetime($model->published_at) : '';
                 $data['update_time'] = $model->updated_at ? $appFormat->asDatetime($model->updated_at) : '';
                 $data['updated'] = $model->updated_at ? $model->updated_at : '';

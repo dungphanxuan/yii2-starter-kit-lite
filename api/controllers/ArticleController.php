@@ -20,7 +20,7 @@ class ArticleController extends ApiController
     public function actionIndex()
     {
         $timeFlag = getParam('flag', null);
-        $query = Article::find();
+        $query = Article::find()->asArray();
 
         if ($timeFlag) {
             if (isValidTimeStamp($timeFlag)) {
@@ -49,7 +49,7 @@ class ArticleController extends ApiController
         $data['last_update'] = $maxUpdated;
         $data_item = [];
         foreach ($articles as $articleItem) {
-            $data_item[] = ArticleHelper::getDetail($articleItem->id, true);
+            $data_item[] = ArticleHelper::getDetail($articleItem['id']);
         }
 
         $data['items'] = $data_item;
