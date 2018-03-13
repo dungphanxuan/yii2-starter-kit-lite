@@ -55,10 +55,10 @@ $config = [
         'assetManager'         => [
             'bundles' => [
                 'yii\bootstrap\BootstrapPluginAsset' => [
-                    'js' => ['https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js']
+                    'js' => ['https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js']
                 ],
                 'yii\bootstrap\BootstrapAsset'       => [
-                    'css' => ['https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'],
+                    'css' => ['https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'],
                 ],
                 'common\assets\Html5shiv'            => [
                     'sourcePath' => null,
@@ -70,9 +70,9 @@ $config = [
                         'https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js',
                     ]
                 ],
-                'yii\web\JqueryAsset'                => [
-                    'js' => ['https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js',]
-                ],
+                /* 'yii\web\JqueryAsset'                => [
+                     'js' => ['https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js',]
+                 ],*/
 
             ],
         ],

@@ -29,14 +29,14 @@ class ArticleController extends Controller
     }
 
     /**
-     * @param $slug
+     * @param $id
      *
      * @return string
      * @throws NotFoundHttpException
      */
-    public function actionView($slug)
+    public function actionView($id)
     {
-        $model = Article::find()->published()->andWhere(['slug' => $slug])->one();
+        $model = Article::find()->published()->andWhere(['id' => $id])->one();
         if (!$model) {
             throw new NotFoundHttpException;
         }
