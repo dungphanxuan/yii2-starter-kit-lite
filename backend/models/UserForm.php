@@ -32,7 +32,7 @@ class UserForm extends Model
             [
                 'username',
                 'unique',
-                'targetClass' => User::className(),
+                'targetClass' => User::class,
                 'filter'      => function ($query) {
                     if (!$this->getModel()->isNewRecord) {
                         $query->andWhere(['not', ['id' => $this->getModel()->id]]);
@@ -47,7 +47,7 @@ class UserForm extends Model
             [
                 'email',
                 'unique',
-                'targetClass' => User::className(),
+                'targetClass' => User::class,
                 'filter'      => function ($query) {
                     if (!$this->getModel()->isNewRecord) {
                         $query->andWhere(['not', ['id' => $this->getModel()->id]]);

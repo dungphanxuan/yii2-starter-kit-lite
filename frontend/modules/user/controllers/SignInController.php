@@ -47,7 +47,7 @@ class SignInController extends \yii\web\Controller
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'rules' => [
                     [
                         'actions' => [
@@ -84,7 +84,7 @@ class SignInController extends \yii\web\Controller
                 ]
             ],
             'verbs'  => [
-                'class'   => VerbFilter::className(),
+                'class'   => VerbFilter::class,
                 'actions' => [
                     'logout' => ['post']
                 ]

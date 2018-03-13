@@ -24,7 +24,7 @@ use yii\helpers\Html;
     <?php echo $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
 
     <?php echo $form->field($model, 'body')->widget(
-        \yii\imperavi\Widget::className(),
+        \yii\imperavi\Widget::class,
         [
             'plugins' => ['fullscreen', 'fontcolor', 'video'],
             'options' => [

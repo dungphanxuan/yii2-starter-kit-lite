@@ -43,7 +43,7 @@ abstract class BaseAction extends Action
         } else {
             $fileStorage = $this->fileStorage;
         }
-        $fileStorage = Instance::ensure($fileStorage, Storage::className());
+        $fileStorage = Instance::ensure($fileStorage, Storage::class);
 
         return $fileStorage;
     }

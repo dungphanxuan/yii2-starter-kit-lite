@@ -33,7 +33,7 @@ use yii\helpers\Html;
     <div class="row">
         <div class="col-sm-6">
             <?php
-            echo $form->field($model, 'category_id')->widget(Select2::classname(), [
+            echo $form->field($model, 'category_id')->widget(Select2::class, [
                 'data'          => ArrayHelper::map(
                     $categories,
                     'id',

@@ -55,7 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 'email:email',
                 [
-                    'class'     => EnumColumn::className(),
+                    'class'     => EnumColumn::class,
                     'attribute' => 'status',
                     'enum'      => User::statuses(),
                     'filter'    => User::statuses()

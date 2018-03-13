@@ -64,7 +64,7 @@ class Maintenance extends Component implements BootstrapInterface
                     'maintenanceText'   => $this->maintenanceText
                 ];
                 $app->catchAll = ['maintenance/index'];
-                Yii::$app->view->registerAssetBundle(MaintenanceAsset::className());
+                Yii::$app->view->registerAssetBundle(MaintenanceAsset::class);
             } else {
                 $app->catchAll = [
                     $this->catchAllRoute,

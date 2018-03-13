@@ -46,25 +46,25 @@ class File extends Object
     public static function create($file)
     {
 
-        if (is_a($file, self::className())) {
+        if (is_a($file, self::class)) {
             return $file;
         }
 
         // UploadedFile
-        if (is_a($file, UploadedFile::className())) {
+        if (is_a($file, UploadedFile::class)) {
             if ($file->error) {
                 throw new InvalidParamException("File upload error \"{$file->error}\"");
             }
 
             return \Yii::createObject([
-                'class'     => self::className(),
+                'class'     => self::class,
                 'path'      => $file->tempName,
                 'extension' => $file->getExtension()
             ]);
         } // Path
         else {
             return \Yii::createObject([
-                'class' => self::className(),
+                'class' => self::class,
                 'path'  => FileHelper::normalizePath($file)
             ]);
         }

@@ -20,7 +20,7 @@ class UserController extends ApiController
     {
         return ArrayHelper::merge(parent::behaviors(), [
             'verbs'         => [
-                'class'   => \yii\filters\VerbFilter::className(),
+                'class'   => \yii\filters\VerbFilter::class,
                 'actions' => [
                     'login'   => ['post'],
                     'sign-up' => ['post'],
@@ -28,7 +28,7 @@ class UserController extends ApiController
                 ],
             ],
             'authenticator' => [
-                'class'  => AccessTokenAuth::className(),
+                'class'  => AccessTokenAuth::class,
                 'except' => ['index', 'login', 'sign-up'],
             ]
         ]);

@@ -11,7 +11,7 @@ class TestController extends ApiController
     {
         $behaviors = parent::behaviors();
         $behaviors['authenticator'] = [
-            'class' => AccessTokenAuth::className(),
+            'class' => AccessTokenAuth::class,
         ];
 
         return $behaviors;
@@ -21,7 +21,7 @@ class TestController extends ApiController
     {
         $behaviors = parent::behaviors();
         $behaviors['access'] = [
-            'class' => AccessControl::className(),
+            'class' => AccessControl::class,
             'only'  => ['user'],
             'rules' => [
                 [

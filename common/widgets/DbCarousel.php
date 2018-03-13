@@ -40,7 +40,7 @@ class DbCarousel extends Carousel
             throw new InvalidConfigException;
         }
         $cacheKey = [
-            WidgetCarousel::className(),
+            WidgetCarousel::class,
             $this->key
         ];
         $items = Yii::$app->cache->get($cacheKey);

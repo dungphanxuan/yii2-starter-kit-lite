@@ -41,7 +41,7 @@ use yii\helpers\Url;
 
     <?php
     /* echo $form->field($model, 'body')->widget(
-         \yii\imperavi\Widget::className(),
+         \yii\imperavi\Widget::class,
          [
              'plugins' => ['fullscreen', 'fontcolor', 'video'],
              'options' => [
@@ -58,7 +58,7 @@ use yii\helpers\Url;
 
     <?php
     echo $form->field($model, 'body')->widget(
-        \froala\froalaeditor\FroalaEditorWidget::className(),
+        \froala\froalaeditor\FroalaEditorWidget::class,
         [
             'options'         => [
             ],
@@ -80,7 +80,7 @@ use yii\helpers\Url;
     <hr class="b2r" style="margin-right:0;margin-left:0;">
 
     <?php echo $form->field($model, 'thumbnail')->widget(
-        Upload::className(),
+        Upload::class,
         [
             //'url'             => ['/file-storage/upload'],
             'url'             => ['/file-storage/upload-storage'],
@@ -91,7 +91,7 @@ use yii\helpers\Url;
     ?>
 
     <?php echo $form->field($model, 'attachments')->widget(
-        Upload::className(),
+        Upload::class,
         [
             'url'              => ['/file-storage/upload'],
             'sortable'         => true,
@@ -116,7 +116,7 @@ use yii\helpers\Url;
     <?php echo $form->field($model, 'published_at', [
         'template' => '{label} <div class="row"><div class="col-xs-3 col-sm-3">{input}{error}{hint}</div></div>'
     ])->widget(
-        DateTimeWidget::className(),
+        DateTimeWidget::class,
         [
             'phpDatetimeFormat' => 'yyyy-MM-dd\'T\'HH:mm:ssZZZZZ'
         ]

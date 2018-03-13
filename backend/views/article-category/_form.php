@@ -32,7 +32,7 @@ use yii\helpers\Html;
     ])->dropDownList($categories, ['prompt' => 'Choose category']) ?>
 
     <?php echo $form->field($model, 'thumbnail')->widget(
-        \trntv\filekit\widget\Upload::className(),
+        \trntv\filekit\widget\Upload::class,
         [
             'url'             => ['/file-storage/upload'],
             'maxFileSize'     => 5000000, // 5 MiB

@@ -65,7 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'slug',
 
                     [
-                        'class'     => \common\grid\EnumColumn::className(),
+                        'class'     => \common\grid\EnumColumn::class,
                         'attribute' => 'status',
                         'enum'      => [
                             Yii::t('backend', 'Not Published'),
