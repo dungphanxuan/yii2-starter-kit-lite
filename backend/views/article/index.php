@@ -40,9 +40,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'options'      => ['id' => 'aw2'],
             'columns'      => [
                 [
-                    'class'          => 'yii\grid\CheckboxColumn',
-                    'headerOptions'  => ['style' => 'width:3%;text-align:center'],
-                    'contentOptions' => ['style' => 'width:3%;text-align:center'],
+                    'class'           => 'yii\grid\CheckboxColumn',
+                    'headerOptions'   => ['style' => 'width:3%;text-align:center'],
+                    'contentOptions'  => ['style' => 'width:3%;text-align:center'],
+                    'checkboxOptions' => [
+                        'class' => 'select-item'
+                    ]
                 ],
                 [
                     'attribute'      => 'id',
@@ -127,69 +130,87 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php
 
 $app_css = <<<CSS
-.imageList{
+.imageList {
     width: 80px;
     height: 50px;
 }
-.sValue{
-cursor:pointer
+
+.sValue {
+    cursor: pointer
 }
-.table-striped>tbody>tr:nth-of-type(odd) {
+
+.table-striped > tbody > tr:nth-of-type(odd) {
     background-color: #CFD8DC !important;
 }
+
 .form-group {
     margin-bottom: 5px !important;
+}
+
+.is-selected {
+    background-color: #e0e0e0 !important;
+}
+
+input[type='checkbox'] {
+    cursor: pointer;
 }
 CSS;
 $this->registerCss($app_css);
 
 $ajaxUrl = Url::to(['ajax-delete']);
 $app_js = <<<JS
-
 var instance = $('.lazy').Lazy({chainable: false});
-$(document).on('pjax:success', function() {
+$(document).on('pjax:success', function () {
     var pjaxElements = $('#datas .lazy');
 
     instance.addItems(pjaxElements);
     instance.update();
 });
 
-$(".btnDelete").click(function(){
+$(".btnDelete").click(function () {
     var keys = $('#aw2').yiiGridView('getSelectedRows');
-    if(keys.length > 0){
+    if (keys.length > 0) {
         bootbox.confirm({
-        message: "Are you sure you want to delete?",
-        buttons: {
-            confirm: {
-                label: 'Ok',
-                className: 'btn-success'
+            message: "Are you sure you want to delete?",
+            buttons: {
+                confirm: {
+                    label: 'Ok',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'Cancel',
+                    className: 'btn-danger'
+                }
             },
-            cancel: {
-                label: 'Cancel',
-                className: 'btn-danger'
+            callback: function (result) {
+                if (result) {
+                    var keys = $('#w1').yiiGridView('getSelectedRows');
+                    $.ajax({
+                        url: '$ajaxUrl',
+                        data: {
+                            ids: keys
+                        },
+                        error: function () {
+                            alert('An error occurred');
+                        },
+                        success: function (data) {
+                            $.pjax.reload({container: "#datas"});
+                        },
+                        type: 'POST'
+                    });
+                }
             }
-        },
-        callback: function (result) {
-            if(result){
-               var keys = $('#w1').yiiGridView('getSelectedRows');
-               $.ajax({
-                  url: '$ajaxUrl',
-                  data: {
-                     ids: keys
-                  },
-                  error: function() {
-                     alert('An error occurred');
-                  },
-                  success: function(data) {
-                     $.pjax.reload({container:"#datas"}); 
-                  },
-                  type: 'POST'
-               });
-             }
-            }
-        });     
-    }else{
+        });
+    } else {
         bootbox.alert("No item!");
+    }
+});
+
+$(document).on("change", ".select-item", function () {
+    if ($(this).is(":checked")) {
+        $(this).parents("tr").addClass("is-selected");
+    } else {
+        $(this).parents("tr").removeClass("is-selected");
     }
 });
 JS;

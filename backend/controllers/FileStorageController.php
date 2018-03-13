@@ -3,6 +3,10 @@
 namespace backend\controllers;
 
 use backend\modules\system\models\search\FileStorageItemSearch;
+use common\components\filesystem\actions\FilestackDeleteAction;
+use common\components\filesystem\actions\FilestackUploadAction;
+use common\components\filesystem\actions\StorageDeleteAction;
+use common\components\filesystem\actions\StorageUploadAction;
 use common\models\FileStorageItem;
 use Yii;
 use yii\filters\VerbFilter;
@@ -35,15 +39,15 @@ class FileStorageController extends Controller
     public function actions()
     {
         return [
-            'upload'          => [
+            'upload'                  => [
                 //'class' => 'trntv\filekit\actions\UploadAction',
                 'class'       => 'common\actions\filekit\UploadAction',
                 'deleteRoute' => 'upload-delete'
             ],
-            'upload-delete'   => [
+            'upload-delete'           => [
                 'class' => 'trntv\filekit\actions\DeleteAction'
             ],
-            'upload-imperavi' => [
+            'upload-imperavi'         => [
                 //'class' => 'trntv\filekit\actions\UploadAction',
                 'class'            => 'common\actions\filekit\UploadAction',
                 'fileparam'        => 'file',
@@ -51,12 +55,33 @@ class FileStorageController extends Controller
                 'multiple'         => false,
                 'disableCsrf'      => true
             ],
-            'upload-image'    => [
+            'upload-image'            => [
                 'class'            => 'common\actions\filekit\UploadAction',
                 'fileparam'        => 'image',
                 'responseUrlParam' => 'filelink',
                 'multiple'         => false,
                 'disableCsrf'      => true
+            ],
+            'upload-filestack-action' => [
+                'class'       => FilestackUploadAction::class,
+                'deleteRoute' => 'upload-delete-filestack',
+                'base_url'    => 'https://cdn.filestackcontent.com',
+            ],
+            'upload-storage'          => [
+                'class'       => StorageUploadAction::class,
+                'deleteRoute' => 'upload-delete-storage',
+                'base_url'    => 'https://storage.googleapis.com/yii_bucket',
+            ],
+
+            'upload-delete-storage'   => [
+                'class' => StorageDeleteAction::class
+            ],
+            'upload-delete-filestack' => [
+                'class' => FilestackDeleteAction::class
+            ],
+            'upload-delete-gcloud'    => [
+                'class'       => 'trntv\filekit\actions\DeleteAction',
+                'fileStorage' => 'fileStorageGCloud'
             ],
         ];
     }

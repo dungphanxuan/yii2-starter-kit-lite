@@ -36,15 +36,16 @@ $bundle = BackendAsset::register($this);
                                     'url'   => ['/timeline-event/index']
                                 ],
                                 [
-                                    'label' => Yii::t('backend', 'Articles'),
-                                    'url'   => ['/article/index']
+                                    'label'  => Yii::t('backend', 'Articles'),
+                                    'url'    => ['/article/index'],
+                                    'active' => (Yii::$app->controller->id == 'article'),
                                 ],
                                 [
-                                    'label' => Yii::t('backend', 'Content'),
-                                    'url'   => '#',
-                                    'items' => [
+                                    'label'  => Yii::t('backend', 'Content'),
+                                    'url'    => '#',
+                                    'active' => in_array(Yii::$app->controller->id, ['page', 'article-category', 'article-pickup']),
+                                    'items'  => [
                                         ['label' => Yii::t('backend', 'Static pages'), 'url' => ['/page/index']],
-                                        ['label' => Yii::t('backend', 'Articles'), 'url' => ['/article/index']],
                                         [
                                             'label' => Yii::t('backend', 'Article Pickup'),
                                             'url'   => ['/article-pickup/index']
@@ -58,12 +59,14 @@ $bundle = BackendAsset::register($this);
                                 [
                                     'label'   => Yii::t('backend', 'Users'),
                                     'url'     => ['/user/index'],
-                                    'visible' => Yii::$app->user->can('administrator')
+                                    'visible' => Yii::$app->user->can('administrator'),
+                                    'active'  => (Yii::$app->controller->id == 'user'),
                                 ],
                                 [
-                                    'label' => Yii::t('backend', 'Other'),
-                                    'url'   => '#',
-                                    'items' => [
+                                    'label'  => Yii::t('backend', 'Other'),
+                                    'url'    => '#',
+                                    'active' => in_array(Yii::$app->controller->id, ['i18n-source-message', 'i18n-message', 'key-storage', 'file-storage', 'cache', 'file-manager', 'system-information', 'log']),
+                                    'items'  => [
                                         [
                                             'label' => Yii::t('backend', 'Key-Value Storage'),
                                             'url'   => ['/system/key-storage/index']

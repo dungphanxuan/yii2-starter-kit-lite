@@ -23,6 +23,28 @@ $config = [
             'cachePath' => '@common/runtime/cache'
         ],
 
+        'vision' => [
+            'class'      => \common\components\google\VisionComponent::class,
+            'project_id' => 'valued-ceiling-167301',
+        ],
+
+        'cloudStorage' => [
+            'class'      => \common\components\google\StorageComponent::class,
+            'project_id' => env('GOOGLE_PROJECT_ID'),
+            'bucket'     => env('GOOGLE_STORAGE_BUCKETNAME'),
+        ],
+
+        'fcm' => [
+            'class'  => 'common\components\FcmComponent',
+            'apiKey' => env('FCM_KEY'), // Server API Key
+        ],
+
+        'fileStack' => [
+            'class'      => common\components\FilestackComponent::class,
+            'api_key'    => env('FILESTACK_API_KEY'),
+            'app_secret' => env('FILESTACK_API_SECRET'),
+        ],
+
         'dcache' => [
             'class'     => 'yii\caching\FileCache',
             'cachePath' => '@common/runtime/dcache'

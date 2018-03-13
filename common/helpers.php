@@ -90,6 +90,13 @@ function env($key, $default = false)
     return $value;
 }
 
+function getStoragePath()
+{
+    $storagePath = \Yii::getAlias('@storage');
+
+    return $storagePath;
+}
+
 function baseUrl()
 {
     return Yii::$app->request->baseUrl;
@@ -137,6 +144,11 @@ function isValidTimeStamp($timestamp)
     return ((string)(int)$timestamp === $timestamp)
         && ($timestamp <= PHP_INT_MAX)
         && ($timestamp >= ~PHP_INT_MAX);
+}
+
+function fileStorage()
+{
+    return Yii::$app->fileStorage;
 }
 
 function dd($data)

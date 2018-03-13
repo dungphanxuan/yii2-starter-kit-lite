@@ -32,9 +32,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'columns'      => [
                 [
-                    'class'          => 'yii\grid\CheckboxColumn',
-                    'headerOptions'  => ['style' => 'width:3%;text-align:center'],
-                    'contentOptions' => ['style' => 'width:3%;text-align:center'],
+                    'class'           => 'yii\grid\CheckboxColumn',
+                    'headerOptions'   => ['style' => 'width:3%;text-align:center'],
+                    'contentOptions'  => ['style' => 'width:3%;text-align:center'],
+                    'checkboxOptions' => [
+                        'class' => 'select-item'
+                    ]
                 ],
                 [
                     'attribute'      => 'id',
@@ -58,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'filter'    => User::statuses()
                 ],
                 'created_at:datetime',
-                'logged_at:datetime',
+                //'logged_at:datetime',
                 // 'updated_at',
 
                 ['class' => 'backend\grid\ActionColumn'],
@@ -70,9 +73,29 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?php
 $app_css = <<<CSS
-.table-striped>tbody>tr:nth-of-type(odd) {
+.table-striped > tbody > tr:nth-of-type(odd) {
     background-color: #CFD8DC !important;
+}
+
+.is-selected {
+    background-color: #e0e0e0 !important;
+}
+
+input[type='checkbox'] {
+    cursor: pointer;
 }
 CSS;
 
 $this->registerCss($app_css);
+
+$app_js = <<<JS
+$(document).on("change", ".select-item", function () {
+    if ($(this).is(":checked")) {
+        $(this).parents("tr").addClass("is-selected");
+    } else {
+        $(this).parents("tr").removeClass("is-selected");
+    }
+});
+JS;
+
+$this->registerJs($app_js);
