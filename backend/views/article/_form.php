@@ -82,8 +82,8 @@ use yii\helpers\Url;
     <?php echo $form->field($model, 'thumbnail')->widget(
         Upload::class,
         [
-            //'url'             => ['/file-storage/upload'],
-            'url'             => ['/file-storage/upload-storage'],
+            'url'             => ['/file-storage/upload'],
+            //'url'             => ['/file-storage/upload-storage'],
             //'url'             => ['/file-storage/upload-filestack-action'],
             'maxFileSize'     => 5000000, // 5 MiB
             'acceptFileTypes' => new \yii\web\JsExpression('/(\.|\/)(gif|jpe?g|png)$/i'),

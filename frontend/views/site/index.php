@@ -1,4 +1,7 @@
 <?php
+
+use yii\helpers\Url;
+
 /* @var $this yii\web\View */
 $this->title = Yii::$app->name;
 ?>
@@ -11,7 +14,8 @@ $this->title = Yii::$app->name;
             <p>This is a template for a simple marketing or informational website. It includes a large callout called a
                 jumbotron and three supporting pieces of content. Use it as a starting point to create something more
                 unique.</p>
-            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+            <p><a class="btn btn-primary btn-lg" href="<?= Url::to(['/article/index']) ?>" role="button">Learn more
+                    &raquo;</a></p>
         </div>
     </div>
 
