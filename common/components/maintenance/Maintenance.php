@@ -57,18 +57,18 @@ class Maintenance extends Component implements BootstrapInterface
             $this->maintenanceText = $this->maintenanceText ?: Yii::t('common', 'Down to maintenance.');
             if ($this->catchAllRoute === null) {
                 $app->controllerMap['maintenance'] = [
-                    'class'             => 'common\components\maintenance\controllers\MaintenanceController',
-                    'retryAfter'        => $this->retryAfter,
+                    'class' => 'common\components\maintenance\controllers\MaintenanceController',
+                    'retryAfter' => $this->retryAfter,
                     'maintenanceLayout' => $this->maintenanceLayout,
-                    'maintenanceView'   => $this->maintenanceView,
-                    'maintenanceText'   => $this->maintenanceText
+                    'maintenanceView' => $this->maintenanceView,
+                    'maintenanceText' => $this->maintenanceText
                 ];
                 $app->catchAll = ['maintenance/index'];
                 Yii::$app->view->registerAssetBundle(MaintenanceAsset::class);
             } else {
                 $app->catchAll = [
                     $this->catchAllRoute,
-                    'retryAfter'      => $this->retryAfter,
+                    'retryAfter' => $this->retryAfter,
                     'maintenanceText' => $this->maintenanceText
                 ];
             }

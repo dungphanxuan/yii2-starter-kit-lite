@@ -39,7 +39,7 @@ class ViewAction extends BaseAction
             pathinfo($path, PATHINFO_BASENAME),
             [
                 'mimeType' => $filesystem->getMimetype($path),
-                'inline'   => $this->inline
+                'inline' => $this->inline
             ]
         );
     }

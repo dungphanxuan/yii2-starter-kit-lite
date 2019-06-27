@@ -23,12 +23,10 @@ class AccountForm extends Model
         return [
             ['username', 'filter', 'filter' => 'trim'],
             ['username', 'required'],
-            [
-                'username',
-                'unique',
+            ['username', 'unique',
                 'targetClass' => '\common\models\User',
-                'message'     => Yii::t('backend', 'This username has already been taken.'),
-                'filter'      => function ($query) {
+                'message' => Yii::t('backend', 'This username has already been taken.'),
+                'filter' => function ($query) {
                     $query->andWhere(['not', ['id' => Yii::$app->user->id]]);
                 }
             ],
@@ -36,12 +34,10 @@ class AccountForm extends Model
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],
             ['email', 'email'],
-            [
-                'email',
-                'unique',
+            ['email', 'unique',
                 'targetClass' => '\common\models\User',
-                'message'     => Yii::t('backend', 'This email has already been taken.'),
-                'filter'      => function ($query) {
+                'message' => Yii::t('backend', 'This email has already been taken.'),
+                'filter' => function ($query) {
                     $query->andWhere(['not', ['id' => Yii::$app->user->getId()]]);
                 }
             ],
@@ -56,9 +52,9 @@ class AccountForm extends Model
     public function attributeLabels()
     {
         return [
-            'username'         => Yii::t('backend', 'Username'),
-            'email'            => Yii::t('backend', 'Email'),
-            'password'         => Yii::t('backend', 'Password'),
+            'username' => Yii::t('backend', 'Username'),
+            'email' => Yii::t('backend', 'Email'),
+            'password' => Yii::t('backend', 'Password'),
             'password_confirm' => Yii::t('backend', 'Password Confirm')
         ];
     }

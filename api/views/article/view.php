@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 Yii::$app->glide->createSignedUrl([
                     'glide/index',
                     'path' => $model->thumbnail_path,
-                    'w'    => 200
+                    'w' => 200
                 ], true),
                 ['class' => 'article-thumb img-rounded pull-left']
             ) ?>

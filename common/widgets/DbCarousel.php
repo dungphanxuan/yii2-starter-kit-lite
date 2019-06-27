@@ -50,8 +50,8 @@ class DbCarousel extends Carousel
                 ->joinWith('carousel')
                 ->where([
                     '{{%widget_carousel_item}}.status' => 1,
-                    '{{%widget_carousel}}.status'      => WidgetCarousel::STATUS_ACTIVE,
-                    '{{%widget_carousel}}.key'         => $this->key,
+                    '{{%widget_carousel}}.status' => WidgetCarousel::STATUS_ACTIVE,
+                    '{{%widget_carousel}}.key' => $this->key,
                 ])
                 ->orderBy(['order' => SORT_ASC]);
             foreach ($query->all() as $k => $item) {

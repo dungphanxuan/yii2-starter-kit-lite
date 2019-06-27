@@ -14,20 +14,20 @@ use yii\web\IdentityInterface;
 /**
  * User model
  *
- * @property integer                    $id
- * @property string                     $username
- * @property string                     $password_hash
- * @property string                     $email
- * @property string                     $auth_key
- * @property string                     $access_token
- * @property string                     $oauth_client
- * @property string                     $oauth_client_user_id
- * @property string                     $publicIdentity
- * @property integer                    $status
- * @property integer                    $created_at
- * @property integer                    $updated_at
- * @property integer                    $logged_at
- * @property string                     $password write-only password
+ * @property integer $id
+ * @property string $username
+ * @property string $password_hash
+ * @property string $email
+ * @property string $auth_key
+ * @property string $access_token
+ * @property string $oauth_client
+ * @property string $oauth_client_user_id
+ * @property string $publicIdentity
+ * @property integer $status
+ * @property integer $created_at
+ * @property integer $updated_at
+ * @property integer $logged_at
+ * @property string $password write-only password
  *
  * @property \common\models\UserProfile $userProfile
  */
@@ -67,19 +67,19 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             TimestampBehavior::class,
-            'auth_key'     => [
-                'class'      => AttributeBehavior::class,
+            'auth_key' => [
+                'class' => AttributeBehavior::class,
                 'attributes' => [
                     ActiveRecord::EVENT_BEFORE_INSERT => 'auth_key'
                 ],
-                'value'      => Yii::$app->getSecurity()->generateRandomString()
+                'value' => Yii::$app->getSecurity()->generateRandomString()
             ],
             'access_token' => [
-                'class'      => AttributeBehavior::class,
+                'class' => AttributeBehavior::class,
                 'attributes' => [
                     ActiveRecord::EVENT_BEFORE_INSERT => 'access_token'
                 ],
-                'value'      => function () {
+                'value' => function () {
                     return Yii::$app->getSecurity()->generateRandomString(40);
                 }
             ]
@@ -125,13 +125,13 @@ class User extends ActiveRecord implements IdentityInterface
     public function attributeLabels()
     {
         return [
-            'username'     => Yii::t('common', 'Username'),
-            'email'        => Yii::t('common', 'E-mail'),
-            'status'       => Yii::t('common', 'Status'),
+            'username' => Yii::t('common', 'Username'),
+            'email' => Yii::t('common', 'E-mail'),
+            'status' => Yii::t('common', 'Status'),
             'access_token' => Yii::t('common', 'API access token'),
-            'created_at'   => Yii::t('common', 'Created at'),
-            'updated_at'   => Yii::t('common', 'Updated at'),
-            'logged_at'    => Yii::t('common', 'Last login'),
+            'created_at' => Yii::t('common', 'Created at'),
+            'updated_at' => Yii::t('common', 'Updated at'),
+            'logged_at' => Yii::t('common', 'Last login'),
         ];
     }
 
@@ -263,8 +263,8 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             self::STATUS_NOT_ACTIVE => Yii::t('common', 'Not Active'),
-            self::STATUS_ACTIVE     => Yii::t('common', 'Active'),
-            self::STATUS_DELETED    => Yii::t('common', 'Deleted')
+            self::STATUS_ACTIVE => Yii::t('common', 'Active'),
+            self::STATUS_DELETED => Yii::t('common', 'Deleted')
         ];
     }
 
@@ -278,11 +278,11 @@ class User extends ActiveRecord implements IdentityInterface
         $this->refresh();
         Yii::$app->commandBus->handle(new AddToTimelineCommand([
             'category' => 'user',
-            'event'    => 'signup',
-            'data'     => [
+            'event' => 'signup',
+            'data' => [
                 'public_identity' => $this->getPublicIdentity(),
-                'user_id'         => $this->getId(),
-                'created_at'      => $this->created_at
+                'user_id' => $this->getId(),
+                'created_at' => $this->created_at
             ]
         ]));
         $profile = new UserProfile();

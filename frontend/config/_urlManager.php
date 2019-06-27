@@ -1,9 +1,9 @@
 <?php
 return [
-    'class'           => 'yii\web\UrlManager',
+    'class' => 'yii\web\UrlManager',
     'enablePrettyUrl' => true,
-    'showScriptName'  => false,
-    'rules'           => [
+    'showScriptName' => false,
+    'rules' => [
         // Pages
         ['pattern' => 'page/<slug>', 'route' => 'page/view'],
 

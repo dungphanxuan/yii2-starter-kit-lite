@@ -29,11 +29,11 @@ class ExtendedMessageController extends \yii\console\controllers\MessageControll
     public function actionReplaceSourceLanguage($configFile, $newSourceLanguage = false)
     {
         $config = [
-            'translator'   => 'Yii::t',
-            'overwrite'    => false,
+            'translator' => 'Yii::t',
+            'overwrite' => false,
             'removeUnused' => false,
-            'sort'         => false,
-            'format'       => 'php',
+            'sort' => false,
+            'format' => 'php',
         ];
 
         $configFile = Yii::getAlias($configFile);
@@ -113,11 +113,11 @@ class ExtendedMessageController extends \yii\console\controllers\MessageControll
         }
 
         $inputConfig = array_merge([
-            'translator'   => 'Yii::t',
-            'overwrite'    => false,
+            'translator' => 'Yii::t',
+            'overwrite' => false,
             'removeUnused' => false,
-            'sort'         => false,
-            'format'       => 'php',
+            'sort' => false,
+            'format' => 'php',
         ], require($inputConfigFile));
 
         switch ($inputConfig['format']) {
@@ -141,11 +141,11 @@ class ExtendedMessageController extends \yii\console\controllers\MessageControll
             }
 
             $outputConfig = array_merge([
-                'translator'   => 'Yii::t',
-                'overwrite'    => false,
+                'translator' => 'Yii::t',
+                'overwrite' => false,
                 'removeUnused' => false,
-                'sort'         => false,
-                'format'       => 'php',
+                'sort' => false,
+                'format' => 'php',
             ], require($outputConfigFile));
 
             switch ($outputConfig['format']) {
@@ -264,9 +264,9 @@ class ExtendedMessageController extends \yii\console\controllers\MessageControll
                         $insertedSourceMessages[$category][$lastId] = $m;
                     }
                     $db->createCommand()
-                        ->insert($messageTable, ['id'          => $lastId,
-                                                 'language'    => $language,
-                                                 'translation' => $translation
+                        ->insert($messageTable, ['id' => $lastId,
+                            'language' => $language,
+                            'translation' => $translation
                         ])->execute();
                 }
                 Console::endProgress();

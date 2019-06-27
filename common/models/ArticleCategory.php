@@ -12,13 +12,13 @@ use yii\db\ActiveRecord;
 /**
  * This is the model class for table "article_category".
  *
- * @property integer         $id
- * @property string          $slug
- * @property string          $title
- * @property integer         $order
- * @property integer         $status
+ * @property integer $id
+ * @property string $slug
+ * @property string $title
+ * @property integer $order
+ * @property integer $status
  *
- * @property Article[]       $articles
+ * @property Article[] $articles
  * @property ArticleCategory $parent
  */
 class ArticleCategory extends ActiveRecord
@@ -49,19 +49,30 @@ class ArticleCategory extends ActiveRecord
         return new ArticleCategoryQuery(get_called_class());
     }
 
+    /**
+     * @return array statuses list
+     */
+    public static function statuses()
+    {
+        return [
+            self::STATUS_DRAFT => Yii::t('common', 'Draft'),
+            self::STATUS_ACTIVE => Yii::t('common', 'Active'),
+        ];
+    }
+
     public function behaviors()
     {
         return [
             TimestampBehavior::class,
             [
-                'class'     => SluggableBehavior::class,
+                'class' => SluggableBehavior::class,
                 'attribute' => 'title',
                 'immutable' => true
             ],
             [
-                'class'            => UploadBehavior::class,
-                'attribute'        => 'thumbnail',
-                'pathAttribute'    => 'thumbnail_path',
+                'class' => UploadBehavior::class,
+                'attribute' => 'thumbnail',
+                'pathAttribute' => 'thumbnail_path',
                 'baseUrlAttribute' => 'thumbnail_base_url'
             ],
         ];
@@ -90,13 +101,13 @@ class ArticleCategory extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id'           => Yii::t('common', 'ID'),
-            'slug'         => Yii::t('common', 'Slug'),
-            'title'        => Yii::t('common', 'Title'),
-            'parent_id'    => Yii::t('common', 'Parent Category'),
-            'thumbnail'    => Yii::t('common', 'Thumbnail'),
-            'order'        => Yii::t('common', 'Order'),
-            'status'       => Yii::t('common', 'Active'),
+            'id' => Yii::t('common', 'ID'),
+            'slug' => Yii::t('common', 'Slug'),
+            'title' => Yii::t('common', 'Title'),
+            'parent_id' => Yii::t('common', 'Parent Category'),
+            'thumbnail' => Yii::t('common', 'Thumbnail'),
+            'order' => Yii::t('common', 'Order'),
+            'status' => Yii::t('common', 'Active'),
             'totalArticle' => Yii::t('common', 'Total Article')
         ];
     }

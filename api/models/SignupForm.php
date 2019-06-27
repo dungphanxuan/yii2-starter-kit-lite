@@ -27,14 +27,14 @@ class SignupForm extends Model
                 'username',
                 'unique',
                 'targetClass' => '\common\models\User',
-                'message'     => Yii::t('frontend', 'This username has already been taken.')
+                'message' => Yii::t('frontend', 'This username has already been taken.')
             ],
             ['username', 'string', 'min' => 2, 'max' => 255],
             [
                 'username',
                 'in',
-                'range'   => ['login', 'signup', 'oath', 'about', 'signout'],
-                'not'     => true,
+                'range' => ['login', 'signup', 'oath', 'about', 'signout'],
+                'not' => true,
                 'message' => Yii::t('frontend', 'Username is a reserved word.')
             ],
 
@@ -45,7 +45,7 @@ class SignupForm extends Model
                 'email',
                 'unique',
                 'targetClass' => '\common\models\User',
-                'message'     => Yii::t('frontend', 'This email address has already been taken.')
+                'message' => Yii::t('frontend', 'This email address has already been taken.')
             ],
 
             ['password', 'required'],
@@ -57,7 +57,7 @@ class SignupForm extends Model
     {
         return [
             'username' => Yii::t('frontend', 'Username'),
-            'email'    => Yii::t('frontend', 'E-mail'),
+            'email' => Yii::t('frontend', 'E-mail'),
             'password' => Yii::t('frontend', 'Password'),
         ];
     }

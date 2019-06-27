@@ -22,12 +22,12 @@ class TestController extends ApiController
         $behaviors = parent::behaviors();
         $behaviors['access'] = [
             'class' => AccessControl::class,
-            'only'  => ['user'],
+            'only' => ['user'],
             'rules' => [
                 [
-                    'allow'   => true,
+                    'allow' => true,
                     'actions' => ['user'],
-                    'roles'   => ['@'],
+                    'roles' => ['@'],
                 ]
             ],
         ];

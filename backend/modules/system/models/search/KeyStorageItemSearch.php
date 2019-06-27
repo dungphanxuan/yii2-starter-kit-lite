@@ -50,14 +50,10 @@ class KeyStorageItemSearch extends KeyStorageItem
         }
 
         $query->andFilterWhere([
-            'like',
-            'key',
-            $this->key
+            'like', 'key', $this->key,
         ]);
         $query->andFilterWhere([
-            'like',
-            'value',
-            $this->value
+            'like', 'value', $this->value,
         ]);
 
         return $dataProvider;

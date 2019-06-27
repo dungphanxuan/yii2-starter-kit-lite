@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="form-group">
                 <?php echo Html::submitButton(Yii::t('frontend', 'Submit'), [
                     'class' => 'btn btn-primary',
-                    'name'  => 'contact-button'
+                    'name' => 'contact-button'
                 ]) ?>
             </div>
             <?php ActiveForm::end(); ?>

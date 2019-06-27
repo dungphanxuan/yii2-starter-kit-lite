@@ -18,11 +18,11 @@ class ActionColumn extends \yii\grid\ActionColumn
      */
     public $buttonClass = [
         'delete' => 'danger',
-        'view'   => 'success',
+        'view' => 'success',
         'update' => 'info',
-        'copy'   => 'info',
-        'item'   => 'info',
-        'task'   => 'info',
+        'copy' => 'info',
+        'item' => 'info',
+        'task' => 'info',
         'search' => 'info'
     ];
 
@@ -35,10 +35,10 @@ class ActionColumn extends \yii\grid\ActionColumn
             $this->buttons[$name] = function ($url, $model, $key) use ($name, $iconName, $additionalOptions) {
                 $title = Yii::t('yii', ucfirst($name));
                 $options = array_merge([
-                    'title'      => $title,
-                    'class'      => 'btn btn-xs btn-' . $this->buttonClass[$name],
+                    'title' => $title,
+                    'class' => 'btn btn-xs btn-' . $this->buttonClass[$name],
                     'aria-label' => $title,
-                    'data-pjax'  => '0',
+                    'data-pjax' => '0',
                 ], $additionalOptions, $this->buttonOptions);
                 $icon = Html::tag('span', '', ['class' => "glyphicon glyphicon-$iconName"]);
 

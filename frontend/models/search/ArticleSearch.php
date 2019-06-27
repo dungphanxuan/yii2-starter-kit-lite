@@ -48,8 +48,8 @@ class ArticleSearch extends Article
         }
 
         $query->andFilterWhere([
-            'id'          => $this->id,
-            'slug'        => $this->slug,
+            'id' => $this->id,
+            'slug' => $this->slug,
             'category_id' => $this->category_id,
         ]);
 

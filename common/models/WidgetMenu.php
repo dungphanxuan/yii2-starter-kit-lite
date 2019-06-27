@@ -11,9 +11,9 @@ use yii\db\ActiveRecord;
  * This is the model class for table "widget_menu".
  *
  * @property integer $id
- * @property string  $key
- * @property string  $title
- * @property string  $items
+ * @property string $key
+ * @property string $title
+ * @property string $items
  * @property integer $status
  */
 class WidgetMenu extends ActiveRecord
@@ -33,9 +33,9 @@ class WidgetMenu extends ActiveRecord
     {
         return [
             'cacheInvalidate' => [
-                'class'          => CacheInvalidateBehavior::class,
+                'class' => CacheInvalidateBehavior::class,
                 'cacheComponent' => 'frontendCache',
-                'keys'           => [
+                'keys' => [
                     function ($model) {
                         return [
                             get_class($model),
@@ -68,10 +68,10 @@ class WidgetMenu extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id'     => Yii::t('common', 'ID'),
-            'key'    => Yii::t('common', 'Key'),
-            'title'  => Yii::t('common', 'Title'),
-            'items'  => Yii::t('common', 'Config'),
+            'id' => Yii::t('common', 'ID'),
+            'key' => Yii::t('common', 'Key'),
+            'title' => Yii::t('common', 'Title'),
+            'items' => Yii::t('common', 'Config'),
             'status' => Yii::t('common', 'Status')
         ];
     }

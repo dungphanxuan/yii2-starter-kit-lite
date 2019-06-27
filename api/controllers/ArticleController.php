@@ -32,8 +32,8 @@ class ArticleController extends ApiController
         $query->orderBy('updated_at DESC');
 
         $provider = new ActiveDataProvider([
-            'query'      => $query,
-            'sort'       => [
+            'query' => $query,
+            'sort' => [
                 'attributes' => ['id'],
             ],
             'pagination' => [

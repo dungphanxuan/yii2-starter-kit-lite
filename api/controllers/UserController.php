@@ -19,16 +19,16 @@ class UserController extends ApiController
     public function behaviors()
     {
         return ArrayHelper::merge(parent::behaviors(), [
-            'verbs'         => [
-                'class'   => \yii\filters\VerbFilter::class,
+            'verbs' => [
+                'class' => \yii\filters\VerbFilter::class,
                 'actions' => [
-                    'login'   => ['post'],
+                    'login' => ['post'],
                     'sign-up' => ['post'],
-                    'logout'  => ['post'],
+                    'logout' => ['post'],
                 ],
             ],
             'authenticator' => [
-                'class'  => AccessTokenAuth::class,
+                'class' => AccessTokenAuth::class,
                 'except' => ['index', 'login', 'sign-up'],
             ]
         ]);
@@ -185,8 +185,8 @@ class UserController extends ApiController
                         ->one();
 
                     $dataUser = [
-                        'user_id'      => $user->id,
-                        'username'     => $user->username,
+                        'user_id' => $user->id,
+                        'username' => $user->username,
                         'access_token' => Yii::$app->security->generateRandomString(40),
                     ];
                     if ($tokenModel) {
@@ -220,7 +220,7 @@ class UserController extends ApiController
 
         return array(
             'status' => $status,
-            'msg'    => $msg,
+            'msg' => $msg,
             'result' => $result
         );
     }

@@ -1,29 +1,29 @@
 <?php
 $config = [
-    'homeUrl'             => Yii::getAlias('@frontendUrl'),
+    'homeUrl' => Yii::getAlias('@frontendUrl'),
     'controllerNamespace' => 'frontend\controllers',
-    'defaultRoute'        => 'site/index',
-    'bootstrap'           => ['maintenance'],
-    'modules'             => [
+    'defaultRoute' => 'site/index',
+    'bootstrap' => ['maintenance'],
+    'modules' => [
         'user' => [
             'class' => 'frontend\modules\user\Module',
             //'shouldBeActivated' => true
         ]
     ],
-    'components'          => [
+    'components' => [
         'authClientCollection' => [
-            'class'   => 'yii\authclient\Collection',
+            'class' => 'yii\authclient\Collection',
             'clients' => [
-                'github'   => [
-                    'class'        => 'yii\authclient\clients\GitHub',
-                    'clientId'     => env('GITHUB_CLIENT_ID'),
+                'github' => [
+                    'class' => 'yii\authclient\clients\GitHub',
+                    'clientId' => env('GITHUB_CLIENT_ID'),
                     'clientSecret' => env('GITHUB_CLIENT_SECRET')
                 ],
                 'facebook' => [
-                    'class'          => 'yii\authclient\clients\Facebook',
-                    'clientId'       => env('FACEBOOK_CLIENT_ID'),
-                    'clientSecret'   => env('FACEBOOK_CLIENT_SECRET'),
-                    'scope'          => 'email,public_profile',
+                    'class' => 'yii\authclient\clients\Facebook',
+                    'clientId' => env('FACEBOOK_CLIENT_ID'),
+                    'clientSecret' => env('FACEBOOK_CLIENT_SECRET'),
+                    'scope' => 'email,public_profile',
                     'attributeNames' => [
                         'name',
                         'email',
@@ -33,40 +33,40 @@ $config = [
                 ]
             ]
         ],
-        'errorHandler'         => [
+        'errorHandler' => [
             'errorAction' => 'site/error'
         ],
-        'maintenance'          => [
-            'class'   => 'common\components\maintenance\Maintenance',
+        'maintenance' => [
+            'class' => 'common\components\maintenance\Maintenance',
             'enabled' => function ($app) {
                 return $app->keyStorage->get('frontend.maintenance') === 'enabled';
             }
         ],
-        'request'              => [
+        'request' => [
             'cookieValidationKey' => env('FRONTEND_COOKIE_VALIDATION_KEY')
         ],
-        'user'                 => [
-            'class'           => 'yii\web\User',
-            'identityClass'   => 'common\models\User',
-            'loginUrl'        => ['/user/sign-in/login'],
+        'user' => [
+            'class' => 'yii\web\User',
+            'identityClass' => 'common\models\User',
+            'loginUrl' => ['/user/sign-in/login'],
             'enableAutoLogin' => true,
-            'as afterLogin'   => 'common\behaviors\LoginTimestampBehavior'
+            'as afterLogin' => 'common\behaviors\LoginTimestampBehavior'
         ],
-        'assetManager'         => [
+        'assetManager' => [
             'bundles' => [
                 'yii\bootstrap\BootstrapPluginAsset' => [
                     'js' => ['https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js']
                 ],
-                'yii\bootstrap\BootstrapAsset'       => [
+                'yii\bootstrap\BootstrapAsset' => [
                     'css' => ['https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'],
                 ],
-                'common\assets\Html5shiv'            => [
+                'common\assets\Html5shiv' => [
                     'sourcePath' => null,
-                    'js'         => ['https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js'],
+                    'js' => ['https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js'],
                 ],
-                'common\assets\JquerySlimScroll'     => [
+                'common\assets\JquerySlimScroll' => [
                     'sourcePath' => null,
-                    'js'         => [
+                    'js' => [
                         'https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js',
                     ]
                 ],
@@ -81,10 +81,10 @@ $config = [
 
 if (YII_ENV_DEV) {
     $config['modules']['gii'] = [
-        'class'      => 'yii\gii\Module',
+        'class' => 'yii\gii\Module',
         'generators' => [
             'crud' => [
-                'class'           => 'yii\gii\generators\crud\Generator',
+                'class' => 'yii\gii\generators\crud\Generator',
                 'messageCategory' => 'frontend'
             ]
         ]

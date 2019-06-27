@@ -18,7 +18,7 @@ function getMyId()
 
 /**
  * @param string $view
- * @param array  $params
+ * @param array $params
  *
  * @return string
  */
@@ -64,7 +64,7 @@ function dataCache()
 
 /**
  * @param string $key
- * @param mixed  $default
+ * @param mixed $default
  *
  * @return mixed
  */

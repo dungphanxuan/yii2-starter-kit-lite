@@ -4,7 +4,9 @@
  */
 
 use backend\assets_b\BackendAsset;
+use backend\modules\system\models\SystemLog;
 use common\models\TimelineEvent;
+use yii\bootstrap\Nav;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -28,61 +30,61 @@ $bundle = BackendAsset::register($this);
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
 
-                        <?php echo \yii\bootstrap\Nav::widget([
+                        <?php echo Nav::widget([
                             'options' => ['class' => 'nav navbar-nav'],
-                            'items'   => [
+                            'items' => [
                                 [
                                     'label' => Yii::t('backend', 'Timeline'),
-                                    'url'   => ['/timeline-event/index']
+                                    'url' => ['/timeline-event/index']
                                 ],
                                 [
-                                    'label'  => Yii::t('backend', 'Articles'),
-                                    'url'    => ['/article/index'],
+                                    'label' => Yii::t('backend', 'Articles'),
+                                    'url' => ['/content/article/index'],
                                     'active' => (Yii::$app->controller->id == 'article'),
                                 ],
                                 [
-                                    'label'  => Yii::t('backend', 'Content'),
-                                    'url'    => '#',
+                                    'label' => Yii::t('backend', 'Content'),
+                                    'url' => '#',
                                     'active' => in_array(Yii::$app->controller->id, ['page', 'article-category', 'article-pickup']),
-                                    'items'  => [
-                                        ['label' => Yii::t('backend', 'Static pages'), 'url' => ['/page/index']],
+                                    'items' => [
+                                        ['label' => Yii::t('backend', 'Static pages'), 'url' => ['/content/page/index']],
                                         [
                                             'label' => Yii::t('backend', 'Article Pickup'),
-                                            'url'   => ['/article-pickup/index']
+                                            'url' => ['/content/article-pickup/index']
                                         ],
                                         [
                                             'label' => Yii::t('backend', 'Article Categories'),
-                                            'url'   => ['/article-category/index']
+                                            'url' => ['/content/category/index']
                                         ],
                                     ]
                                 ],
                                 [
-                                    'label'   => Yii::t('backend', 'Users'),
-                                    'url'     => ['/user/index'],
+                                    'label' => Yii::t('backend', 'Users'),
+                                    'url' => ['/user/index'],
                                     'visible' => Yii::$app->user->can('administrator'),
-                                    'active'  => (Yii::$app->controller->id == 'user'),
+                                    'active' => (Yii::$app->controller->id == 'user'),
                                 ],
                                 [
-                                    'label'  => Yii::t('backend', 'Other'),
-                                    'url'    => '#',
+                                    'label' => Yii::t('backend', 'Other'),
+                                    'url' => '#',
                                     'active' => in_array(Yii::$app->controller->id, ['i18n-source-message', 'i18n-message', 'key-storage', 'file-storage', 'cache', 'file-manager', 'system-information', 'log']),
-                                    'items'  => [
+                                    'items' => [
                                         [
                                             'label' => Yii::t('backend', 'Key-Value Storage'),
-                                            'url'   => ['/system/key-storage/index']
+                                            'url' => ['/system/key-storage/index']
                                         ],
                                         [
                                             'label' => Yii::t('backend', 'File Storage'),
-                                            'url'   => ['/file-storage/index']
+                                            'url' => ['/file/storage/index']
                                         ],
                                         ['label' => Yii::t('backend', 'Cache'), 'url' => ['/system/cache/index']],
                                         [
                                             'label' => Yii::t('backend', 'File Manager'),
-                                            'url'   => ['/system/file-manager/index']
+                                            'url' => ['/file/manager/index']
                                         ],
                                         [
-                                            'label'        => Yii::t('backend', 'Logs'),
-                                            'url'          => ['/system/log/index'],
+                                            'label' => Yii::t('backend', 'Logs'),
+                                            'url' => ['/system/log/index'],
                                             'badgeBgClass' => 'label-danger',
                                         ],
 
@@ -109,15 +111,15 @@ $bundle = BackendAsset::register($this);
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-warning"></i>
                                     <span class="label label-danger">
-                                <?php echo \backend\models\SystemLog::find()->count() ?>
+                                <?php echo SystemLog::find()->count() ?>
                             </span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li class="header"><?php echo Yii::t('backend', 'You have {num} log items', ['num' => \backend\models\SystemLog::find()->count()]) ?></li>
+                                    <li class="header"><?php echo Yii::t('backend', 'You have {num} log items', ['num' => SystemLog::find()->count()]) ?></li>
                                     <li>
                                         <!-- inner menu: contains the actual data -->
                                         <ul class="menu">
-                                            <?php foreach (\backend\models\SystemLog::find()->orderBy(['log_time' => SORT_DESC])->limit(5)->all() as $logEntry): ?>
+                                            <?php foreach (SystemLog::find()->orderBy(['log_time' => SORT_DESC])->limit(5)->all() as $logEntry): ?>
                                                 <li>
                                                     <a href="<?php echo Yii::$app->urlManager->createUrl([
                                                         '/system/log/view',
@@ -163,7 +165,7 @@ $bundle = BackendAsset::register($this);
                                         </div>
                                         <div class="pull-right">
                                             <?php echo Html::a(Yii::t('backend', 'Logout'), ['/sign-in/logout'], [
-                                                'class'       => 'btn btn-default btn-flat',
+                                                'class' => 'btn btn-default btn-flat',
                                                 'data-method' => 'post'
                                             ]) ?>
                                         </div>
@@ -194,11 +196,11 @@ $bundle = BackendAsset::register($this);
                         </h1>
 
                         <?php echo Breadcrumbs::widget([
-                            'tag'      => 'ol',
-                            'links'    => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                            'tag' => 'ol',
+                            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                             'homeLink' => [
-                                'label'  => '<i class="fa fa-dashboard"></i> ' . Yii::t('yii', 'Home'),
-                                'url'    => Yii::$app->homeUrl,
+                                'label' => '<i class="fa fa-dashboard"></i> ' . Yii::t('yii', 'Home'),
+                                'url' => Yii::$app->homeUrl,
                                 'encode' => false,
                             ]
                         ]) ?>
@@ -208,7 +210,7 @@ $bundle = BackendAsset::register($this);
                     <section class="content">
                         <?php if (Yii::$app->session->hasFlash('alert')): ?>
                             <?php echo \yii\bootstrap\Alert::widget([
-                                'body'    => ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'body'),
+                                'body' => ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'body'),
                                 'options' => ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'options'),
                             ]) ?>
                         <?php endif; ?>

@@ -19,7 +19,7 @@ use yii\helpers\Html;
         ]); ?>
 
         <?php echo $form->errorSummary($model, [
-            'class'  => 'alert alert-warning alert-dismissible',
+            'class' => 'alert alert-warning alert-dismissible',
             'header' => ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-warning"></i> Please fix the following errors</h4>'
         ]); ?>
 
@@ -29,8 +29,8 @@ use yii\helpers\Html;
 
         <?php echo $form->field($model, 'password')->passwordInput([
             'autocomplete' => 'off',
-            'readonly'     => true,
-            'onfocus'      => "this.removeAttribute('readonly');",
+            'readonly' => true,
+            'onfocus' => "this.removeAttribute('readonly');",
         ]) ?>
 
         <?php echo $form->field($model, 'status', [
@@ -50,7 +50,7 @@ use yii\helpers\Html;
             <div class="col-sm-3 col-xs-4">
                 <?php echo Html::submitButton(Yii::t('backend', 'Save'), [
                     'class' => 'btn btn-primary btn200',
-                    'name'  => 'signup-button'
+                    'name' => 'signup-button'
                 ]) ?>
             </div>
             <div class="col-sm-3 col-xs-2">
@@ -59,9 +59,9 @@ use yii\helpers\Html;
                     echo Html::a('Delete', ['delete', 'id' => $model->username],
                         [
                             'class' => 'btn btn-warning btn200 bold',
-                            'data'  => [
+                            'data' => [
                                 'confirm' => 'Are you sure you want to delete?',
-                                'method'  => 'post',
+                                'method' => 'post',
                             ]
                         ]);
                 }

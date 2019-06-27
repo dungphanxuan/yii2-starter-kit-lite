@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="form-group">
                 <?php echo Html::submitButton(Yii::t('frontend', 'Signup'), [
                     'class' => 'btn btn-primary',
-                    'name'  => 'signup-button'
+                    'name' => 'signup-button'
                 ]) ?>
             </div>
             <h2><?php echo Yii::t('frontend', 'Sign up with') ?>:</h2>

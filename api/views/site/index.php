@@ -5,7 +5,7 @@ $this->title = Yii::$app->name;
 <div class="site-index">
 
     <?php echo \common\widgets\DbCarousel::widget([
-        'key'     => 'index',
+        'key' => 'index',
         'options' => [
             'class' => 'slide', // enables slide effect
         ],
@@ -17,7 +17,7 @@ $this->title = Yii::$app->name;
         <p class="lead">You have successfully created your Yii-powered application.</p>
 
         <?php echo common\widgets\DbMenu::widget([
-            'key'     => 'frontend-index',
+            'key' => 'frontend-index',
             'options' => [
                 'tag' => 'p'
             ]

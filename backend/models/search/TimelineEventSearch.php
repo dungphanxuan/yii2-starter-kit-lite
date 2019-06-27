@@ -50,7 +50,7 @@ class TimelineEventSearch extends TimelineEvent
         }
 
         $query->andFilterWhere([
-            'id'         => $this->id,
+            'id' => $this->id,
             'created_at' => $this->created_at,
         ]);
 

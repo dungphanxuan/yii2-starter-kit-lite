@@ -52,9 +52,9 @@ class GlobalAccessBehavior extends Behavior
     public function beforeAction()
     {
         Yii::$app->controller->attachBehavior('access', [
-            'class'        => $this->accessControlFilter,
+            'class' => $this->accessControlFilter,
             'denyCallback' => $this->denyCallback,
-            'rules'        => $this->rules
+            'rules' => $this->rules
         ]);
     }
 }

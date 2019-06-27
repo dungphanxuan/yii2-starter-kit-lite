@@ -13,25 +13,25 @@ use yii\db\ActiveRecord;
 /**
  * This is the model class for table "article".
  *
- * @property integer             $id
- * @property string              $slug
- * @property string              $title
- * @property string              $body
- * @property string              $view
- * @property string              $thumbnail_base_url
- * @property string              $thumbnail_path
- * @property array               $attachments
- * @property integer             $author_id
- * @property integer             $updater_id
- * @property integer             $category_id
- * @property integer             $status
- * @property integer             $published_at
- * @property integer             $created_at
- * @property integer             $updated_at
+ * @property integer $id
+ * @property string $slug
+ * @property string $title
+ * @property string $body
+ * @property string $view
+ * @property string $thumbnail_base_url
+ * @property string $thumbnail_path
+ * @property array $attachments
+ * @property integer $author_id
+ * @property integer $updater_id
+ * @property integer $category_id
+ * @property integer $status
+ * @property integer $published_at
+ * @property integer $created_at
+ * @property integer $updated_at
  *
- * @property User                $author
- * @property User                $updater
- * @property ArticleCategory     $category
+ * @property User $author
+ * @property User $updater
+ * @property ArticleCategory $category
  * @property ArticleAttachment[] $articleAttachments
  */
 class Article extends ActiveRecord
@@ -66,39 +66,45 @@ class Article extends ActiveRecord
     }
 
     /**
+     * @return array statuses list
+     */
+    public static function statuses()
+    {
+        return [
+            self::STATUS_DRAFT => Yii::t('common', 'Draft'),
+            self::STATUS_PUBLISHED => Yii::t('common', 'Published'),
+        ];
+    }
+
+    /**
      * @inheritdoc
      */
     public function behaviors()
     {
         return [
             TimestampBehavior::class,
+            BlameableBehavior::class,
             [
-                'class'              => BlameableBehavior::class,
-                'createdByAttribute' => 'author_id',
-                'updatedByAttribute' => 'updater_id',
-
-            ],
-            [
-                'class'     => SluggableBehavior::class,
+                'class' => SluggableBehavior::class,
                 'attribute' => 'title',
                 'immutable' => true
             ],
             [
-                'class'            => UploadBehavior::class,
-                'attribute'        => 'attachments',
-                'multiple'         => true,
-                'uploadRelation'   => 'articleAttachments',
-                'pathAttribute'    => 'path',
+                'class' => UploadBehavior::class,
+                'attribute' => 'attachments',
+                'multiple' => true,
+                'uploadRelation' => 'articleAttachments',
+                'pathAttribute' => 'path',
                 'baseUrlAttribute' => 'base_url',
-                'orderAttribute'   => 'order',
-                'typeAttribute'    => 'type',
-                'sizeAttribute'    => 'size',
-                'nameAttribute'    => 'name',
+                'orderAttribute' => 'order',
+                'typeAttribute' => 'type',
+                'sizeAttribute' => 'size',
+                'nameAttribute' => 'name',
             ],
             [
-                'class'            => UploadBehavior::class,
-                'attribute'        => 'thumbnail',
-                'pathAttribute'    => 'thumbnail_path',
+                'class' => UploadBehavior::class,
+                'attribute' => 'thumbnail',
+                'pathAttribute' => 'thumbnail_path',
                 'baseUrlAttribute' => 'thumbnail_base_url'
             ]
         ];
@@ -122,7 +128,7 @@ class Article extends ActiveRecord
             ],
             [['published_at'], 'filter', 'filter' => 'strtotime', 'skipOnEmpty' => true],
             [['category_id'], 'exist', 'targetClass' => ArticleCategory::class, 'targetAttribute' => 'id'],
-            [['author_id', 'updater_id', 'status'], 'integer'],
+            [['status'], 'integer'],
             [['slug', 'thumbnail_base_url', 'thumbnail_path'], 'string', 'max' => 1024],
             [['title'], 'string', 'max' => 512],
             [['view'], 'string', 'max' => 255],
@@ -136,19 +142,19 @@ class Article extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id'           => Yii::t('common', 'ID'),
-            'slug'         => Yii::t('common', 'Slug'),
-            'title'        => Yii::t('common', 'Title'),
-            'body'         => Yii::t('common', 'Body'),
-            'view'         => Yii::t('common', 'Article View'),
-            'thumbnail'    => Yii::t('common', 'Thumbnail'),
-            'author_id'    => Yii::t('common', 'Author'),
-            'updater_id'   => Yii::t('common', 'Updater'),
-            'category_id'  => Yii::t('common', 'Category'),
-            'status'       => Yii::t('common', 'Published'),
+            'id' => Yii::t('common', 'ID'),
+            'slug' => Yii::t('common', 'Slug'),
+            'title' => Yii::t('common', 'Title'),
+            'body' => Yii::t('common', 'Body'),
+            'view' => Yii::t('common', 'Article View'),
+            'thumbnail' => Yii::t('common', 'Thumbnail'),
+            'category_id' => Yii::t('common', 'Category'),
+            'status' => Yii::t('common', 'Published'),
             'published_at' => Yii::t('common', 'Published At'),
-            'created_at'   => Yii::t('common', 'Created At'),
-            'updated_at'   => Yii::t('common', 'Updated At')
+            'created_by' => Yii::t('common', 'Author'),
+            'updated_by' => Yii::t('common', 'Updater'),
+            'created_at' => Yii::t('common', 'Created At'),
+            'updated_at' => Yii::t('common', 'Updated At')
         ];
     }
 
@@ -157,7 +163,7 @@ class Article extends ActiveRecord
      */
     public function getAuthor()
     {
-        return $this->hasOne(User::class, ['id' => 'author_id']);
+        return $this->hasOne(User::class, ['id' => 'created_by']);
     }
 
     /**
@@ -239,7 +245,7 @@ class Article extends ActiveRecord
                 $signConfig = [
                     'glide/index',
                     'path' => $path,
-                    'fit'  => 'crop'
+                    'fit' => 'crop'
                 ];
                 if ($w) {
                     $signConfig['w'] = $w;
@@ -253,9 +259,9 @@ class Article extends ActiveRecord
                 $signConfig = [
                     'glide/index',
                     'path' => $path,
-                    'w'    => '480',
-                    'h'    => '240',
-                    'fit'  => 'crop'
+                    'w' => '480',
+                    'h' => '240',
+                    'fit' => 'crop'
                 ];
 
                 $url = Yii::$app->glide->createSignedUrl($signConfig);

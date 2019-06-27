@@ -2,11 +2,10 @@
 
 namespace backend\modules\system\controllers;
 
-use backend\models\SystemLog;
 use backend\modules\system\models\search\SystemLogSearch;
+use backend\modules\system\models\SystemLog;
 use Yii;
 use yii\filters\VerbFilter;
-use yii\helpers\VarDumper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
@@ -15,14 +14,16 @@ use yii\web\NotFoundHttpException;
  */
 class LogController extends Controller
 {
+
+    /** @inheritdoc */
     public function behaviors()
     {
         return [
             'verbs' => [
-                'class'   => VerbFilter::class,
+                'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['post'],
-                    'clear'  => ['post'],
+                    'clear' => ['post'],
                 ],
             ],
         ];
@@ -30,6 +31,7 @@ class LogController extends Controller
 
     /**
      * Lists all SystemLog models.
+     *
      * @return mixed
      */
     public function actionIndex()
@@ -43,11 +45,11 @@ class LogController extends Controller
             return $this->refresh();
         }
         $dataProvider->sort = [
-            'defaultOrder' => ['log_time' => SORT_DESC]
+            'defaultOrder' => ['log_time' => SORT_DESC],
         ];
 
         return $this->render('index', [
-            'searchModel'  => $searchModel,
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }

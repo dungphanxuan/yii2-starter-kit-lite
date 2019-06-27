@@ -11,16 +11,16 @@ use yii\db\ActiveRecord;
  *
  * @property integer $user_id
  * @property integer $locale
- * @property string  $firstname
- * @property string  $middlename
- * @property string  $lastname
- * @property string  $picture
- * @property string  $avatar
- * @property string  $avatar_path
- * @property string  $avatar_base_url
+ * @property string $firstname
+ * @property string $middlename
+ * @property string $lastname
+ * @property string $picture
+ * @property string $avatar
+ * @property string $avatar_path
+ * @property string $avatar_base_url
  * @property integer $gender
  *
- * @property User    $user
+ * @property User $user
  */
 class UserProfile extends ActiveRecord
 {
@@ -39,9 +39,9 @@ class UserProfile extends ActiveRecord
     {
         return [
             'picture' => [
-                'class'            => UploadBehavior::class,
-                'attribute'        => 'picture',
-                'pathAttribute'    => 'avatar_path',
+                'class' => UploadBehavior::class,
+                'attribute' => 'picture',
+                'pathAttribute' => 'avatar_path',
                 'baseUrlAttribute' => 'avatar_base_url'
             ]
         ];
@@ -78,13 +78,13 @@ class UserProfile extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'user_id'    => Yii::t('common', 'User ID'),
-            'firstname'  => Yii::t('common', 'Firstname'),
+            'user_id' => Yii::t('common', 'User ID'),
+            'firstname' => Yii::t('common', 'Firstname'),
             'middlename' => Yii::t('common', 'Middlename'),
-            'lastname'   => Yii::t('common', 'Lastname'),
-            'locale'     => Yii::t('common', 'Locale'),
-            'picture'    => Yii::t('common', 'Picture'),
-            'gender'     => Yii::t('common', 'Gender'),
+            'lastname' => Yii::t('common', 'Lastname'),
+            'locale' => Yii::t('common', 'Locale'),
+            'picture' => Yii::t('common', 'Picture'),
+            'gender' => Yii::t('common', 'Gender'),
         ];
     }
 

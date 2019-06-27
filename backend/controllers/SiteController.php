@@ -36,44 +36,44 @@ class SiteController extends \yii\web\Controller
     {
         $model = new FormModel([
             'keys' => [
-                'frontend.maintenance'             => [
+                'frontend.maintenance' => [
                     'label' => Yii::t('backend', 'Frontend maintenance mode'),
-                    'type'  => FormModel::TYPE_DROPDOWN,
+                    'type' => FormModel::TYPE_DROPDOWN,
                     'items' => [
                         'disabled' => Yii::t('backend', 'Disabled'),
-                        'enabled'  => Yii::t('backend', 'Enabled')
+                        'enabled' => Yii::t('backend', 'Enabled')
                     ]
                 ],
-                'backend.theme-skin'               => [
+                'backend.theme-skin' => [
                     'label' => Yii::t('backend', 'Backend theme'),
-                    'type'  => FormModel::TYPE_DROPDOWN,
+                    'type' => FormModel::TYPE_DROPDOWN,
                     'items' => [
-                        'skin-black'  => 'skin-black',
-                        'skin-blue'   => 'skin-blue',
-                        'skin-green'  => 'skin-green',
+                        'skin-black' => 'skin-black',
+                        'skin-blue' => 'skin-blue',
+                        'skin-green' => 'skin-green',
                         'skin-purple' => 'skin-purple',
-                        'skin-red'    => 'skin-red',
+                        'skin-red' => 'skin-red',
                         'skin-yellow' => 'skin-yellow'
                     ]
                 ],
-                'backend.layout-fixed'             => [
+                'backend.layout-fixed' => [
                     'label' => Yii::t('backend', 'Fixed backend layout'),
-                    'type'  => FormModel::TYPE_CHECKBOX
+                    'type' => FormModel::TYPE_CHECKBOX
                 ],
-                'backend.layout-boxed'             => [
+                'backend.layout-boxed' => [
                     'label' => Yii::t('backend', 'Boxed backend layout'),
-                    'type'  => FormModel::TYPE_CHECKBOX
+                    'type' => FormModel::TYPE_CHECKBOX
                 ],
                 'backend.layout-collapsed-sidebar' => [
                     'label' => Yii::t('backend', 'Backend sidebar collapsed'),
-                    'type'  => FormModel::TYPE_CHECKBOX
+                    'type' => FormModel::TYPE_CHECKBOX
                 ]
             ]
         ]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('alert', [
-                'body'    => Yii::t('backend', 'Settings was successfully saved'),
+                'body' => Yii::t('backend', 'Settings was successfully saved'),
                 'options' => ['class' => 'alert alert-success']
             ]);
 
@@ -109,17 +109,17 @@ class SiteController extends \yii\web\Controller
             $fromDate = strtotime("+1 day", $fromDate);
         }
         $arrDataset[] = [
-            'label'                => 'Upload Stat',
-            'backgroundColor'      => "rgba(255,99,132,0.2)",
-            'borderColor'          => "rgba(255,99,132,1)",
+            'label' => 'Upload Stat',
+            'backgroundColor' => "rgba(255,99,132,0.2)",
+            'borderColor' => "rgba(255,99,132,1)",
             'pointBackgroundColor' => "rgba(255,99,132,1)",
-            'fill'                 => false,
-            'data'                 => $dataDate,
+            'fill' => false,
+            'data' => $dataDate,
         ];
 
         return $this->render('chart', [
-            'dateRange'  => $dateRange,
-            'arrLabel'   => $arrLabel,
+            'dateRange' => $dateRange,
+            'arrLabel' => $arrLabel,
             'arrDataset' => $arrDataset
         ]);
     }

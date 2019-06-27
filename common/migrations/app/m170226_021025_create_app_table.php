@@ -13,9 +13,9 @@ class m170226_021025_create_app_table extends \common\migrations\BaseMigration
     public function up()
     {
         $this->createTable('app', [
-            'id'         => $this->primaryKey(),
-            'name'       => $this->string(255)->notNull(),
-            'status'     => $this->smallInteger()->defaultValue(1),
+            'id' => $this->primaryKey(),
+            'name' => $this->string(255)->notNull(),
+            'status' => $this->smallInteger()->defaultValue(1),
             'created_by' => $this->integer(),
             'created_at' => $this->dateTime(),
             'updated_at' => $this->dateTime(),

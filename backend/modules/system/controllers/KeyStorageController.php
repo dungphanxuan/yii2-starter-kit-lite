@@ -4,6 +4,7 @@ namespace backend\modules\system\controllers;
 
 use backend\modules\system\models\search\KeyStorageItemSearch;
 use common\models\KeyStorageItem;
+use common\traits\FormAjaxValidationTrait;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -14,11 +15,14 @@ use yii\web\NotFoundHttpException;
  */
 class KeyStorageController extends Controller
 {
+    use FormAjaxValidationTrait;
+
+    /** @inheritdoc */
     public function behaviors()
     {
         return [
             'verbs' => [
-                'class'   => VerbFilter::class,
+                'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['post'],
                 ],
@@ -28,35 +32,27 @@ class KeyStorageController extends Controller
 
     /**
      * Lists all KeyStorageItem models.
+     *
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new KeyStorageItemSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->sort = [
-            'defaultOrder' => ['key' => SORT_DESC]
-        ];
-
-        return $this->render('index', [
-            'searchModel'  => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    /**
-     * Creates a new KeyStorageItem model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
-    {
         $model = new KeyStorageItem();
+
+        $this->performAjaxValidation($model);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         } else {
-            return $this->render('create', [
+            $searchModel = new KeyStorageItemSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            $dataProvider->sort = [
+                'defaultOrder' => ['key' => SORT_DESC],
+            ];
+
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
                 'model' => $model,
             ]);
         }
@@ -73,6 +69,8 @@ class KeyStorageController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+
+        $this->performAjaxValidation($model);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);

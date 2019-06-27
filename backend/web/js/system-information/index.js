@@ -1,32 +1,32 @@
-$(document).ready(function(){
+$(document).ready(function () {
     // CPU
-    (function(){
+    (function () {
         var data = [];
         var plot;
         var setLength = 300;
         var updateInterval = 500; //Fetch data ever x milliseconds
         var realtime = "on"; //If == to on then fetch data every x seconds. else stop fetching
 
-        function update(){
+        function update() {
             $.ajax({
-                data:{data:"cpu_usage"},
+                data: {data: "cpu_usage"},
                 dataType: "json",
-                success: function(result){
-                    $.each(result, function(k,v){
-                        if(data[k] == undefined){
+                success: function (result) {
+                    $.each(result, function (k, v) {
+                        if (data[k] == undefined) {
                             var sample = [];
-                            for(var i = 1; i <= setLength; i++){
+                            for (var i = 1; i <= setLength; i++) {
                                 sample.push([i, 0])
                             }
-                            data[k] = {label:" CPU"+k, data:sample}
+                            data[k] = {label: " CPU" + k, data: sample}
                         } else {
-                            for(var i = 0; i < setLength - 1; i++){
-                                data[k]["data"][i] = [i+1, data[k]["data"][i+1][1]]
+                            for (var i = 0; i < setLength - 1; i++) {
+                                data[k]["data"][i] = [i + 1, data[k]["data"][i + 1][1]]
                             }
                             data[k]["data"][setLength - 1] = ([setLength, v * 100])
                         }
                     })
-                    if(!plot){
+                    if (!plot) {
                         plot = $.plot("#cpu-usage .chart", data, {
                             grid: {
                                 borderColor: "#f3f3f3",
@@ -53,51 +53,51 @@ $(document).ready(function(){
                         plot.setData(data);
                         plot.draw();
                     }
-                    if(realtime == "on"){
+                    if (realtime == "on") {
                         setTimeout(update, updateInterval)
                     }
                 }
             })
         }
+
         if (realtime === "on") {
             update();
         }
 
-        $("#cpu-usage .realtime .btn").click(function() {
+        $("#cpu-usage .realtime .btn").click(function () {
             if ($(this).data("toggle") === "on") {
                 realtime = "on";
                 update();
-            }
-            else {
+            } else {
                 realtime = "off";
             }
         });
     })();
 
     // Memory
-    (function(){
+    (function () {
         var data;
         var plot;
         var setLength = 300;
         var updateInterval = 500; //Fetch data ever x milliseconds
         var realtime = "on"; //If == to on then fetch data every x seconds. else stop fetching
 
-        function update(){
+        function update() {
             $.ajax({
-                data:{data:"memory_usage"},
-                success: function(result){
-                    if(!data){
+                data: {data: "memory_usage"},
+                success: function (result) {
+                    if (!data) {
                         data = [];
-                        for(var i = 1; i <= setLength; i++){
+                        for (var i = 1; i <= setLength; i++) {
                             data.push([i, 0])
                         }
                     } else {
-                        for(var i = 0; i < setLength - 1; i++){
-                            data[i] = [i+1, data[i+1][1]];
+                        for (var i = 0; i < setLength - 1; i++) {
+                            data[i] = [i + 1, data[i + 1][1]];
                         }
                         data[setLength - 1] = [setLength, parseFloat(result) * 100];
                     }
-                    if(!plot){
+                    if (!plot) {
                         plot = $.plot("#memory-usage .chart", [data], {
                             grid: {
                                 borderColor: "#f3f3f3",
@@ -124,22 +124,22 @@ $(document).ready(function(){
                         plot.setData([data]);
                         plot.draw();
                     }
-                    if(realtime == "on"){
+                    if (realtime == "on") {
                         setTimeout(update, updateInterval)
                     }
                 }
             })
         }
+
         if (realtime === "on") {
             update();
         }
 
-        $("#memory-usage .realtime .btn").click(function() {
+        $("#memory-usage .realtime .btn").click(function () {
             if ($(this).data("toggle") === "on") {
                 realtime = "on";
                 update();
-            }
-            else {
+            } else {
                 realtime = "off";
             }
         });

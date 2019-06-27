@@ -36,8 +36,8 @@ class ArticlePickup extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id'          => 'ID',
-            'article_id'  => 'Article',
+            'id' => 'ID',
+            'article_id' => 'Article',
             'sort_number' => 'Sort Number',
         ];
     }

@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
     "use strict";
 
     //Make the dashboard widgets sortable Using jquery UI
@@ -16,15 +16,15 @@ $(function() {
     });
 });
 
-$(function(){
+$(function () {
     $(".dropdown").hover(
-        function() {
-            $('.dropdown-menu', this).stop( true, true ).fadeIn("fast");
+        function () {
+            $('.dropdown-menu', this).stop(true, true).fadeIn("fast");
             $(this).toggleClass('open');
             $('b', this).toggleClass("caret caret-up");
         },
-        function() {
-            $('.dropdown-menu', this).stop( true, true ).fadeOut("fast");
+        function () {
+            $('.dropdown-menu', this).stop(true, true).fadeOut("fast");
             $(this).toggleClass('open');
             $('b', this).toggleClass("caret caret-up");
         });

@@ -35,8 +35,8 @@ class DbMenu extends Menu
         ];
         $this->items = Yii::$app->cache->get($cacheKey);
         if ($this->items === false) {
-            if (!($model = WidgetMenu::findOne(['key'    => $this->key,
-                                                'status' => WidgetMenu::STATUS_ACTIVE
+            if (!($model = WidgetMenu::findOne(['key' => $this->key,
+                'status' => WidgetMenu::STATUS_ACTIVE
             ]))) {
                 throw new InvalidConfigException;
             }

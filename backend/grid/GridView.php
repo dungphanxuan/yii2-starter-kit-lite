@@ -16,10 +16,10 @@ class GridView extends \yii\grid\GridView
     ];
 
     public $pager = [
-        'linkOptions'                   => ['class' => 'page-link'],
-        'pageCssClass'                  => 'page-item',
-        'activePageCssClass'            => 'page-item active',
-        'disabledPageCssClass'          => 'page-item disabled',
+        'linkOptions' => ['class' => 'page-link'],
+        'pageCssClass' => 'page-item',
+        'activePageCssClass' => 'page-item active',
+        'disabledPageCssClass' => 'page-item disabled',
         'disabledListItemSubTagOptions' => [
             'tag' => 'a'
         ]

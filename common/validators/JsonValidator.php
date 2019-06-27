@@ -42,10 +42,12 @@ class JsonValidator extends Validator
 
         return <<<"JS"
             try {
-                JSON.parse(value);
-            } catch (e) {
-                messages.push('{$message}')
-            }
+                JSON . parse(value);
+            } catch (e)
+{
+messages.push('{$message}')
+}
+
 JS;
-    }
+}
 }

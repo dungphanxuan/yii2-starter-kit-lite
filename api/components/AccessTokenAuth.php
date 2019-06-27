@@ -7,6 +7,7 @@ namespace api\components;
  * @copyright Copyright (c) 2008 Yii Software LLC
  * @license   http://www.yiiframework.com/license/
  */
+
 use common\models\User;
 use common\models\UserToken;
 use yii\filters\auth\AuthMethod;

@@ -26,7 +26,7 @@ class TimelineEventController extends Controller
         ];
 
         return $this->render('index', [
-            'searchModel'  => $searchModel,
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }

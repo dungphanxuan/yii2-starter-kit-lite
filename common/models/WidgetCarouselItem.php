@@ -11,17 +11,17 @@ use yii\db\ActiveRecord;
 /**
  * This is the model class for table "widget_carousel_item".
  *
- * @property integer        $id
- * @property integer        $carousel_id
- * @property string         $base_url
- * @property string         $path
- * @property string         $type
- * @property string         $image
- * @property string         $imageUrl
- * @property string         $url
- * @property string         $caption
- * @property integer        $status
- * @property integer        $order
+ * @property integer $id
+ * @property integer $carousel_id
+ * @property string $base_url
+ * @property string $path
+ * @property string $type
+ * @property string $image
+ * @property string $imageUrl
+ * @property string $url
+ * @property string $caption
+ * @property integer $status
+ * @property integer $order
  *
  * @property WidgetCarousel $carousel
  */
@@ -55,16 +55,16 @@ class WidgetCarouselItem extends ActiveRecord
         return [
             TimestampBehavior::class,
             [
-                'class'            => UploadBehavior::class,
-                'attribute'        => 'image',
-                'pathAttribute'    => 'path',
+                'class' => UploadBehavior::class,
+                'attribute' => 'image',
+                'pathAttribute' => 'path',
                 'baseUrlAttribute' => 'base_url',
-                'typeAttribute'    => 'type'
+                'typeAttribute' => 'type'
             ],
             'cacheInvalidate' => [
-                'class'          => CacheInvalidateBehavior::class,
+                'class' => CacheInvalidateBehavior::class,
                 'cacheComponent' => 'frontendCache',
-                'keys'           => [
+                'keys' => [
                     function ($model) {
                         return [
                             WidgetCarousel::class,
@@ -96,16 +96,16 @@ class WidgetCarouselItem extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id'          => Yii::t('common', 'ID'),
+            'id' => Yii::t('common', 'ID'),
             'carousel_id' => Yii::t('common', 'Carousel ID'),
-            'image'       => Yii::t('common', 'Image'),
-            'base_url'    => Yii::t('common', 'Base URL'),
-            'path'        => Yii::t('common', 'Path'),
-            'type'        => Yii::t('common', 'File Type'),
-            'url'         => Yii::t('common', 'Url'),
-            'caption'     => Yii::t('common', 'Caption'),
-            'status'      => Yii::t('common', 'Status'),
-            'order'       => Yii::t('common', 'Order')
+            'image' => Yii::t('common', 'Image'),
+            'base_url' => Yii::t('common', 'Base URL'),
+            'path' => Yii::t('common', 'Path'),
+            'type' => Yii::t('common', 'File Type'),
+            'url' => Yii::t('common', 'Url'),
+            'caption' => Yii::t('common', 'Caption'),
+            'status' => Yii::t('common', 'Status'),
+            'order' => Yii::t('common', 'Order')
         ];
     }
 

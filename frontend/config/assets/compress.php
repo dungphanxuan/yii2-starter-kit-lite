@@ -10,31 +10,31 @@ Yii::setAlias('@web', '/');
 
 return [
     // Adjust command/callback for JavaScript files compressing:
-    'jsCompressor'  => 'uglifyjs {from} -o {to}',
+    'jsCompressor' => 'uglifyjs {from} -o {to}',
     // Adjust command/callback for CSS files compressing:
     'cssCompressor' => 'yuicompressor --type css {from} -o {to}',
 
     // The list of asset bundles to compress:
-    'bundles'       => [
+    'bundles' => [
         'frontend\assets\FrontendAsset',
         'yii\web\YiiAsset',
         'yii\web\JqueryAsset',
     ],
 
     // Asset bundle for compression output:
-    'targets'       => [
+    'targets' => [
         'all' => [
-            'class'    => 'yii\web\AssetBundle',
+            'class' => 'yii\web\AssetBundle',
             'basePath' => '@webroot',
-            'baseUrl'  => '@web',
-            'js'       => 'bundle/{hash}.js',
-            'css'      => 'bundle/{hash}.css',
+            'baseUrl' => '@web',
+            'js' => 'bundle/{hash}.js',
+            'css' => 'bundle/{hash}.css',
         ],
     ],
 
     // Asset manager configuration:
-    'assetManager'  => [
+    'assetManager' => [
         'basePath' => '@webroot/assets',
-        'baseUrl'  => '@web/assets'
+        'baseUrl' => '@web/assets'
     ],
 ];

@@ -14,8 +14,8 @@ class OwnModelRule extends Rule
     public $name = 'ownModelRule';
 
     /**
-     * @param int   $user
-     * @param Item  $item
+     * @param int $user
+     * @param Item $item
      * @param array $params
      * - model: model to check owner
      * - attribute: attribute that will be compared to user ID

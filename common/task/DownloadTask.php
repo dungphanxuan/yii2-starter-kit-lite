@@ -21,6 +21,7 @@ namespace common\task;
  *       }
  * }
  * */
+
 use bazilio\async\models\AsyncTask;
 
 class DownloadTask extends AsyncTask

@@ -19,16 +19,16 @@ class ApiResponseCode
     public static function responsesExtras()
     {
         return [
-            ApiResponseCode::ERR_OK                    => '',
-            ApiResponseCode::ERR_LOGIN_REQUIRED        => 'Login required to use this interface',
-            ApiResponseCode::ERR_FORBIDDEN             => 'Forbidden',
-            ApiResponseCode::ERR_METHOD_NOT_FOUND      => 'Method not found',
-            ApiResponseCode::ERR_NOT_FOUND             => 'Record not found',
-            ApiResponseCode::ERR_NOT_SAVED             => 'Error in saving',
-            ApiResponseCode::ERR_DUPLICATE             => 'Duplicated record',
-            ApiResponseCode::ERR_INPUT_DATA_FORMAT     => 'Input data format incompatible',
+            ApiResponseCode::ERR_OK => '',
+            ApiResponseCode::ERR_LOGIN_REQUIRED => 'Login required to use this interface',
+            ApiResponseCode::ERR_FORBIDDEN => 'Forbidden',
+            ApiResponseCode::ERR_METHOD_NOT_FOUND => 'Method not found',
+            ApiResponseCode::ERR_NOT_FOUND => 'Record not found',
+            ApiResponseCode::ERR_NOT_SAVED => 'Error in saving',
+            ApiResponseCode::ERR_DUPLICATE => 'Duplicated record',
+            ApiResponseCode::ERR_INPUT_DATA_FORMAT => 'Input data format incompatible',
             ApiResponseCode::ERR_UNPROCCESSABLE_ENTITY => 'Unprocessable Entity',
-            ApiResponseCode::ERR_METHOD_NOT_ALLOW      => 'Method Not Allow',
+            ApiResponseCode::ERR_METHOD_NOT_ALLOW => 'Method Not Allow',
             ApiResponseCode::ERR_INTERNAL_SERVER_ERROR => 'Internal Server Error',
         ];
     }
@@ -43,15 +43,15 @@ class ApiResponseCode
     public static function responseMessages()
     {
         return [
-            ApiResponseCode::ERR_OK                    => 'OK',
-            ApiResponseCode::ERR_LOGIN_REQUIRED        => 'ERR_LOGIN_REQUIRED',
-            ApiResponseCode::ERR_FORBIDDEN             => 'ERR_FORBIDDEN',
-            ApiResponseCode::ERR_METHOD_NOT_FOUND      => 'ERR_METHOD_NOT_FOUND',
-            ApiResponseCode::ERR_NOT_FOUND             => 'ERR_NOT_FOUND',
-            ApiResponseCode::ERR_NOT_SAVED             => 'ERR_NOT_SAVED',
-            ApiResponseCode::ERR_DUPLICATE             => 'ERR_DUPLICATED',
-            ApiResponseCode::ERR_INPUT_DATA_FORMAT     => 'ERR_INPUT_DATA_FORMAT',
-            ApiResponseCode::ERR_METHOD_NOT_ALLOW      => 'ERR_METHOD_NOT_ALLOW',
+            ApiResponseCode::ERR_OK => 'OK',
+            ApiResponseCode::ERR_LOGIN_REQUIRED => 'ERR_LOGIN_REQUIRED',
+            ApiResponseCode::ERR_FORBIDDEN => 'ERR_FORBIDDEN',
+            ApiResponseCode::ERR_METHOD_NOT_FOUND => 'ERR_METHOD_NOT_FOUND',
+            ApiResponseCode::ERR_NOT_FOUND => 'ERR_NOT_FOUND',
+            ApiResponseCode::ERR_NOT_SAVED => 'ERR_NOT_SAVED',
+            ApiResponseCode::ERR_DUPLICATE => 'ERR_DUPLICATED',
+            ApiResponseCode::ERR_INPUT_DATA_FORMAT => 'ERR_INPUT_DATA_FORMAT',
+            ApiResponseCode::ERR_METHOD_NOT_ALLOW => 'ERR_METHOD_NOT_ALLOW',
             ApiResponseCode::ERR_UNPROCCESSABLE_ENTITY => 'ERR_UNPROCCESSABLE_ENTITY',
             ApiResponseCode::ERR_INTERNAL_SERVER_ERROR => 'ERR_INTERNAL_SERVER_ERROR',
         ];

@@ -43,7 +43,7 @@ class AppController extends Controller
         \Yii::$app->runAction('app-migrate/up', ['interactive' => $this->interactive]);
         \Yii::$app->runAction('migrate/up', [
             'migrationPath' => '@vendor/bazilio/yii2-async/migrations',
-            'interactive'   => $this->interactive
+            'interactive' => $this->interactive
         ]);
     }
 

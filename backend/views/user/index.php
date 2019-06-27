@@ -26,39 +26,39 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php echo GridView::widget([
             'dataProvider' => $dataProvider,
-            'filterModel'  => $searchModel,
+            'filterModel' => $searchModel,
             'tableOptions' => [
                 'class' => 'table table-striped table-bordered table-hover'
             ],
-            'columns'      => [
+            'columns' => [
                 [
-                    'class'           => 'yii\grid\CheckboxColumn',
-                    'headerOptions'   => ['style' => 'width:3%;text-align:center'],
-                    'contentOptions'  => ['style' => 'width:3%;text-align:center'],
+                    'class' => 'yii\grid\CheckboxColumn',
+                    'headerOptions' => ['style' => 'width:3%;text-align:center'],
+                    'contentOptions' => ['style' => 'width:3%;text-align:center'],
                     'checkboxOptions' => [
                         'class' => 'select-item'
                     ]
                 ],
                 [
-                    'attribute'      => 'id',
-                    'format'         => 'raw',
-                    'headerOptions'  => ['style' => 'text-align:center'],
+                    'attribute' => 'id',
+                    'format' => 'raw',
+                    'headerOptions' => ['style' => 'text-align:center'],
                     'contentOptions' => ['style' => 'width:10%;text-align:center'],
                 ],
                 [
-                    'attribute'     => 'username',
-                    'format'        => 'raw',
+                    'attribute' => 'username',
+                    'format' => 'raw',
                     'headerOptions' => ['style' => 'text-align:center'],
-                    'value'         => function ($model) {
+                    'value' => function ($model) {
                         return Html::a($model->username, ['update', 'id' => $model->id], ['class' => 'alink']);
                     },
                 ],
                 'email:email',
                 [
-                    'class'     => EnumColumn::class,
+                    'class' => EnumColumn::class,
                     'attribute' => 'status',
-                    'enum'      => User::statuses(),
-                    'filter'    => User::statuses()
+                    'enum' => User::statuses(),
+                    'filter' => User::statuses()
                 ],
                 'created_at:datetime',
                 //'logged_at:datetime',

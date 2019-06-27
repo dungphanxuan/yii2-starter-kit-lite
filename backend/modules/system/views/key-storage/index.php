@@ -1,57 +1,49 @@
 <?php
 
-use backend\grid\GridView;
-use yii\helpers\Html;
+use yii\grid\GridView;
 
-/* @var $this yii\web\View */
-/* @var $searchModel \backend\modules\system\models\search\KeyStorageItemSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+/**
+ * @var $this         yii\web\View
+ * @var $searchModel  backend\modules\system\models\search\KeyStorageItemSearch
+ * @var $dataProvider yii\data\ActiveDataProvider
+ * @var $model        common\models\KeyStorageItem
+ */
 
 $this->title = Yii::t('backend', 'Key Storage Items');
+
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
-    <div class="key-storage-item-index">
 
-        <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-        <div class="pull-right">
-            <p>
-                <?php echo Html::a(Yii::t('backend', 'Create {modelClass}', [
-                    'modelClass' => 'Key Storage Item',
-                ]), ['create'], ['class' => 'btn btn-success']) ?>
-            </p>
+<div class="box box-success collapsed-box">
+    <div class="box-header with-border">
+        <h3 class="box-title"><?php echo Yii::t('backend', 'Create {modelClass}', ['modelClass' => 'Key Storage Item']) ?></h3>
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
         </div>
-
-        <?php echo GridView::widget([
-            'dataProvider' => $dataProvider,
-            'filterModel'  => $searchModel,
-            'columns'      => [
-                ['class' => 'yii\grid\SerialColumn'],
-                [
-                    'attribute'     => 'key',
-                    'format'        => 'raw',
-                    'headerOptions' => ['style' => 'text-align:center'],
-                    'value'         => function ($model) {
-                        return Html::a($model->key, ['update', 'id' => $model->key], ['class' => 'alink']);
-                    },
-                ],
-                'value',
-
-                [
-                    'class'    => 'backend\grid\ActionColumn',
-                    'template' => '{update} {delete}'
-                ],
-            ],
-        ]); ?>
-
     </div>
+    <div class="box-body">
+        <?php echo $this->render('_form', [
+            'model' => $model,
+        ]) ?>
+    </div>
+</div>
 
+<?php echo GridView::widget([
+    'dataProvider' => $dataProvider,
+    'filterModel' => $searchModel,
+    'options' => [
+        'class' => 'grid-view table-responsive',
+    ],
+    'columns' => [
+        ['class' => 'yii\grid\SerialColumn'],
 
-<?php
-$app_css = <<<CSS
-.table-striped>tbody>tr:nth-of-type(odd) {
-    background-color: #CFD8DC !important;
-}
-CSS;
+        'key',
+        'value',
 
-$this->registerCss($app_css);
+        [
+            'class' => 'yii\grid\ActionColumn',
+            'template' => '{update} {delete}',
+        ],
+    ],
+]); ?>

@@ -29,67 +29,48 @@ class UserForm extends Model
         return [
             ['username', 'filter', 'filter' => 'trim'],
             ['username', 'required'],
-            [
-                'username',
-                'unique',
-                'targetClass' => User::class,
-                'filter'      => function ($query) {
-                    if (!$this->getModel()->isNewRecord) {
-                        $query->andWhere(['not', ['id' => $this->getModel()->id]]);
-                    }
+            ['username', 'unique', 'targetClass' => User::class, 'filter' => function ($query) {
+                if (!$this->getModel()->isNewRecord) {
+                    $query->andWhere(['not', ['id' => $this->getModel()->id]]);
                 }
-            ],
+            }],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],
             ['email', 'email'],
-            [
-                'email',
-                'unique',
-                'targetClass' => User::class,
-                'filter'      => function ($query) {
-                    if (!$this->getModel()->isNewRecord) {
-                        $query->andWhere(['not', ['id' => $this->getModel()->id]]);
-                    }
+            ['email', 'unique', 'targetClass' => User::class, 'filter' => function ($query) {
+                if (!$this->getModel()->isNewRecord) {
+                    $query->andWhere(['not', ['id' => $this->getModel()->id]]);
                 }
-            ],
+            }],
 
             ['password', 'required', 'on' => 'create'],
             ['password', 'string', 'min' => 6],
 
             [['status'], 'integer'],
-            [
-                ['roles'],
-                'each',
-                'rule' => [
-                    'in',
-                    'range' => ArrayHelper::getColumn(
-                        Yii::$app->authManager->getRoles(),
-                        'name'
-                    )
-                ]
+            [['roles'], 'each',
+                'rule' => ['in', 'range' => ArrayHelper::getColumn(
+                    Yii::$app->authManager->getRoles(),
+                    'name'
+                )]
             ],
         ];
     }
 
     /**
-     * @inheritdoc
+     * @return User
      */
-    public function attributeLabels()
+    public function getModel()
     {
-        return [
-            'username' => Yii::t('common', 'Username'),
-            'email'    => Yii::t('common', 'Email'),
-            'status'   => Yii::t('common', 'Status'),
-            'password' => Yii::t('common', 'Password'),
-            'roles'    => Yii::t('common', 'Roles')
-        ];
+        if (!$this->model) {
+            $this->model = new User();
+        }
+        return $this->model;
     }
 
     /**
      * @param User $model
-     *
      * @return mixed
      */
     public function setModel($model)
@@ -102,20 +83,21 @@ class UserForm extends Model
             Yii::$app->authManager->getRolesByUser($model->getId()),
             'name'
         );
-
         return $this->model;
     }
 
     /**
-     * @return User
+     * @inheritdoc
      */
-    public function getModel()
+    public function attributeLabels()
     {
-        if (!$this->model) {
-            $this->model = new User();
-        }
-
-        return $this->model;
+        return [
+            'username' => Yii::t('common', 'Username'),
+            'email' => Yii::t('common', 'Email'),
+            'status' => Yii::t('common', 'Status'),
+            'password' => Yii::t('common', 'Password'),
+            'roles' => Yii::t('common', 'Roles')
+        ];
     }
 
     /**
@@ -151,7 +133,6 @@ class UserForm extends Model
 
             return !$model->hasErrors();
         }
-
         return null;
     }
 }

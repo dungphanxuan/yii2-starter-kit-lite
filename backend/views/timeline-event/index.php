@@ -48,7 +48,7 @@ $icons = [
     <div class="col-md-12 text-center">
         <?php echo \yii\widgets\LinkPager::widget([
             'pagination' => $dataProvider->pagination,
-            'options'    => ['class' => 'pagination']
+            'options' => ['class' => 'pagination']
         ]) ?>
     </div>
 </div>

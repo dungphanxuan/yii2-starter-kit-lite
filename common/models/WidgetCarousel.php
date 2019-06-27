@@ -9,9 +9,9 @@ use yii\db\ActiveRecord;
 /**
  * This is the model class for table "widget_carousel".
  *
- * @property integer              $id
- * @property string               $key
- * @property integer              $status
+ * @property integer $id
+ * @property string $key
+ * @property integer $status
  *
  * @property WidgetCarouselItem[] $items
  */
@@ -35,9 +35,9 @@ class WidgetCarousel extends ActiveRecord
     {
         return [
             'cacheInvalidate' => [
-                'class'          => CacheInvalidateBehavior::class,
+                'class' => CacheInvalidateBehavior::class,
                 'cacheComponent' => 'frontendCache',
-                'keys'           => [
+                'keys' => [
                     function ($model) {
                         return [
                             self::class,
@@ -68,8 +68,8 @@ class WidgetCarousel extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id'     => Yii::t('common', 'ID'),
-            'key'    => Yii::t('common', 'Key'),
+            'id' => Yii::t('common', 'ID'),
+            'key' => Yii::t('common', 'Key'),
             'status' => Yii::t('common', 'Active'),
         ];
     }

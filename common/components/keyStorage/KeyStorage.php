@@ -66,8 +66,8 @@ class KeyStorage extends Component
 
     /**
      * @param          $key
-     * @param null     $default
-     * @param bool     $cache
+     * @param null $default
+     * @param bool $cache
      * @param int|bool $cachingDuration
      *
      * @return mixed|null

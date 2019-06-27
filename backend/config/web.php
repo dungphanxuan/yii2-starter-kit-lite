@@ -1,82 +1,67 @@
 <?php
 $config = [
-    'homeUrl'             => Yii::getAlias('@backendUrl'),
+    'homeUrl' => Yii::getAlias('@backendUrl'),
     'controllerNamespace' => 'backend\controllers',
-    'defaultRoute'        => 'article/index',
-    'controllerMap'       => [
-        'file-manager-elfinder' => [
-            'class'            => 'mihaildev\elfinder\Controller',
-            'access'           => ['manager'],
-            'disabledCommands' => ['netmount'],
-            'roots'            => [
-                [
-                    'baseUrl'  => '@storageUrl',
-                    'basePath' => '@storage',
-                    'path'     => '/',
-                    'access'   => ['read' => 'manager', 'write' => 'manager']
-                ]
-            ]
-        ]
-    ],
-    'components'          => [
+    'defaultRoute' => 'content/article/index',
+    'components' => [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        'request'      => [
+        'request' => [
             'cookieValidationKey' => env('backend_COOKIE_VALIDATION_KEY'),
             /*'csrfCookie' => [
                 'httpOnly' => true,
                 'secure' => true,
             ],*/
         ],
-        'user'         => [
-            'class'           => 'yii\web\User',
-            'identityClass'   => 'common\models\User',
-            'loginUrl'        => ['sign-in/login'],
+        'user' => [
+            'class' => yii\web\User::class,
+            'identityClass' => common\models\User::class,
+            'loginUrl' => ['sign-in/login'],
             'enableAutoLogin' => true,
-            'as afterLogin'   => 'common\behaviors\LoginTimestampBehavior'
+            'as afterLogin' => common\behaviors\LoginTimestampBehavior::class
         ],
         'assetManager' => [
             'bundles' => [
-                'yii\bootstrap\BootstrapPluginAsset'          => [
+                'yii\bootstrap\BootstrapPluginAsset' => [
                     'sourcePath' => null,
-                    'js'         => ['https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js']
+                    'js' => ['https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js']
                 ],
-                'yii\bootstrap\BootstrapAsset'                => [
+                'yii\bootstrap\BootstrapAsset' => [
                     'sourcePath' => null,
-                    'css'        => ['https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'],
+                    'css' => ['https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'],
                 ],
-                'common\assets\AdminLte'                      => [
+                'common\assets\AdminLte' => [
                     'sourcePath' => null,
-                    'baseUrl'    => 'https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.2/'
+                    'baseUrl' => 'https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.2/'
                 ],
-                'common\assets\FontAwesome'                   => [
+                'common\assets\FontAwesome' => [
                     'sourcePath' => null,
-                    'css'        => [
+                    'css' => [
                         'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
                     ]
                 ],
-                'common\assets\Html5shiv'                     => [
+                'common\assets\Html5shiv' => [
                     'sourcePath' => null,
-                    'css'        => [
+                    'css' => [
                         'https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js',
                     ]
                 ],
-                'common\assets\Flot'                          => [
+                'common\assets\Flot' => [
                     'sourcePath' => null,
-                    'css'        => [
+                    'css' => [
                         'https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.js',
                     ]
                 ],
-                'common\assets\JquerySlimScroll'              => [
+                'common\assets\JquerySlimScroll' => [
                     'sourcePath' => null,
-                    'js'         => [
+                    'js' => [
                         'https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js',
                     ]
                 ],
                 'trntv\filekit\widget\BlueimpFileuploadAsset' => [
                     'sourcePath' => null,
-                    'baseUrl'    => 'https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.12.5/'
+                    'baseUrl' => 'https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.12.5/'
                 ],
                 /*'yii\web\JqueryAsset'                         => [
                     'sourcePath' => null,
@@ -86,45 +71,58 @@ $config = [
             ],
         ],
     ],
-    'modules'             => [
+    'modules' => [
+        'content' => [
+            'class' => backend\modules\content\Module::class,
+        ],
+        'widget' => [
+            'class' => backend\modules\widget\Module::class,
+        ],
+        'file' => [
+            'class' => backend\modules\file\Module::class,
+        ],
         'system' => [
-            'class' => 'backend\modules\system\Module',
+            'class' => backend\modules\system\Module::class,
+        ],
+        'rbac' => [
+            'class' => backend\modules\rbac\Module::class,
+            'defaultRoute' => 'rbac-auth-item/index',
         ],
     ],
-    'as globalAccess'     => [
-        'class' => '\common\behaviors\GlobalAccessBehavior',
+    'as globalAccess' => [
+        'class' => common\behaviors\GlobalAccessBehavior::class,
         'rules' => [
             [
                 'controllers' => ['sign-in'],
-                'allow'       => true,
-                'roles'       => ['?'],
-                'actions'     => ['login']
+                'allow' => true,
+                'roles' => ['?'],
+                'actions' => ['login']
             ],
             [
                 'controllers' => ['sign-in'],
-                'allow'       => true,
-                'roles'       => ['@'],
-                'actions'     => ['logout']
+                'allow' => true,
+                'roles' => ['@'],
+                'actions' => ['logout']
             ],
             [
                 'controllers' => ['site'],
-                'allow'       => true,
-                'roles'       => ['?', '@'],
-                'actions'     => ['error']
+                'allow' => true,
+                'roles' => ['?', '@'],
+                'actions' => ['error']
             ],
             [
                 'controllers' => ['debug/default'],
-                'allow'       => true,
-                'roles'       => ['?'],
+                'allow' => true,
+                'roles' => ['?'],
             ],
             [
                 'controllers' => ['user'],
-                'allow'       => true,
-                'roles'       => ['administrator'],
+                'allow' => true,
+                'roles' => ['administrator'],
             ],
             [
                 'controllers' => ['user'],
-                'allow'       => false,
+                'allow' => false,
             ],
             [
                 'allow' => true,
@@ -136,14 +134,14 @@ $config = [
 
 if (YII_ENV_DEV) {
     $config['modules']['gii'] = [
-        'class'      => 'yii\gii\Module',
+        'class' => yii\gii\Module::class,
         'generators' => [
             'crud' => [
-                'class'           => 'yii\gii\generators\crud\Generator',
-                'templates'       => [
+                'class' => yii\gii\generators\crud\Generator::class,
+                'templates' => [
                     'yii2-starter-kit-lite' => Yii::getAlias('@backend/views/_gii/templates')
                 ],
-                'template'        => 'yii2-starter-kit-lite',
+                'template' => 'yii2-starter-kit-lite',
                 'messageCategory' => 'backend'
             ]
         ]

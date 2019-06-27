@@ -38,7 +38,7 @@ class OwnModelAccessFilter extends ActionFilter
             $model = call_user_func($this->modelClass . '::findOne', $modelPk);
             if ($model) {
                 $isAllowed = Yii::$app->user->can('editOwnModel', [
-                    'model'     => $model,
+                    'model' => $model,
                     'attribute' => $this->modelCreatedByAttribute
                 ]);
                 if (!$isAllowed) {

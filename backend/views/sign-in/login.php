@@ -22,15 +22,15 @@ $this->params['body-class'] = 'login-page';
                 <?php echo $form->field($model, 'username') ?>
                 <?php echo $form->field($model, 'password')->passwordInput([
                     'autocomplete' => 'off',
-                    'readonly'     => true,
-                    'onfocus'      => "this.removeAttribute('readonly');",
+                    'readonly' => true,
+                    'onfocus' => "this.removeAttribute('readonly');",
                 ]) ?>
                 <?php echo $form->field($model, 'rememberMe')->checkbox(['class' => 'simple']) ?>
             </div>
             <div class="footer">
                 <?php echo Html::submitButton(Yii::t('backend', 'Sign me in'), [
                     'class' => 'btn btn-primary btn-flat btn-block',
-                    'name'  => 'login-button'
+                    'name' => 'login-button'
                 ]) ?>
             </div>
             <?php ActiveForm::end(); ?>

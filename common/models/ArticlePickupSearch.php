@@ -49,8 +49,8 @@ class ArticlePickupSearch extends ArticlePickup
         }
 
         $query->andFilterWhere([
-            'id'          => $this->id,
-            'article_id'  => $this->article_id,
+            'id' => $this->id,
+            'article_id' => $this->article_id,
             'sort_number' => $this->sort_number,
         ]);
 

@@ -21,7 +21,7 @@ class FileStorageLogBehavior extends Behavior
     public function events()
     {
         return [
-            Storage::EVENT_AFTER_SAVE   => 'afterSave',
+            Storage::EVENT_AFTER_SAVE => 'afterSave',
             Storage::EVENT_AFTER_DELETE => 'afterDelete'
         ];
     }
@@ -52,7 +52,7 @@ class FileStorageLogBehavior extends Behavior
     {
         FileStorageItem::deleteAll([
             'component' => $this->component,
-            'path'      => $event->path
+            'path' => $event->path
         ]);
     }
 
